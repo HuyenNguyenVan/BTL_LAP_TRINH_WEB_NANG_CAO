@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* CSS để tạo menu cố định ở phía trên */
+        .fixed-top-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            z-index: 1000;
+        }
+        .fixed-top-menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px; /* Điều chỉnh chiều cao của menu */
+            border-bottom: 1px solid #e0e0e0; /* Đường viền dưới */
+        }
+        .fixed-top-menu li {
+            padding: 0 10px;
+        }
+        .bold-active {
+            font-weight: bold;
+            color: white !important;
+            background-color: #007bff !important;
+        }
+        /* CSS để tạo nút cuộn lên trên */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu cố định ở phía trên -->
+    <div class="fixed-top-menu" id="fixedMenu">
+        <ul>
+            <li><a href="#section1" class="menu-link">Thông tin</a></li>
+            <li><a href="#section2" class="menu-link">Lịch đặt</a></li>
+            <li><a href="#section4" class="menu-link">Bảng thông kê</a></li>
+        </ul>
+    </div>
+
+    <!-- Các phần nội dung -->
+    <div id="section1" style="padding-top: 3rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col avatar-column">
+                    <img src="images/doctor.svg" alt="Avatar" class="img-fluid">
+                </div>
+                <div class="col info-column">
+                    <h2>User Information</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="fullname">Full Name:</label>
+                            <input type="text" class="form-control" id="fullname" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" value="johndoe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" class="form-control" id="address" value="New York, USA">
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Position:</label>
+                            <input type="text" class="form-control" id="position" value="Employee">
+                        </div>
+                        <div class="form-group">
+                            <label for="major">Major:</label>
+                            <input type="text" class="form-control" id="major" value="Computer Science">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="section2">
+        <iframe src="calenderdocter.html" style="width: 100%; height: 100vh; border: none;"></iframe>
+    </div>
+    <div id="section4">
+        <table class="table" id="dataTable">
+            <thead>
+                <tr>
+                    <th scope="col">Ngày</th>
+                    <th scope="col">Số lượng bệnh nhân khám</th>
+                    <th scope="col">Giờ làm</th>
+                    <th scope="col">Lương</th>
+                    <th scope="col">Đánh giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>200000</td>
+                    <td>good</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>200000</td>
+                    <td>good</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>200000</td>
+                    <td>good</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Tổng</th>
+                    <td id="totalPatients"></td>
+                    <td id="totalHours"></td>
+                    <td id="totalSalary"></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <script>
+            window.onload = function() {
+                var table = document.getElementById('dataTable');
+                var totalPatients = 0;
+                var totalHours = 0;
+                var totalSalary = 0;
+
+                // Lặp qua từng hàng trong tbody để tính tổng
+                for (var i = 1; i < table.rows.length - 1; i++) {
+                    var row = table.rows[i];
+                    totalPatients += parseInt(row.cells[1].innerHTML);
+                    totalHours += parseInt(row.cells[2].innerHTML);
+                    totalSalary += parseInt(row.cells[3].innerHTML);
+                }
+
+                // Hiển thị tổng trong footer
+                document.getElementById('totalPatients').innerHTML = totalPatients;
+                document.getElementById('totalHours').innerHTML = totalHours;
+                document.getElementById('totalSalary').innerHTML = totalSalary;
+            };
+
+            // Xử lý sự kiện khi trang được cuộn
+            $(window).scroll(function() {
+                var scrollDistance = $(window).scrollTop();
+
+                // Kiểm tra mỗi phần tử và thay đổi CSS của menu tương ứng
+                $('div[id]').each(function(i) {
+                    if ($(this).position().top <= scrollDistance + 100) {
+                        $('.fixed-top-menu ul li a').removeClass('bold-active');
+                        $('.fixed-top-menu ul li a').eq(i).addClass('bold-active');
+                    }
+                });
+            });
+        </script>
+    </div>
+
+    <button class="scroll-top-btn btn btn-primary">Lên đầu trang</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        // Xử lý sự kiện khi trang được cuộn
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.scroll-top-btn').fadeIn();
+            } else {
+                $('.scroll-top-btn').fadeOut();
+            }
+        });
+
+        // Xử lý sự kiện khi click vào nút cuộn lên trên
+        $('.scroll-top-btn').click(function() {
+            $('html, body').animate({scrollTop : 0},800);
+            return false;
+        });
+    </script>
+</body>
+</html>

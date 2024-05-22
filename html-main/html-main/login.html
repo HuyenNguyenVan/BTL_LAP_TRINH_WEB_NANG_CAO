@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="grid grid-cols-2 h-screen">
+        <div class="col-span-1 bg-violet-50 relative">
+            <img class="absolute top-0 left-0 z-0 w-full h-full object-cover" src="images/doctor.svg" alt="Doctor Image">
+            <img class="mx-auto py-24 pb-14 w-auto h-70px z-10 relative" src="images/IVIE_logo.svg" alt="IVIE Logo">
+            <div class="text-center text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-900 relative z-10">Bạn nên đăng nhập để sử dụng dịch vụ</div>
+            <div class="text-center my-4 relative z-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            <div class="lg:px-32 sm:px-5 py-4 relative z-10">
+                <div class="flex flex-col">
+                    <ul class="flex justify-center mb-3" id="pills-tab" role="tablist">
+                        <li class="mr-2">
+                            <a class="px-4 py-2 bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none p-4 focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm w-full sm:w-autotext-center text-white active-tab" id="pills-home-tab" href="#pills-home">Đăng nhập</a>
+                        </li>
+                        <li>
+                            <a class="px-4 py-2 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none p-4 focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm w-full sm:w-autotext-center" id="pills-profile-tab" href="#pills-profile">Đăng ký</a>
+                        </li>
+                    </ul>
+                    <div id="pills-tabContent">
+                        <div class="tab-pane active" id="pills-home">
+                            <form id="loginForm">
+                                <div class="my-2.5">
+                                    <input type="email" name="email"
+                                        class="bg-violet-100 border border-gray-300 text-gray-900 text-sm rounded-lg outline-violet-500 focus:bg-white block w-full p-4"
+                                        placeholder="Email" required>
+                                </div>
+                
+                                <div class="my-5">
+                                    <input type="password" id="last_name"
+                                        class="bg-violet-100 border border-gray-300 text-gray-900 text-sm rounded-lg outline-violet-500 focus:bg-white block w-full p-4"
+                                        placeholder="Password" required>
+                                    <div class="text-right text-orange-400 text-sm py-1">
+                                        Quên mật khẩu
+                                    </div>
+                                </div>
+                
+                                <div class="flex items-start mb-6">
+                                    <div class="flex items-center h-3">
+                                        <input id="remember" type="checkbox" value=""
+                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3" required>
+                                    </div>
+                                    <label for="remember" class="ml-2 text-xs text-gray-900">Ghi nhớ mật khẩu</a>.</label>
+                                </div>
+                                <a href="index.html" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none p-4 focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm w-full sm:w-auto flex justify-center items-center">Đăng nhập</a>
+                                <p class="text-center mb-4 mt-2">Đăng nhập nhanh</p>
+                                <div class="flex justify-center">
+                                    <img src="images/zalo.png" alt="" class="mr-6 w-6 h-6 lg:w-9 lg:h-9">
+                                    <img src="images/facebook.png" alt="" class="mr-6 w-6 h-6 lg:w-9 lg:h-9">
+                                    <img src="images/google.png" alt="" class="w-6 h-6 lg:w-9 lg:h-9">
+                                </div>                                
+                            </form>
+                            <script>
+                                document.getElementById('loginForm').addEventListener('submit', function(event) {
+                                    event.preventDefault();
+                                    var username = document.getElementById('username').value;
+                                    var password = document.getElementById('password').value;
+                                    if (!username.trim() || !password.trim()) {
+                                        alert('Vui lòng nhập tên tài khoản và mật khẩu.');
+                                        return;
+                                    }
+                                    if (password.length < 8) {
+                                        alert('Mật khẩu phải có ít nhất 8 ký tự.');
+                                        return;
+                                    }
+                                    var uppercaseRegex = /[A-Z]/;
+                                    if (!uppercaseRegex.test(password)) {
+                                        alert('Mật khẩu phải có ít nhất 1 chữ cái in hoa.');
+                                        return;
+                                    }
+                                    var digitRegex = /\d/;
+                                    if (!digitRegex.test(password)) {
+                                        alert('Mật khẩu phải có ít nhất 1 số.');
+                                        return;
+                                    }
+                                    var specialCharRegex = /[!@#$%^&*()_+]/;
+                                    if (!specialCharRegex.test(password)) {
+                                        alert('Mật khẩu phải có ít nhất 1 ký tự đặc biệt.');
+                                        return;
+                                    }
+                                });
+                            </script>                        
+                        </div>
+                        <div class="tab-pane hidden" id="pills-profile">
+                            <form>
+                                <div class="my-2.5">
+                                    <input type="email" name="email"
+                                        class="bg-violet-100 border border-gray-300 text-gray-900 text-sm rounded-lg outline-violet-500 focus:bg-white block w-full p-4"
+                                        placeholder="Email" required>
+                                </div>        
+                                <div class="my-5">
+                                    <input type="password" id="last_name"
+                                        class="bg-violet-100 border border-gray-300 text-gray-900 text-sm rounded-lg outline-violet-500 focus:bg-white block w-full p-4"
+                                        placeholder="Password" required>
+                                </div>          
+                                <div class="my-5">
+                                    <input type="password" id="last_name"
+                                        class="bg-violet-100 border border-gray-300 text-gray-900 text-sm rounded-lg outline-violet-500 focus:bg-white block w-full p-4"
+                                        placeholder="Nhập lại password" required>
+                                </div>
+                                <button type="submit" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none p-4 focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm w-full sm:w-autotext-center">Đăng
+                                    ký</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const tabs = document.querySelectorAll(".flex li a");
+                        tabs.forEach(tab => {
+                            tab.addEventListener("click", function() {
+                                tabs.forEach(t => t.classList.remove("active-tab"));
+                                this.classList.add("active-tab");
+                                const tabId = this.getAttribute("href").slice(1);
+                                const tabContents = document.querySelectorAll(".tab-pane");
+                                tabContents.forEach(content => content.classList.add("hidden"));
+                                document.getElementById(tabId).classList.remove("hidden");
+                            });
+                        });
+                    });
+                </script>   
+            </div>
+        </div>
+        <div class="col-span-1">
+            <div class="py-8 lg:px-48">
+                <img src="images/sign-up.png" alt="User" class="text-green-500 fill-current pt-36">
+            </div>
+            <div class="flex gap-4 pt-8 justify-center items-center">
+                <img src="images/phone.png" alt="Doctor" class="w-8 h-8 text-blue-500 fill-current">
+                <p>
+                    <span>Hotline: </span><b class="text-black-alpha-50">1900 3367</b>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

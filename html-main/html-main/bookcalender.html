@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto p-6">
+        <div class="bg-eff9fb p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Đặt khám trước qua IVIE - Bác sĩ ơi</h2>
+            <p class="mb-3">Để được tiếp đón ưu tiên viện hoặc được tư vấn với bác sĩ giỏi ngay tại nhà</p>
+            <form class="mb-4 flex">
+              <div class="flex-grow mr-2">
+                <input type="text" id="symptoms" class="border rounded-lg px-2 py-1 w-full" placeholder="Nhập triệu chứng...">
+              </div>
+              <button type="submit" class="bg-blue-500 text-white rounded-lg px-3 py-1">Tìm kiếm</button>
+            </form>
+        </div>
+        <div class="bg-eff9fb p-8 rounded-lg shadow-md mt-6">
+            <h2 class="text-2xl font-bold mb-4">Chọn bác sĩ</h2>
+            <div class="flex">
+                <div class="mt-4">
+                    <label for="specialty" class="block text-gray-700 font-bold mb-2">Chuyên khoa</label>
+                    <select id="specialty" class="border rounded-lg px-2 py-1 w-full">
+                        <option value="all">Tất cả các chuyên khoa</option>
+                        <option value="specialty1">Chuyên khoa 1</option>
+                        <option value="specialty2">Chuyên khoa 2</option>
+                        <option value="specialty3">Chuyên khoa 3</option>
+                    </select>
+                </div>
+                <div class="mt-4">
+                    <label for="type" class="block text-gray-700 font-bold mb-2">Hình thức khám</label>
+                    <select id="type" class="border rounded-lg px-2 py-1 w-full">
+                        <option value="all">Tất cả</option>
+                        <option value="online">Khám online</option>
+                        <option value="in-person">Khám trực tiếp tại cơ sở</option>
+                    </select>
+                </div>
+            </div>
+            <ul class="grid grid-cols-3 gap-8">
+                <li class="bg-gray-100 p-6 rounded-lg shadow-md">
+                    <img src="doctor1.jpg" alt="Doctor A" class="rounded-full w-20 h-20 mb-4 mx-auto">
+                    <div class="text-center">
+                        <p class="font-bold text-xl">Bác sĩ A</p>
+                        <p class="text-gray-600">Chức vụ: Bác sĩ chuyên khoa</p>
+                    </div>
+                    <div class="flex justify-center items-center mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 mr-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        <p>5</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 ml-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        <p>4.5</p>
+                    </div>
+                    <p class="text-center mt-4 text-blue-500 font-bold">Chuyên khoa: Da liễu</p>
+                    <div class="mt-6">
+                        <button class="bg-blue-500 text-white rounded-lg px-4 py-2 w-full">Đặt khám</button>
+                    </div>
+                </li>
+                <li class="bg-gray-100 p-6 rounded-lg shadow-md">
+                    <img src="doctor1.jpg" alt="Doctor A" class="rounded-full w-20 h-20 mb-4 mx-auto">
+                    <div class="text-center">
+                        <p class="font-bold text-xl">Bác sĩ A</p>
+                        <p class="text-gray-600">Chức vụ: Bác sĩ chuyên khoa</p>
+                    </div>
+                    <div class="flex justify-center items-center mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 mr-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        <p>5</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 ml-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        <p>4.5</p>
+                    </div>
+                    <p class="text-center mt-4 text-blue-500 font-bold">Chuyên khoa: Da liễu</p>
+                    <div class="mt-6">
+                        <button class="bg-blue-500 text-white rounded-lg px-4 py-2 w-full">Đặt khám</button>
+                    </div>
+                </li>
+                <li class="bg-gray-100 p-6 rounded-lg shadow-md">
+                    <img src="doctor1.jpg" alt="Doctor A" class="rounded-full w-20 h-20 mb-4 mx-auto">
+                    <div class="text-center">
+                        <p class="font-bold text-xl">Bác sĩ A</p>
+                        <p class="text-gray-600">Chức vụ: Bác sĩ chuyên khoa</p>
+                    </div>
+                    <div class="flex justify-center items-center mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 mr-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        <p>5</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 ml-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                        <p>4.5</p>
+                    </div>
+                    <p class="text-center mt-4 text-blue-500 font-bold">Chuyên khoa: Da liễu</p>
+                    <div class="mt-6">
+                        <button class="bg-blue-500 text-white rounded-lg px-4 py-2 w-full">Đặt khám</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

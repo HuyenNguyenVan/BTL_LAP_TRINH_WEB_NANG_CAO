@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin cá nhân</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">THÔNG TIN CÁ NHÂN </h1>
+        <div class="grid grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md col-span-2 sm:col-span-1">
+                <h2 class="text-lg font-semibold mb-4">Thông tin cá nhân</h2>
+                <form class="border p-6 rounded-lg">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="firstName">
+                                Họ và tên (HỌ NHẤT)
+                            </label>
+                            <input class="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="firstName" type="text">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="phoneNumber">
+                                Số điện thoại
+                            </label>
+                            <input class="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="phoneNumber" type="tel">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="birthday">
+                                Ngày sinh
+                            </label>
+                            <input class="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="birthday" type="date">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="lastName">
+                                Họ và tên (HỌ NHẠT)
+                            </label>
+                            <input class="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="lastName" type="text">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="email">
+                                Email
+                            </label>
+                            <input class="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-gray-700 font-bold mb-2" for="identity">
+                                Số CMND/CCCD
+                            </label>
+                            <input class="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="identity" type="text">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-gray-700 font-bold mb-2" for="address">
+                                Địa chỉ
+                            </label>
+                            <textarea class="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none" id="address"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md col-span-2 sm:col-span-1">
+                <h2 class="text-lg font-semibold mb-4">Mã giới thiệu</h2>
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">Quét mã QR code để giới thiệu</h2>
+                    <p class="mb-3">Gửi mã IVIE - Bác sĩ ơi cho bạn bè, người thân của bạn.</p>
+                    <img src="images/qr.png" alt="">
+                    <p>Nhập mã giới thiệu khi đăng ký tài khoản để người giới thiệu được cộng điểm.</p>
+                    <div class="flex items-center mt-4">
+                      <p class="font-bold">Mã IVIE - Bác sĩ ơi của bạn</p>
+                      <input type="text" value="7f36a718-a460-43f3-a413-d0062d3229bd" class="border rounded-lg ml-4 px-2 py-1" readonly>
+                      <button class="bg-blue-500 text-white rounded-lg px-3 py-1 ml-4">Sao chép</button>
+                    </div>
+                    <p class="mt-4">Mỗi một lượt giới thiệu đăng ký tải app thành công sẽ được cộng điểm tích lũy</p>
+                  </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
