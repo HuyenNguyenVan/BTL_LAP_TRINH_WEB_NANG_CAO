@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: 'svn-gilroy';
+            src: url('/fonts/svn-gilroy.woff2') format('woff2'),
+                 url('/fonts/svn-gilroy.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="background-color: #24AC7C;">
+        <div class="container">
+            <div class="row d-flex justify-content-between text-white">
+                <div class="col-md-4 d-flex align-items-center">
+                    <div class="text-uppercase fw-bold fs-4">Đặt khám ngay:</div>
+                    <img class="ms-2" src="images/phone.png" alt="" style="width: 24px; height: 24px;">
+                    <div class="ms-2 text-uppercase fw-bold fs-4">1900 3367</div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end align-items-center text-uppercase fw-bold fs-4">
+                    <a href="login.html" class="text-white">Đăng nhập</a> / <a href="login.html" class="text-white">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid d-flex justify-content-between align-items-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="/images/logo.png" alt="" class="img-fluid" style="max-height: 40px;">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Đặt khám
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item fw-bold" href="#">Bác sĩ</a></li>
+                                    <li><a class="dropdown-item fw-bold" href="#">Cơ sở y tế</a></li>
+                                    <li><a class="dropdown-item fw-bold" href="#">Chuyên khoa</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Hỏi đáp bác sĩ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Hồ sơ sức khỏe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Cẩm nang</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container-fluid" style="background: rgba(36, 172, 124, 0.9);">
+        <div class="container" style="padding: 0;">
+            <img src="/images/banner.png" alt="" class="img-fluid" style="width: 100%;">
+        </div>
+    </div>
+    <!-- chi tiết bác sĩ -->
+    <div class="flex-grow container mx-auto">
+        <div class="flex flex-col items-center space-x-2">
+            <div class="container mx-auto mt-10 flex">
+                <img src="images/avt-doctor.png" alt="">
+                <div>
+                    <h1>Ths.BS Trần Thị Thúy Mùi</h1>
+                    <div>
+                        <div>
+                            <p class="flex-0 max-w-full rounded-md text-base leading-5 text-gray-800 px-2 py-1">350.000đ</p>
+                            <p class="flex-0 bg-blue-200 rounded-md text-base leading-5 text-gray-800 px-2 py-1">Nội tổng quát</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 2a1 1 0 0 0-1 1v1.5a.5.5 0 0 1-.5.5H6v2h8V5h-2a.5.5 0 0 1-.5-.5V3a1 1 0 0 0-1-1zM5 8v2.5a2.5 2.5 0 0 0 2.5 2.5h5A2.5 2.5 0 0 0 15 10.5V8h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1z" clip-rule="evenodd"/>
+                                    <path d="M9 15a1 1 0 0 1 2 0v1h2v2H7v-2h2v-1z"/>
+                                </svg>
+                                <span class="ml-1">Lượt hẹn khám: 78</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M11 2a1 1 0 0 0-1 1v1.5a.5.5 0 0 1-.5.5H7v2h6V5h-2a.5.5 0 0 1-.5-.5V3a1 1 0 0 0-1-1zM6 8v2.5a2.5 2.5 0 0 0 2.5 2.5h5A2.5 2.5 0 0 0 16 10.5V8h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1z" clip-rule="evenodd"/>
+                                    <path d="M10 15a1 1 0 0 1-1-1v-1H7v-2h6v2h-2v1a1 1 0 0 1-1 1z"/>
+                                </svg>
+                                <span class="ml-1">Lượt gọi khám: 8</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 2a1 1 0 0 0-1 1v1.5a.5.5 0 0 1-.5.5H6v2h8V5h-2a.5.5 0 0 1-.5-.5V3a1 1 0 0 0-1-1zM5 8v2.5a2.5 2.5 0 0 0 2.5 2.5h5A2.5 2.5 0 0 0 15 10.5V8h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1z" clip-rule="evenodd"/>
+                                    <path d="M9 15a1 1 0 0 1 2 0v1h2v2H7v-2h2v-1z"/>
+                                </svg>
+                                <span class="ml-1">Lượt tư vấn: 2</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 2a1 1 0 0 0-1 1v1.5a.5.5 0 0 1-.5.5H6v2h8V5h-2a.5.5 0 0 1-.5-.5V3a1 1 0 0 0-1-1zM5 8v2.5a2.5 2.5 0 0 0 2.5 2.5h5A2.5 2.5 0 0 0 15 10.5V8h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1z" clip-rule="evenodd"/>
+                                    <path d="M9 15a1 1 0 0 1 2 0v1h2v2H7v-2h2v-1z"/>
+                                </svg>
+                                <span class="ml-1">Đánh giá: 5 (18 lượt đánh giá)</span>
+                            </div>
+                        </div>    
+                    </div>                
+                </div>
+                <div class="flex justify-center mt-4">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyourwebsite.com%2Fyourpage" target="_blank" rel="noopener noreferrer" class="flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 transition duration-300 ease-in-out">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 2c4.4183 0 8 3.5817 8 8s-3.5817 8-8 8-8-3.5817-8-8 3.5817-8 8-8zM9 14H7v-4h2v4zm4 0h-1v-5c0-.5523.4477-1 1-1h1V8h-2c-1.1046 0-2 .8954-2 2v1H8v2h2v6h3v-6h1l1-2h-2V8h3l1 2z" clip-rule="evenodd" />
+                        </svg>Chia sẻ
+                    </a>
+                </div>
+            </div>
+            <div class="container mx-auto mt-10">
+                <div>
+                    <h1>Lịch đặt tư vấn và khám:</h1>
+                    <div class="w-64 mx-auto bg-white p-4 rounded-lg shadow">
+                        <label for="datepicker" class="block mb-2 text-sm font-medium text-gray-700">Chọn Ngày:</label>
+                        <input type="date" id="datepicker" name="datepicker" class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    </div>
+                    <div id="timeSlots" class="mt-4"></div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.getElementById("datepicker").addEventListener("change", function() {
+                                var selectedDate = this.value;
+                                displayTimeSlots(selectedDate);
+                            });
+                        });
+
+                        function displayTimeSlots(selectedDate) {
+                            var timeSlotsContainer = document.getElementById("timeSlots");
+                            timeSlotsContainer.innerHTML = ""; // Xóa nội dung cũ trước khi hiển thị mới
+
+                            var timeSlots = generateTimeSlots(selectedDate);
+                            if (timeSlots.length === 0) {
+                                timeSlotsContainer.innerHTML = "<p class='text-red-500'>Không có mốc thời gian nào cho ngày này.</p>";
+                            } else {
+                                timeSlots.forEach(function(timeSlot) {
+                                    var button = document.createElement("button");
+                                    button.textContent = timeSlot;
+                                    button.classList.add("mr-2", "mb-2", "px-4", "py-2", "bg-blue-500", "text-white", "rounded", "focus:outline-none", "focus:ring", "focus:ring-blue-400", "hover:bg-blue-600", "hover:shadow-md");
+                                    button.addEventListener("click", function() {
+                                        alert("Bạn đã chọn mốc thời gian: " + timeSlot);
+                                    });
+                                    timeSlotsContainer.appendChild(button);
+                                });
+                            }
+                        }
+
+                        function generateTimeSlots(selectedDate) {
+                            // Tạo một mảng mốc thời gian cố định
+                            var timeSlots = ["19:00", "19:30", "20:00"];
+                            return timeSlots;
+                        }
+                    </script>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold mb-4">Kinh nghiệm chữa trị:</h1>
+                    <ul class="list-disc pl-5">
+                        <li class="mb-2">Mẹo số 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                        <li class="mb-2">Mẹo số 2: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                        <li class="mb-2">Mẹo số 3: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold mb-4">Quá trình công tác:</h1>
+                    <ul class="list-disc pl-5">
+                        <li class="mb-2">Mẹo số 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                        <li class="mb-2">Mẹo số 2: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                        <li class="mb-2">Mẹo số 3: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container mx-auto mt-10">
+                <h1 class="text-3xl font-bold mb-4">Đánh giá của bệnh nhân:</h1>
+                
+                <!-- Danh sách đánh giá -->
+                <div class="mb-8">
+                    <!-- Đánh giá 1 -->
+                    <div class="bg-gray-100 p-4 rounded-md shadow-md mb-4">
+                        <h2 class="text-lg font-semibold mb-2">Người dùng A</h2>
+                        <div class="flex items-center mb-2">
+                            <span class="text-yellow-400 mr-1">&#9733;</span> <!-- Sao đánh giá -->
+                            <span class="text-sm">(5/5)</span> <!-- Đánh giá x/5 -->
+                        </div>
+                        <p class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et ligula sit amet neque consectetur suscipit.</p>
+                        <p class="text-sm text-gray-500">Ngày đánh giá: 2024-04-20</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-md shadow-md mb-4">
+                        <h2 class="text-lg font-semibold mb-2">Người dùng B</h2>
+                        <div class="flex items-center mb-2">
+                            <span class="text-yellow-400 mr-1">&#9733;&#9733;&#9733;</span> <!-- Sao đánh giá -->
+                            <span class="text-sm">(3/5)</span> <!-- Đánh giá x/5 -->
+                        </div>
+                        <p class="mb-2">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                        <p class="text-sm text-gray-500">Ngày đánh giá: 2024-04-21</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-md shadow-md mb-4">
+                        <h2 class="text-lg font-semibold mb-2">Người dùng C</h2>
+                        <div class="flex items-center mb-2">
+                            <span class="text-yellow-400 mr-1">&#9733;&#9733;</span> <!-- Sao đánh giá -->
+                            <span class="text-sm">(2/5)</span> <!-- Đánh giá x/5 -->
+                        </div>
+                        <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p class="text-sm text-gray-500">Ngày đánh giá: 2024-04-22</p>
+                    </div>
+                </div>
+                <!-- Phân trang -->
+                <div class="flex justify-center">
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <span class="sr-only">Previous</span>
+                            <!-- Heroicon name: solid/chevron-left -->
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M11.707 14.293a1 1 0 0 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 1 1 1.414 1.414L7.414 8H17a1 1 0 1 1 0-2h-9.586l4.293 4.293a1 1 0 0 1 0 1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
+                        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                            1
+                        </a>
+                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                            2
+                        </a>
+                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                            3
+                        </a>
+                        <span class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500">
+                            ...
+                        </span>
+                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                            99
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <span class="sr-only">Next</span>
+                            <!-- Heroicon name: solid/chevron-right -->
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M8.293 5.293a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 1 1-1.414-1.414L12.586 12H3a1 1 0 1 1 0-2h9.586l-4.293-4.293a1 1 0 0 1 0-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            <div class="container mx-auto mt-10">
+                <h1 class="text-3xl font-bold mb-4">Bài viết liên quan:</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                        <h2 class="text-lg font-semibold mb-2">Tiêu đề bài viết 1</h2>
+                        <p class="text-gray-600 mb-4">Mô tả ngắn về bài viết 1.</p>
+                        <a href="#" class="text-blue-500 hover:underline">Đọc thêm</a>
+                    </div>
+                </div>
+            </div>                        
+        </div>
+    </div>
+    <div class="container-fluid" style="background: rgb(58, 181, 138);">
+        <div class="container">
+            <div class="row">
+                <img src="images/IVIE_logo_white.png" alt="" style="scale: 0.5;">
+                <div class="col-md mb-4">
+                    <h4 class="text-white">CÔNG TY TNHH 1 THANH VIÊN ISOFHCARE</h4>
+                    <p class="text-white">Tầng 6, Tòa nhà FORD, 313-315 Trường Chinh, Thanh Xuân, Hà Nội</p>
+                    <p class="text-white">1900 3367</p>
+                    <p class="text-white">marketing@isofhcare.com</p>
+                </div>
+                <div class="col-md mb-4">
+                    <p class="text-white">Đặt lịch</p>
+                    <p class="text-white">Bác sĩ</p>
+                    <p class="text-white">Chuyên khoa</p>
+                    <p class="text-white">Đăng ký bán hàng trên IVIE-Shopping Mall</p>
+                </div>
+                <div class="col-md mb-4">
+                    <p class="text-white">Đặt lịch</p>
+                    <p class="text-white">Bác sĩ</p>
+                    <p class="text-white">Chuyên khoa</p>
+                    <p class="text-white">Đăng ký bán hàng trên IVIE-Shopping Mall</p>
+                </div>
+                <div class="col-md mb-4">
+                    <p class="text-white">Hỏi đáp bác sĩ</p>
+                    <p class="text-white">Cẩm nang bác sĩ</p>
+                    <p class="text-white">Về chúng tôi</p>
+                    <p class="text-white">Trở thành đối tác</p>
+                </div>
+                <div class="col-md">
+                    <p class="text-white">Điều khoản sử dụng</p>
+                    <p class="text-white">Chính sách bảo mật</p>
+                    <p class="text-white">Quy chế hoạt động</p>
+                    <p class="text-white">Trung tâm trợ giúp</p>
+                </div>
+            </div>                
+            <div class="d-flex justify-content-center align-items-center gap-4" style="padding-bottom: 2rem;">
+                <a href="http://online.gov.vn/Home/WebDetails/67055">
+                    <img src="images/at1.png" alt="">
+                </a>
+                <a href="http://online.gov.vn/Home/AppDetails/1145">
+                    <img src="images/at2.webp" alt="">
+                </a>
+                <a href="https://www.dmca.com/Protection/Status.aspx?ID=6eb4bc14-dc4e-4e07-9394-076f33d50fb2&refurl=https://ivie.vn/">
+                    <img src="images/at3.png" alt="">
+                </a>
+            </div>            
+        </div>
+    </div>  
+</body>
+</html>
+

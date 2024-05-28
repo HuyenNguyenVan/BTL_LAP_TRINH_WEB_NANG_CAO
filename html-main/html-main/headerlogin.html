@@ -4,100 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header class="bg-gradient-to-br from-purple-100 to-white">
-        <div class="container mx-auto">
-            <div class="flex justify-between p-4">
-                <div class="col-span-1 flex flex-row gap-1">
-                    <div class="my-auto uppercase font-bold text-xl">Đặt khám ngay:</div>
-                    <img class="w-12 h-12" src="images/phone.png" alt="">
-                    <div class="my-auto uppercase font-bold text-xl">1900 3367</div>
+    <header class="bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between p-4">
+                <div class="d-flex align-items-center">
+                    <div class="text-uppercase font-weight-bold h4 mb-0">Đặt khám ngay:</div>
+                    <img class="ml-2" style="width: 48px; height: 48px;" src="images/phone.png" alt="">
+                    <div class="ml-2 text-uppercase font-weight-bold h4 mb-0">1900 3367</div>
                 </div>
-                <div class="col-span-1 flex flex-row justify-between">
-                    <div class="flex my-auto">
-                        <div class="relative">
-                            <details class="flex gap-1">
-                                <summary>
-                                    <div class="flex items-center gap-1">
-                                        <img class="rounded-full w-12 h-12"
-                                            src="https://ui-avatars.com/api/?name=O+N&color=FFFFFF&background=111827" alt="">
-                                        <div class="my-auto font-bold">Nguyễn Oanh</div>
-                                    </div>
-                                </summary>
-                                <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-                                    <a href="#" class="flex items-center p-2 hover:bg-gray-100">
-                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13V7a1 1 0 011.55-.832l6 3a1 1 0 010 1.664l-6 3A1 1 0 015 13z" />
-                                        </svg>
-                                        Thông tin cá nhân
-                                    </a>
-                                    <a href="#" class="flex items-center p-2 hover:bg-gray-100">
-                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13V7a1 1 0 011.55-.832l6 3a1 1 0 010 1.664l-6 3A1 1 0 015 13z" />
-                                        </svg>
-                                        Đơn hàng
-                                    </a>
-                                    <a href="#" class="flex items-center p-2 hover:bg-gray-100">
-                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13V7a1 1 0 011.55-.832l6 3a1 1 0 010 1.664l-6 3A1 1 0 015 13z" />
-                                        </svg>
-                                        Hồ sơ sức khỏe
-                                    </a>
-                                    <a href="#" class="flex items-center p-2 hover:bg-gray-100">
-                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13V7a1 1 0 011.55-.832l6 3a1 1 0 010 1.664l-6 3A1 1 0 015 13z" />
-                                        </svg>
-                                        Lịch sử đặt khám
-                                    </a>
-                                    <a href="#" class="flex items-center p-2 hover:bg-gray-100">
-                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13V7a1 1 0 011.55-.832l6 3a1 1 0 010 1.664l-6 3A1 1 0 015 13z" />
-                                        </svg>
-                                        Câu hỏi của tôi
-                                    </a>
-                                    <a href="#" class="flex items-center p-2 hover:bg-gray-100">
-                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13V7a1 1 0 011.55-.832l6 3a1 1 0 010 1.664l-6 3A1 1 0 015 13z" />
-                                        </svg>
-                                        Liên kết tài khoản
-                                    </a>
-                                    <a href="#" class="flex items-center p-2 hover:bg-gray-100">
-                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13V7a1 1 0 011.55-.832l6 3a1 1 0 010 1.664l-6 3A1 1 0 015 13z" />
-                                        </svg>
-                                        Đổi mật khẩu
-                                    </a>
-                                    <a href="#" class="flex items-center p-2 hover:bg-gray-100">
-                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13V7a1 1 0 011.55-.832l6 3a1 1 0 010 1.664l-6 3A1 1 0 015 13z" />
-                                        </svg>
-                                        Đăng xuất
-                                    </a>
-                                </div>
-                            </details>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle" style="width: 48px; height: 48px;"
+                                src="https://ui-avatars.com/api/?name=O+N&color=FFFFFF&background=111827" alt="">
+                            <div class="d-inline font-weight-bold">Nguyễn Oanh</div>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">
+                                <svg class="bi bi-person-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-7a3 3 0 100-6 3 3 0 000 6z"/>
+                                </svg>
+                                Thông tin cá nhân
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <svg class="bi bi-file-earmark-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M14 4.5V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2a2 2 0 012-2h5.5L14 4.5zM10 1.5v3h3L10 1.5z"/>
+                                </svg>
+                                Đơn hàng
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <svg class="bi bi-file-medical-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M10.5 0H3a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V4.5L10.5 0zM5.5 9.5v2h-1v-2h-2v-1h2v-2h1v2h2v1h-2z"/>
+                                </svg>
+                                Hồ sơ sức khỏe
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <svg class="bi bi-journal-bookmark-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M3 1h10a1 1 0 011 1v9.234a.5.5 0 01-.15.36l-2.5 2.5a.5.5 0 01-.708 0l-2.5-2.5a.5.5 0 01-.147-.354V10.5a1.5 1.5 0 00-1.5-1.5H3a1 1 0 01-1-1V2a1 1 0 011-1z"/>
+                                </svg>
+                                Lịch sử đặt khám
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <svg class="bi bi-question-circle-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M8 0a8 8 0 100 16A8 8 0 000 8a8 8 0 008-8zM4.92 6.758C4.936 5.747 5.725 5 6.82 5c.966 0 1.756.672 1.94 1.508.014.065.01.13-.011.193-.24.775-1.04 1.137-1.263 1.2-.21.06-.42.08-.638.22-.254.164-.405.406-.41.725v.35h1.166v-.333c.006-.334.247-.62.555-.746.334-.137.766-.23.917-.748.144-.49.14-1.008-.066-1.467C7.676 4.637 7.07 4 6.207 4c-1.352 0-2.336 1.053-2.287 2.398.022.586.347 1.108.814 1.405v.748h1.167v-.769c0-.3-.072-.57-.23-.764a1.5 1.5 0 01-.43-.761zM6.5 11a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+                                </svg>
+                                Câu hỏi của tôi
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <svg class="bi bi-link-45deg mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M4.715 6.542a.5.5 0 11-.708-.708L6.75 3.09a2 2 0 012.828 0l3.535 3.536a2 2 0 010 2.828l-2.121 2.121a2 2 0 01-2.829 0 .5.5 0 11.708-.708 1 1 0 001.414 0L12.95 9.95a1 1 0 000-1.415l-3.536-3.535a1 1 0 00-1.415 0L4.715 6.542zm3.122 2.83a.5.5 0 010 .708l-3.536 3.535a2 2 0 01-2.828 0l-2.121-2.121a2 2 0 010-2.828l2.121-2.121a2 2 0 012.828 0 .5.5 0 01-.708.708 1 1 0 00-1.414 0L2.636 9.95a1 1 0 000 1.415l3.536 3.535a1 1 0 001.414 0l3.535-3.536a1 1 0 000-1.414z"/>
+                                </svg>
+                                Liên kết tài khoản
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <svg class="bi bi-shield-lock-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M8 0c-.69 0-1.275.345-1.722.779C5.74.448 5.335.25 4.923.086 4.703.009 4.5.07 4.29.293a.502.502 0 01-.248.21A6.528 6.528 0 002.286.689C1.345 1.222 0 2.488 0 4c0 5.014 3.587 8.925 7.568 10.927.528.25 1.158.354 1.768.194.574-.148 1.128-.512 1.707-.876 1.837-1.215 3.44-3.264 4.15-5.533C14.8 6.723 14.8 3.193 14.8 3.193l-.001-.001-.002-.003-.006-.008-.015-.02A.39.39 0 0014.7 3.1a.4.4 0 00-.107-.113l-.01-.006-.002-.001-.003-.002L8.138.293A.502.502 0 017.89.086C7.662-.07 7.363.009 7.143.086 6.73.25 6.326.448 5.722.779 5.275.345 4.69 0 4 0zM7 10a1.5 1.5 0 10.001-3.001A1.5 1.5 0 007 10zm.9 2.174a.502.502 0 00-.8.36v1a.5.5 0 00.998 0v-1a.502.502 0 00-.198-.36z"/>
+                                </svg>
+                                Đổi mật khẩu
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <svg class="bi bi-box-arrow-right mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 01.5-.5h6a.5.5 0 01.5.5v2.6a.5.5 0 11-1 0V4h-5v8h5v-2.1a.5.5 0 011 0v2.6a.5.5 0 01-.5.5h-6a.5.5 0 01-.5-.5v-10z"/>
+                                    <path fill-rule="evenodd" d="M11.646 7.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L14.293 11H1.5a.5.5 0 010-1h12.793l-2.647-2.646a.5.5 0 010-.708z"/>
+                                </svg>
+                                Đăng xuất
+                            </a>
                         </div>
-                        <a href="" class="border-r-2 border-violet-700 px-5">
-                            <svg class="text-[#FF6B00]" width="27" height="28" viewBox="0 0 27 28" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M24.3335 24.6667C24.3335 26.1467 23.1468 27.3333 21.6668 27.3333C20.9596 27.3333 20.2813 27.0524 19.7812 26.5523C19.2811 26.0522 19.0002 25.3739 19.0002 24.6667C19.0002 23.1867 20.1868 22 21.6668 22C22.3741 22 23.0523 22.2809 23.5524 22.781C24.0525 23.2811 24.3335 23.9594 24.3335 24.6667ZM8.3335 22C6.8535 22 5.66683 23.1867 5.66683 24.6667C5.66683 25.3739 5.94778 26.0522 6.44788 26.5523C6.94797 27.0524 7.62625 27.3333 8.3335 27.3333C9.8135 27.3333 11.0002 26.1467 11.0002 24.6667C11.0002 23.1867 9.8135 22 8.3335 22ZM8.60016 17.5067L8.56016 17.6667C8.56016 17.8533 8.70683 18 8.8935 18H24.3335V20.6667H8.3335C7.62625 20.6667 6.94797 20.3857 6.44788 19.8856C5.94778 19.3855 5.66683 18.7072 5.66683 18C5.66683 17.5333 5.78683 17.0933 5.98683 16.72L7.80016 13.4533L3.00016 3.33332H0.333496V0.666656H4.6935L5.94683 3.33332H25.6668C26.4002 3.33332 27.0002 3.93332 27.0002 4.66666C27.0002 4.89332 26.9335 5.11999 26.8402 5.33332L22.0668 13.96C21.6135 14.7733 20.7335 15.3333 19.7335 15.3333H9.80016L8.60016 17.5067ZM10.3335 12.6667H12.3335V9.99999H9.08016L10.3335 12.6667ZM13.6668 9.99999V12.6667H17.6668V9.99999H13.6668ZM17.6668 8.66666V5.99999H13.6668V8.66666H17.6668ZM21.8135 9.99999H19.0002V12.6667H20.3335L21.8135 9.99999ZM24.0402 5.99999H19.0002V8.66666H22.5602L24.0402 5.99999ZM7.18683 5.99999L8.44016 8.66666H12.3335V5.99999H7.18683Z"
-                                    fill="#FF6B00" />
-                            </svg>
-                        </a>
                     </div>
+                    <a href="#" class="border-left border-primary px-3">
+                        <svg class="text-warning" width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24.3335 24.6667C24.3335 26.1467 23.1468 27.3333 21.6668 27.3333C20.9596 27.3333 20.2813 27.0524 19.7812 26.5523C19.2811 26.0522 19.0002 25.3739 19.0002 24.6667C19.0002 23.1867 20.1868 22 21.6668 22C22.3741 22 23.0523 22.2809 23.5524 22.781C24.0525 23.2811 24.3335 23.9594 24.3335 24.6667ZM8.3335 22C6.8535 22 5.66683 23.1867 5.66683 24.6667C5.66683 25.3739 5.94778 26.0522 6.44788 26.5523C6.94797 27.0524 7.62625 27.3333 8.3335 27.3333C9.8135 27.3333 11.0002 26.1467 11.0002 24.6667C11.0002 23.1867 9.8135 22 8.3335 22ZM8.60016 17.5067L8.56016 17.6667C8.56016 17.8533 8.70683 18 8.8935 18H24.3335V20.6667H8.3335C7.62625 20.6667 6.94797 20.3857 6.44788 19.8856C5.94778 19.3855 5.66683 18.7072 5.66683 18C5.66683 17.5333 5.78683 17.0933 5.98683 16.72L7.80016 13.4533L3.00016 3.33332H0.333496V0.666656H4.6935L5.94683 3.33332H25.6668C26.4002 3.33332 27.0002 3.93332 27.0002 4.66666C27.0002 4.89332 26.9335 5.11999 26.8402 5.33332L22.0668 13.96C21.6135 14.7733 20.7335 15.3333 19.7335 15.3333H9.80016L8.60016 17.5067ZM10.3335 12.6667H12.3335V9.99999H9.08016L10.3335 12.6667ZM13.6668 9.99999V12.6667H17.6668V9.99999H13.6668ZM17.6668 8.66666V5.99999H13.6668V8.66666H17.6668ZM21.8135 9.99999H19.0002V12.6667H20.3335L21.8135 9.99999ZM24.0402 5.99999H19.0002V8.66666H22.5602L24.0402 5.99999ZM7.18683 5.99999L8.44016 8.66666H12.3335V5.99999H7.18683Z" fill="#FF6B00"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </header>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

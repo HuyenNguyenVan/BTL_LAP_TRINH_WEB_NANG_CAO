@@ -4,78 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: 'svn-gilroy';
+            src: url('/fonts/svn-gilroy.woff2') format('woff2'),
+                 url('/fonts/svn-gilroy.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
 </head>
 <body>
-    <header class="bg-gradient-to-br from-purple-100 to-white">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-3 p-4">
-                <div class="col-span-1 flex flex-row gap-1">
-                    <div class="my-auto uppercase font-bold text-xl">Đặt khám ngay:</div>
-                    <img class="w-12 h-12" src="images/phone.png" alt="">
-                    <div class="my-auto uppercase font-bold text-xl">1900 3367</div>
+    <div class="container-fluid" style="background-color: #24AC7C;">
+        <div class="container">
+            <div class="row d-flex justify-content-between text-white">
+                <div class="col-md-4 d-flex align-items-center">
+                    <div class="text-uppercase fw-bold fs-4">Đặt khám ngay:</div>
+                    <img class="ms-2" src="images/phone.png" alt="" style="width: 24px; height: 24px;">
+                    <div class="ms-2 text-uppercase fw-bold fs-4">1900 3367</div>
                 </div>
-                <div class="col-span-1 flex justify-end relative shadow-sm">
-                    <input
-                        class="rounded-full border border-violet-500 w-full pl-6 pr-11 focus:ring-2 focus:ring-blue-600"
-                        type="text"
-                        placeholder="Tìm triệu chứng, chuyên khoa, tên bệnh viện, phòng khám">
-                    <a href="" class="absolute my-auto p-4">
-                        <svg class="text-gradient-to-r from-purple-500 to-pink-500" width="18" height="18"
-                            viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12.5 11H11.71L11.43 10.73C12.4439 9.55402 13.0011 8.0527 13 6.5C13 5.21442 12.6188 3.95772 11.9046 2.8888C11.1903 1.81988 10.1752 0.986756 8.98744 0.494786C7.79973 0.00281635 6.49279 -0.125905 5.23192 0.124899C3.97104 0.375703 2.81285 0.994767 1.90381 1.90381C0.994767 2.81285 0.375703 3.97104 0.124899 5.23192C-0.125905 6.49279 0.00281635 7.79973 0.494786 8.98744C0.986756 10.1752 1.81988 11.1903 2.8888 11.9046C3.95772 12.6188 5.21442 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z"
-                                fill="url(#paint0_linear_416_552)" />
-                            <defs>
-                                <linearGradient id="paint0_linear_416_552" x1="8.745" y1="0" x2="8.745" y2="17.49"
-                                    gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#6552F3" />
-                                    <stop offset="1" stop-color="#241050" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </a>
-                </div>
-                <div class="my-auto uppercase font-bold text-xl">
-                    <a href="login.html">Đăng nhâp</a>/<a href="login.html">Đăng ký</a>
+                <div class="col-md-4 d-flex justify-content-end align-items-center text-uppercase fw-bold fs-4">
+                    <a href="login.html" class="text-white">Đăng nhập</a> / <a href="login.html" class="text-white">Đăng ký</a>
                 </div>
             </div>
         </div>
-    </header>
-     <div>
-        <img src="/image/banner.png" alt="">
     </div>
-    <menu class="container mx-auto">
-        <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-            </a>
-            <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                </svg>
-            </button>
-            <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-                <ul class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-                <li>
-                    <a href="#" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-                </li>
-                </ul>
-            </div>
-            </div>
-        </nav>
-    </menu>
+    <div class="container-fluid">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid d-flex justify-content-between align-items-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="/images/logo.png" alt="" class="img-fluid" style="max-height: 40px;">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Đặt khám
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item fw-bold" href="#">Bác sĩ</a></li>
+                                    <li><a class="dropdown-item fw-bold" href="#">Cơ sở y tế</a></li>
+                                    <li><a class="dropdown-item fw-bold" href="#">Chuyên khoa</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Hỏi đáp bác sĩ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Hồ sơ sức khỏe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Cẩm nang</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container-fluid" style="background: rgba(36, 172, 124, 0.9);">
+        <div class="container" style="padding: 0;">
+            <img src="/images/banner.png" alt="" class="img-fluid" style="width: 100%;">
+        </div>
+    </div>
 </body>
 </html>
