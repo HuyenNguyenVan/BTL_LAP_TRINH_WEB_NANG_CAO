@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="bg-dark text-white p-3 vh-100" style="width: 200px;">
+            <div class="text-center mb-4">
+                <img src="path_to_avatar_image" alt="Admin Avatar" class="rounded-circle mb-2" style="width: 50px; height: 50px;">
+                <h4>Admin</h4>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bảng điều khiển</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Phòng khám</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Chuyên khoa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bệnh nhân</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bác sĩ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Lịch làm việc</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Thông tin lịch khám</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Banner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Vai trò</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3>From tìm kiếm</h3>
+                    <div class="form-inline">
+                        <input type="text" id="doctorId" class="form-control mr-2" placeholder="Mã bác sĩ">
+                        <input type="text" id="doctorName" class="form-control mr-2" placeholder="Tên bác sĩ">
+                        <input type="text" id="startDate" class="form-control datepicker mr-2" placeholder="dd/mm/yyyy">
+                        <input type="text" id="endDate" class="form-control datepicker mr-2" placeholder="dd/mm/yyyy">
+                        <select id="status" class="form-control mr-2">
+                            <option value="">Trạng thái</option>
+                            <option value="Hoạt động">Hoạt động</option>
+                            <option value="Không hoạt động">Không hoạt động</option>
+                        </select>
+                        <button class="btn btn-success" onclick="searchDoctor()">Tìm kiếm</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-primary mb-3" onclick="addDoctor()">+ Tạo mới</button>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã bác sĩ</th>
+                                <th>Tên bác sĩ</th>
+                                <th>Ngày đăng ký</th>
+                                <th>Lịch làm việc</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="doctorTableBody">
+                            <!-- Rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Doctor Modal -->
+    <div class="modal fade" id="doctorModal" tabindex="-1" role="dialog" aria-labelledby="doctorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="doctorModalLabel">Add/Edit Doctor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="doctorForm">
+                        <input type="hidden" id="editIndex">
+                        <div class="form-group">
+                            <label for="doctorCode">Mã bác sĩ</label>
+                            <input type="text" class="form-control" id="doctorCode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullName">Tên bác sĩ</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerDate">Ngày đăng ký</label>
+                            <input type="text" class="form-control datepicker" id="registerDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="workSchedule">Lịch làm việc</label>
+                            <input type="text" class="form-control" id="workSchedule" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Trạng thái</label>
+                            <select class="form-control" id="status" required>
+                                <option value="Hoạt động">Hoạt động</option>
+                                <option value="Không hoạt động">Không hoạt động</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        let doctors = [
+            { id: 'BS000008', name: 'Nguyễn Duy Hưng', registerDate: '2023-06-05', workSchedule: '7:00-7:30, 7:30-8:00, 8:00-8:30', status: 'Xuất bản' },
+            { id: 'BS000007', name: 'Trần Minh Khuyên', registerDate: '2023-06-05', workSchedule: '9:30-10:00, 10:00-10:30, 10:30-11:00', status: 'Xuất bản' },
+            // Add more sample doctors as needed
+        ];
+
+        function loadDoctors() {
+            let tableBody = $('#doctorTableBody');
+            tableBody.empty();
+            doctors.forEach((doctor, index) => {
+                tableBody.append(`
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${doctor.id}</td>
+                        <td>${doctor.name}</td>
+                        <td>${doctor.registerDate}</td>
+                        <td>${doctor.workSchedule.split(',').map(time => `<span class="badge badge-primary">${time}</span>`).join(' ')}</td>
+                        <td>${doctor.status}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="editDoctor(${index})">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteDoctor(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `);
+            });
+        }
+
+        function addDoctor() {
+            $('#doctorModalLabel').text('Add Doctor');
+            $('#doctorForm')[0].reset();
+            $('#editIndex').val('');
+            $('#doctorModal').modal('show');
+        }
+
+        function editDoctor(index) {
+            $('#doctorModalLabel').text('Edit Doctor');
+            $('#editIndex').val(index);
+            let doctor = doctors[index];
+            $('#doctorCode').val(doctor.id);
+            $('#fullName').val(doctor.name);
+            $('#registerDate').val(doctor.registerDate);
+            $('#workSchedule').val(doctor.workSchedule);
+            $('#status').val(doctor.status);
+            $('#doctorModal').modal('show');
+        }
+
+        function deleteDoctor(index) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    doctors.splice(index, 1);
+                    loadDoctors();
+                    Swal.fire('Deleted!', 'Doctor has been deleted.', 'success');
+                }
+            });
+        }
+
+        $('#doctorForm').on('submit', function (event) {
+            event.preventDefault();
+            let doctor = {
+                id: $('#doctorCode').val(),
+                name: $('#fullName').val(),
+                registerDate: $('#registerDate').val(),
+                workSchedule: $('#workSchedule').val(),
+                status: $('#status').val()
+            };
+            let index = $('#editIndex').val();
+            if (index === '') {
+                doctors.push(doctor);
+            } else {
+                doctors[index] = doctor;
+            }
+            $('#doctorModal').modal('hide');
+            loadDoctors();
+        });
+
+        function searchDoctor() {
+            let searchId = $('#doctorId').val().toLowerCase();
+            let searchName = $('#doctorName').val().toLowerCase();
+            let searchStatus = $('#status').val();
+            let startDate = $('#startDate').val();
+            let endDate = $('#endDate').val();
+
+            let filteredDoctors = doctors.filter(doctor => {
+                let doctorDate = new Date(doctor.registerDate);
+                let start = startDate ? new Date(startDate) : null;
+                let end = endDate ? new Date(endDate) : null;
+
+                return (searchId === '' || doctor.id.toLowerCase().includes(searchId)) &&
+                    (searchName === '' || doctor.name.toLowerCase().includes(searchName)) &&
+                    (searchStatus === '' || doctor.status === searchStatus) &&
+                    (!start || doctorDate >= start) &&
+                    (!end || doctorDate <= end);
+            });
+
+            let tableBody = $('#doctorTableBody');
+            tableBody.empty();
+            filteredDoctors.forEach((doctor, index) => {
+                tableBody.append(`
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${doctor.id}</td>
+                        <td>${doctor.name}</td>
+                        <td>${doctor.registerDate}</td>
+                        <td>${doctor.workSchedule.split(',').map(time => `<span class="badge badge-primary">${time}</span>`).join(' ')}</td>
+                        <td>${doctor.status}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="editDoctor(${index})">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteDoctor(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `);
+            });
+        }
+
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true
+            });
+
+            loadDoctors();
+        });
+    </script>
+</body>
+</html>

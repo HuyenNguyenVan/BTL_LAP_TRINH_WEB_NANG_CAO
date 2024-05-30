@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specialty Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="bg-dark text-white p-3 vh-100" style="width: 200px;">
+            <div class="text-center mb-4">
+                <img src="path_to_avatar_image" alt="Admin Avatar" class="rounded-circle mb-2" style="width: 50px; height: 50px;">
+                <h4>Admin</h4>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bảng điều khiển</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Phòng khám</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Chuyên khoa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bệnh nhân</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bác sĩ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Lịch làm việc</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Thông tin lịch khám</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Banner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Vai trò</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn btn-primary mb-3" onclick="openModal(null)">+ Tạo mới</button>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Ảnh</th>
+                                <th>Chuyên khoa</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="specialtyTable">
+                            <!-- Dynamic rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Specialty</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editIndex">
+                        <div class="form-group">
+                            <label for="editName">Chuyên khoa</label>
+                            <input type="text" class="form-control" id="editName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editImage">Ảnh</label>
+                            <input type="file" class="form-control" id="editImage" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (!localStorage.getItem('specialties')) {
+                let defaultSpecialties = [
+                    {
+                        name: 'Chuyên khoa Nội',
+                        image: 'https://via.placeholder.com/50'
+                    },
+                    {
+                        name: 'Chuyên khoa Ngoại',
+                        image: 'https://via.placeholder.com/50'
+                    },
+                    {
+                        name: 'Chuyên khoa Nhi',
+                        image: 'https://via.placeholder.com/50'
+                    }
+                ];
+                localStorage.setItem('specialties', JSON.stringify(defaultSpecialties));
+            }
+            loadTable();
+        });
+
+        function loadTable() {
+            let specialties = JSON.parse(localStorage.getItem('specialties')) || [];
+            let table = document.getElementById('specialtyTable');
+            table.innerHTML = '';
+            specialties.forEach((specialty, index) => {
+                let row = `<tr>
+                    <td>${index + 1}</td>
+                    <td><img src="${specialty.image}" style="width: 50px; height: auto;"></td>
+                    <td>${specialty.name}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="openModal(${index})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteSpecialty(${index})">Delete</button>
+                    </td>
+                </tr>`;
+                table.innerHTML += row;
+            });
+        }
+
+        function openModal(index) {
+            if (index === null) {
+                document.getElementById('editForm').reset();
+                document.getElementById('editIndex').value = '';
+            } else {
+                let specialties = JSON.parse(localStorage.getItem('specialties')) || [];
+                let specialty = specialties[index];
+                document.getElementById('editName').value = specialty.name;
+                document.getElementById('editIndex').value = index;
+            }
+            $('#editModal').modal('show');
+        }
+
+        document.getElementById('editForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            let specialties = JSON.parse(localStorage.getItem('specialties')) || [];
+            let index = document.getElementById('editIndex').value;
+            let fileInput = document.getElementById('editImage');
+            let file = fileInput.files[0];
+            
+            if (file) {
+                let reader = new FileReader();
+                reader.onloadend = function() {
+                    let specialty = {
+                        name: document.getElementById('editName').value,
+                        image: reader.result
+                    };
+                    if (index === '') {
+                        specialties.push(specialty);
+                    } else {
+                        specialties[index] = specialty;
+                    }
+                    localStorage.setItem('specialties', JSON.stringify(specialties));
+                    $('#editModal').modal('hide');
+                    loadTable();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                let specialty = {
+                    name: document.getElementById('editName').value,
+                    image: document.getElementById('editImage').value
+                };
+                if (index === '') {
+                    specialties.push(specialty);
+                } else {
+                    specialties[index] = specialty;
+                }
+                localStorage.setItem('specialties', JSON.stringify(specialties));
+                $('#editModal').modal('hide');
+                loadTable();
+            }
+        });
+
+        function deleteSpecialty(index) {
+            let specialties = JSON.parse(localStorage.getItem('specialties')) || [];
+            specialties.splice(index, 1);
+            localStorage.setItem('specialties', JSON.stringify(specialties));
+            loadTable();
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
