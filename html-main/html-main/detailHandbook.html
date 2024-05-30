@@ -74,63 +74,78 @@
         </div>
     </div>
     <!--chi tiết cẩm nang-->
-    <div>
-        <div class="container mx-auto mt-10">
-            <h1>Cẩm nang cần thiết:</h1>
-            <div class="grid grid-cols-3 gap-4">
-                <!-- Cột 1: Cẩm nang ý tế -->
-                <div class="col-span-2">
-                    <div class="grid grid-cols-2 gap-4">
-                        <!-- Phần bên trái: Ảnh đại diện -->
-                        <div>
-                            <img src="https://via.placeholder.com/80" alt="Avatar" class="avatar rounded-full">
-                        </div>
-                        <!-- Phần bên phải: Tên, nội dung, ngày đăng, lượt xem, phút đọc -->
-                        <div>
-                            <h2 class="font-bold text-xl">Tiêu đề bài viết</h2>
-                            <p class="flex justify-between">
-                                <span class="mr-4">Ngày đăng: 01/01/2024</span>
-                                <span class="mr-4">Lượt xem: 100</span>
-                                <span>Phút đọc: 5</span>
-                            </p>
-                        </div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Cẩm nang cần thiết:</h1>
+        <div class="row">
+            <!-- Cột 1: Cẩm nang ý tế -->
+            <div class="col-md-8">
+                <div class="row g-4">
+                    <!-- Phần bên trái: Ảnh đại diện -->
+                    <div class="col-2">
+                        <img src="https://via.placeholder.com/80" alt="Avatar" class="img-fluid rounded-circle">
                     </div>
-                </div>
-                <!-- Cột 2: Ô tìm kiếm bài viết -->
-                <div class="col-span-1">
-                    <div class="bg-white p-4 rounded-lg shadow-lg">
-                        <h2 class="font-bold text-xl mb-4">Tìm kiếm bài viết</h2>
-                        <!-- Ô tìm kiếm -->
-                        <input type="text" placeholder="Nhập từ khóa..." class="border border-gray-300 rounded px-4 py-2 w-full mb-4">
-                        <!-- Đọc theo chuyên đề -->
-                        <h2 class="font-bold text-xl mb-4">Đọc theo chuyên đề</h2>
-                        <!-- Danh sách chuyên đề -->
-                        <ul>
-                            <li>
-                                <a href="#" class="flex justify-between">
-                                    <span class="mr-4">Chuyên đề 1</span>
-                                    <span>10 bài viết</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex justify-between">
-                                    <span class="mr-4">Chuyên đề 2</span>
-                                    <span>20 bài viết</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex justify-between">
-                                    <span class="mr-4">Chuyên đề 3</span>
-                                    <span>15 bài viết</span>
-                                </a>
-                            </li>
-                            <!-- Thêm các mục khác tại đây -->
-                        </ul>
+                    <!-- Phần bên phải: Tên, nội dung, ngày đăng, lượt xem, phút đọc -->
+                    <div class="col-10">
+                        <h2 class="fw-bold fs-4">Tiêu đề bài viết</h2>
+                        <p class="text-muted">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure magni non at est expedita veniam reprehenderit illum similique quas praesentium sint illo ad qui officiis laborum nesciunt animi, beatae veritatis atque nam quisquam ducimus. Reiciendis voluptatibus ipsa sint quas sapiente!
+                        </p>
+                        <p class="d-flex justify-content-between">
+                            <span class="me-4">Ngày đăng: 01/01/2024</span>
+                            <span class="me-4">Lượt xem: 100</span>
+                            <span>Phút đọc: 5</span>
+                        </p>
                     </div>
                 </div>
             </div>
+            <!-- Cột 2: Ô tìm kiếm bài viết -->
+            <div class="col-md-4">
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="fw-bold fs-4 mb-4">Tìm kiếm bài viết</h2>
+                    <!-- Ô tìm kiếm -->
+                    <input type="text" placeholder="Nhập từ khóa..." class="form-control mb-4">
+                    <!-- Đọc theo chuyên đề -->
+                    <h2 class="fw-bold fs-4 mb-4">Đọc theo chuyên đề</h2>
+                    <!-- Danh sách chuyên đề -->
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="d-flex">
+                                <img src="https://via.placeholder.com/70" alt="Ảnh chuyên đề" class="me-3" width="70" height="70">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="d-block mb-2">Chuyên đề 1</span>
+                                        <span class="d-block">10 bài viết</span>
+                                    </div>
+                                </div>                                
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="d-flex">
+                                <img src="https://via.placeholder.com/70" alt="Ảnh chuyên đề" class="me-3" width="70" height="70">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="d-block mb-2">Chuyên đề 2</span>
+                                        <span class="d-block">20 bài viết</span>
+                                    </div>
+                                </div>                                
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="d-flex">
+                                <img src="https://via.placeholder.com/70" alt="Ảnh chuyên đề" class="me-3" width="70" height="70">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="d-block mb-2">Chuyên đề 3</span>
+                                        <span class="d-block">15 bài viết</span>
+                                    </div>
+                                </div>                                
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
+    </div>    
     <div class="container-fluid" style="background: rgb(58, 181, 138);">
         <div class="container">
             <div class="row">

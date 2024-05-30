@@ -73,69 +73,65 @@
             <img src="/images/banner.png" alt="" class="img-fluid" style="width: 100%;">
         </div>
     </div>
-    <!-- chi tiết bệnh nhân -->
-    <div>
-        <div class="container mx-auto mt-10">
-            <h1 class="text-3xl font-bold mb-4">Lịch sử khám</h1>
-            <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <!-- Bệnh nhân 1 -->
-                <li class="bg-white p-4 rounded-lg shadow-md cursor-pointer" onclick="showPatientInfo('Bệnh nhân A', '2024-04-14', 'Bác sĩ A', 'Sốt, đau đầu', 'Cảm lạnh', 'Nghỉ ngơi, uống nhiều nước', 'bill.html')">
-                    <h2 class="text-lg font-semibold mb-2">Bệnh nhân A</h2>
-                    <p class="text-gray-600 mb-1">Ngày khám: 2024-04-14</p>
-                    <p class="text-gray-600">Bác sĩ: Bác sĩ A</p>
-                </li>
-                
-                <!-- Bệnh nhân 2 -->
-                <li class="bg-white p-4 rounded-lg shadow-md cursor-pointer" onclick="showPatientInfo('Bệnh nhân B', '2024-04-15', 'Bác sĩ B', 'Đau bụng, buồn nôn', 'Viêm dạ dày', 'Kiêng thức ăn cay, uống thuốc', 'bill.html')">
-                    <h2 class="text-lg font-semibold mb-2">Bệnh nhân B</h2>
-                    <p class="text-gray-600 mb-1">Ngày khám: 2024-04-15</p>
-                    <p class="text-gray-600">Bác sĩ: Bác sĩ B</p>
-                </li>
-                
-                <!-- Thêm các bệnh nhân khác tại đây -->
-            </ul>
-        </div>
-        
-        <!-- Popup -->
-        <div id="popup" class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 hidden">
-            <div class="relative max-w-lg mx-auto my-12">
-                <div class="bg-white rounded-lg shadow-lg">
-                    <div class="p-4">
-                        <h2 id="popupTitle" class="text-lg font-semibold mb-2"></h2>
-                        <p id="popupDate" class="text-gray-600 mb-1"></p>
-                        <p id="popupDoctor" class="text-gray-600 mb-4"></p>
-                        <p id="popupSymptoms" class="mb-2"></p>
-                        <p id="popupDiagnosis" class="mb-2"></p>
-                        <p id="popupTreatment" class="mb-4"></p>
-                        <a id="popupBill" href="#" class="text-blue-500 hover:underline">Hóa đơn</a>
+    <div class="container mt-5">
+        <h1 class="display-4 mb-4">Lịch sử khám</h1>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100" onclick="showPatientInfo('Bệnh nhân A', '2024-04-14', 'Bác sĩ A', 'Sốt, đau đầu', 'Cảm lạnh', 'Nghỉ ngơi, uống nhiều nước', 'bill.html')">
+                    <div class="card-body">
+                        <h5 class="card-title">Bệnh nhân A</h5>
+                        <p class="card-text">Ngày khám: 2024-04-14</p>
+                        <p class="card-text">Bác sĩ: Bác sĩ A</p>
                     </div>
-                    <button onclick="hidePopup()" class="absolute top-0 right-0 mt-2 mr-2 text-gray-600 hover:text-black focus:outline-none">
-                        <!-- Heroicon name: outline/x -->
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100" onclick="showPatientInfo('Bệnh nhân B', '2024-04-15', 'Bác sĩ B', 'Đau bụng, buồn nôn', 'Viêm dạ dày', 'Kiêng thức ăn cay, uống thuốc', 'bill.html')">
+                    <div class="card-body">
+                        <h5 class="card-title">Bệnh nhân B</h5>
+                        <p class="card-text">Ngày khám: 2024-04-15</p>
+                        <p class="card-text">Bác sĩ: Bác sĩ B</p>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <script>
-        function showPatientInfo(name, date, doctor, symptoms, diagnosis, treatment, billLink) {
-            document.getElementById("popupTitle").textContent = "Tên bệnh nhân: " + name;
-            document.getElementById("popupDate").textContent = "Ngày khám: " + date;
-            document.getElementById("popupDoctor").textContent = "Bác sĩ: " + doctor;
-            document.getElementById("popupSymptoms").textContent = "Triệu chứng: " + symptoms;
-            document.getElementById("popupDiagnosis").textContent = "Chuẩn đoán: " + diagnosis;
-            document.getElementById("popupTreatment").textContent = "Phương án điều trị: " + treatment;
-            document.getElementById("popupBill").href = billLink;
-            document.getElementById("popup").classList.remove("hidden");
-        }
-        
-        function hidePopup() {
-            document.getElementById("popup").classList.add("hidden");
-        }
-        </script>
     </div>
+    <div id="popup" class="modal fade" tabindex="-1" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="popupTitle" class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="popupDate"></p>
+                    <p id="popupDoctor"></p>
+                    <p id="popupSymptoms"></p>
+                    <p id="popupDiagnosis"></p>
+                    <p id="popupTreatment"></p>
+                    <a id="popupBill" href="#" class="text-primary">Hóa đơn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function showPatientInfo(name, date, doctor, symptoms, diagnosis, treatment, billLink) {
+        document.getElementById("popupTitle").textContent = "Tên bệnh nhân: " + name;
+        document.getElementById("popupDate").textContent = "Ngày khám: " + date;
+        document.getElementById("popupDoctor").textContent = "Bác sĩ: " + doctor;
+        document.getElementById("popupSymptoms").textContent = "Triệu chứng: " + symptoms;
+        document.getElementById("popupDiagnosis").textContent = "Chuẩn đoán: " + diagnosis;
+        document.getElementById("popupTreatment").textContent = "Phương án điều trị: " + treatment;
+        document.getElementById("popupBill").href = billLink;
+        var myModal = new bootstrap.Modal(document.getElementById('popup'));
+        myModal.show();
+    }
+    
+    function hidePopup() {
+        var myModal = bootstrap.Modal.getInstance(document.getElementById('popup'));
+        myModal.hide();
+    }
+    </script>
     <div class="container-fluid" style="background: rgb(58, 181, 138);">
         <div class="container">
             <div class="row">

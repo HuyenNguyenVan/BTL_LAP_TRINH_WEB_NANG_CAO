@@ -73,95 +73,92 @@
             <img src="/images/banner.png" alt="" class="img-fluid" style="width: 100%;">
         </div>
     </div>
-    <div>
-        <div class="container mx-auto mt-10">
-            <h1 class="text-3xl font-bold mb-4">Danh sách hóa đơn</h1>
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200 bg-white shadow-md rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hóa đơn ID</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tên bệnh nhân</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bác sĩ</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tổng giá trị</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <!-- Hóa đơn 1 -->
-                        <tr class="cursor-pointer hover:bg-gray-50" onclick="showInvoiceDetail('bill001', 'Bệnh nhân A', 'Bác sĩ A', [['Thuốc A', 2, 10], ['Thuốc B', 3, 15]])">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">bill001</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Bệnh nhân A</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Bác sĩ A</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$55</td>
-                        </tr>
-                        
-                        <!-- Hóa đơn 2 -->
-                        <tr class="cursor-pointer hover:bg-gray-50" onclick="showInvoiceDetail('bill002', 'Bệnh nhân B', 'Bác sĩ B', [['Thuốc C', 1, 20], ['Thuốc D', 2, 25]])">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">bill002</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Bệnh nhân B</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Bác sĩ B</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$70</td>
-                        </tr>
-                        
-                        <!-- Thêm các hóa đơn khác tại đây -->
-                    </tbody>
-                </table>
-            </div>
+    <div class="container mt-5">
+        <h1 class="display-4 mb-4">Danh sách hóa đơn</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="px-4 py-2">Hóa đơn ID</th>
+                        <th class="px-4 py-2">Tên bệnh nhân</th>
+                        <th class="px-4 py-2">Bác sĩ</th>
+                        <th class="px-4 py-2">Tổng giá trị</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Hóa đơn 1 -->
+                    <tr class="cursor-pointer" onclick="showInvoiceDetail('bill001', 'Bệnh nhân A', 'Bác sĩ A', [['Thuốc A', 2, 10], ['Thuốc B', 3, 15]])">
+                        <td class="px-4 py-2">bill001</td>
+                        <td class="px-4 py-2">Bệnh nhân A</td>
+                        <td class="px-4 py-2">Bác sĩ A</td>
+                        <td class="px-4 py-2">$55</td>
+                    </tr>
+                    
+                    <!-- Hóa đơn 2 -->
+                    <tr class="cursor-pointer" onclick="showInvoiceDetail('bill002', 'Bệnh nhân B', 'Bác sĩ B', [['Thuốc C', 1, 20], ['Thuốc D', 2, 25]])">
+                        <td class="px-4 py-2">bill002</td>
+                        <td class="px-4 py-2">Bệnh nhân B</td>
+                        <td class="px-4 py-2">Bác sĩ B</td>
+                        <td class="px-4 py-2">$70</td>
+                    </tr>
+                    
+                    <!-- Thêm các hóa đơn khác tại đây -->
+                </tbody>
+            </table>
         </div>
-        
-        <!-- Popup -->
-        <div id="billPopup" class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 hidden">
-            <div class="relative max-w-lg mx-auto my-12">
-                <div class="bg-white rounded-lg shadow-lg">
-                    <div class="p-4">
-                        <h2 id="billTitle" class="text-lg font-semibold mb-2"></h2>
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thuốc</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Số lượng</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Giá thành</th>
-                                </tr>
-                            </thead>
-                            <tbody id="billMedicines" class="divide-y divide-gray-200"></tbody>
-                        </table>
-                    </div>
-                    <button onclick="hideBillPopup()" class="absolute top-0 right-0 mt-2 mr-2 text-gray-600 hover:text-black focus:outline-none">
-                        <!-- Heroicon name: outline/x -->
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+    </div>
+    
+    <!-- Popup -->
+    <div id="billPopup" class="modal fade" tabindex="-1" aria-labelledby="billTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="billTitle" class="modal-title"></h5>
+                    <button type="button" class="btn-close" onclick="hideBillPopup()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="px-4 py-2">Thuốc</th>
+                                <th class="px-4 py-2">Số lượng</th>
+                                <th class="px-4 py-2">Giá thành</th>
+                            </tr>
+                        </thead>
+                        <tbody id="billMedicines"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        
-        <script>
-            function showInvoiceDetail(id, patient, doctor, medicines) {
-                document.getElementById("billTitle").textContent = "Hóa đơn ID: " + id;
-                var medicineList = document.getElementById("billMedicines");
-                medicineList.innerHTML = "";
-                medicines.forEach(function(medicine) {
-                    var row = document.createElement("tr");
-                    var nameCell = document.createElement("td");
-                    nameCell.textContent = medicine[0];
-                    row.appendChild(nameCell);
-                    var quantityCell = document.createElement("td");
-                    quantityCell.textContent = medicine[1];
-                    row.appendChild(quantityCell);
-                    var priceCell = document.createElement("td");
-                    priceCell.textContent = "$" + (medicine[1] * medicine[2]);
-                    row.appendChild(priceCell);
-                    medicineList.appendChild(row);
-                });
-                document.getElementById("billPopup").classList.remove("hidden");
-            }
-            
-            function hideBillPopup() {
-                document.getElementById("billPopup").classList.add("hidden");
-            }
-        </script>
     </div>
+    
+    <script>
+        function showInvoiceDetail(id, patient, doctor, medicines) {
+            document.getElementById("billTitle").textContent = "Hóa đơn ID: " + id;
+            var medicineList = document.getElementById("billMedicines");
+            medicineList.innerHTML = "";
+            medicines.forEach(function(medicine) {
+                var row = document.createElement("tr");
+                var nameCell = document.createElement("td");
+                nameCell.textContent = medicine[0];
+                row.appendChild(nameCell);
+                var quantityCell = document.createElement("td");
+                quantityCell.textContent = medicine[1];
+                row.appendChild(quantityCell);
+                var priceCell = document.createElement("td");
+                priceCell.textContent = "$" + (medicine[1] * medicine[2]);
+                row.appendChild(priceCell);
+                medicineList.appendChild(row);
+            });
+            var myModal = new bootstrap.Modal(document.getElementById('billPopup'));
+            myModal.show();
+        }
+        
+        function hideBillPopup() {
+            var myModal = bootstrap.Modal.getInstance(document.getElementById('billPopup'));
+            myModal.hide();
+        }
+    </script>
     <div class="container-fluid" style="background: rgb(58, 181, 138);">
         <div class="container">
             <div class="row">

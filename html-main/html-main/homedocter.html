@@ -31,8 +31,8 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            height: 50px; /* Điều chỉnh chiều cao của menu */
-            border-bottom: 1px solid #e0e0e0; /* Đường viền dưới */
+            height: 50px; 
+            border-bottom: 1px solid #e0e0e0;
         }
         .fixed-top-menu li {
             padding: 0 10px;
@@ -42,7 +42,6 @@
             color: white !important;
             background-color: #007bff !important;
         }
-        /* CSS để tạo nút cuộn lên trên */
         .scroll-top-btn {
             position: fixed;
             bottom: 20px;
@@ -52,7 +51,6 @@
     </style>
 </head>
 <body>
-    <!-- Menu cố định ở phía trên -->
     <div class="fixed-top-menu" id="fixedMenu">
         <ul>
             <li><a href="#section1" class="menu-link">Thông tin</a></li>
@@ -60,8 +58,6 @@
             <li><a href="#section4" class="menu-link">Bảng thông kê</a></li>
         </ul>
     </div>
-
-    <!-- Các phần nội dung -->
     <div id="section1" style="padding-top: 3rem;">
         <div class="container">
             <div class="row">
@@ -144,33 +140,24 @@
                 </tr>
             </tfoot>
         </table>
-
         <script>
             window.onload = function() {
                 var table = document.getElementById('dataTable');
                 var totalPatients = 0;
                 var totalHours = 0;
                 var totalSalary = 0;
-
-                // Lặp qua từng hàng trong tbody để tính tổng
                 for (var i = 1; i < table.rows.length - 1; i++) {
                     var row = table.rows[i];
                     totalPatients += parseInt(row.cells[1].innerHTML);
                     totalHours += parseInt(row.cells[2].innerHTML);
                     totalSalary += parseInt(row.cells[3].innerHTML);
                 }
-
-                // Hiển thị tổng trong footer
                 document.getElementById('totalPatients').innerHTML = totalPatients;
                 document.getElementById('totalHours').innerHTML = totalHours;
                 document.getElementById('totalSalary').innerHTML = totalSalary;
             };
-
-            // Xử lý sự kiện khi trang được cuộn
             $(window).scroll(function() {
                 var scrollDistance = $(window).scrollTop();
-
-                // Kiểm tra mỗi phần tử và thay đổi CSS của menu tương ứng
                 $('div[id]').each(function(i) {
                     if ($(this).position().top <= scrollDistance + 100) {
                         $('.fixed-top-menu ul li a').removeClass('bold-active');
@@ -185,7 +172,6 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script>
-        // Xử lý sự kiện khi trang được cuộn
         $(window).scroll(function() {
             if ($(this).scrollTop() > 100) {
                 $('.scroll-top-btn').fadeIn();
@@ -193,8 +179,6 @@
                 $('.scroll-top-btn').fadeOut();
             }
         });
-
-        // Xử lý sự kiện khi click vào nút cuộn lên trên
         $('.scroll-top-btn').click(function() {
             $('html, body').animate({scrollTop : 0},800);
             return false;
