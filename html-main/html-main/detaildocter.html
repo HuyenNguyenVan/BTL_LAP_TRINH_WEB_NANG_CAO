@@ -6,6 +6,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="data/user.js"></script>
     <style>
         @font-face {
             font-family: 'svn-gilroy';
@@ -36,7 +37,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
                 <div class="container-fluid d-flex justify-content-between align-items-center">
                     <a class="navbar-brand" href="#">
-                        <img src="/images/logo.png" alt="" class="img-fluid" style="max-height: 40px;">
+                        <img src="images/logo.png" alt="" class="img-fluid" style="max-height: 40px;">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -70,7 +71,7 @@
     </div>
     <div class="container-fluid" style="background: rgba(36, 172, 124, 0.9);">
         <div class="container" style="padding: 0;">
-            <img src="/images/banner.png" alt="" class="img-fluid" style="width: 100%;">
+            <img src="images/banner.png" alt="" class="img-fluid" style="width: 100%;">
         </div>
     </div>
     <div class="flex-grow container mx-auto">
@@ -151,6 +152,36 @@
                                     button.classList.add("btn", "btn-primary", "me-2", "mb-2");
                                     button.addEventListener("click", function() {
                                         alert("Bạn đã chọn mốc thời gian: " + timeSlot);
+                                        const userInfoFromLocalStorage = localStorage.getItem(USER_LOGINED_OR_NOT);
+                                        const doctorInfoFromLocalStorage = localStorage.getItem(BAC_SI_MUI);
+
+
+                                        const userInfoObject = JSON.parse(userInfoFromLocalStorage);
+                                        const doctorInfoObject = JSON.parse(doctorInfoFromLocalStorage);
+
+                                        const userInfoString = JSON.stringify(userInfoObject);
+                                        const doctorInfoString = JSON.stringify(userInfoObject);
+
+                                      
+
+                                        alert("INFOR USER " + userInfoObject.email)
+
+                                        userInfoObject.lichKham.push({ 
+                                            tenBacSy : "Ths.BS Trần Thị Thúy Mùi",
+                                            thoiGianKham : timeSlot
+                                        });
+                                        // const userUpdate = JSON.stringify(userInfoObject)
+
+                                        doctorInfoString.lichKham.push({ 
+                                            tenBenhNhan : userInfoObject.email,
+                                            thoiGianKham : timeSlot
+                                        });
+
+                                        // save doctor and user into localsotogae
+                                        localStorage.setItem(doctorInfoString.email, JSON.stringify(doctorInfoString))
+                                        localStorage.setItem(userInfoObject.email, JSON.stringify(userInfoObject))
+
+                                        alert("Make a appointment booking succeefully")
                                     });
                                     timeSlotsContainer.appendChild(button);
                                 });

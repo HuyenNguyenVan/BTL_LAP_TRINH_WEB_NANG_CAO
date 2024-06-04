@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="data/user.js"></script>
+
     <style>
         @font-face {
             font-family: 'svn-gilroy';
@@ -83,7 +85,7 @@
                             <div class="tab-pane hidden" id="pills-profile">
                                 <form id="registerForm">
                                     <div class="mb-3">
-                                        <input type="email" name="email" class="form-control bg-light border border-secondary text-dark rounded-lg outline-none" placeholder="Email" required>
+                                        <input type="email" id = "emailRegister" name="emailRegister" class="form-control bg-light border border-secondary text-dark rounded-lg outline-none" placeholder="Email" required>
                                     </div>
                                     <div class="mb-3">
                                         <input type="password" id="password1" class="form-control bg-light border border-secondary text-dark rounded-lg outline-none" placeholder="Password" required>
@@ -96,65 +98,6 @@
                             </div>
                         </div>
                     </div>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            const tabs = document.querySelectorAll(".nav-link");
-                            tabs.forEach(tab => {
-                                tab.addEventListener("click", function (event) {
-                                    event.preventDefault();
-                                    tabs.forEach(t => t.classList.remove("active-tab"));
-                                    this.classList.add("active-tab");
-                                    const tabId = this.getAttribute("href").slice(1);
-                                    const tabContents = document.querySelectorAll(".tab-pane");
-                                    tabContents.forEach(content => content.classList.add("hidden"));
-                                    document.getElementById(tabId).classList.remove("hidden");
-                                    document.getElementById(tabId).classList.add("show", "active");
-                                });
-                            });
-
-                            document.getElementById("loginForm").addEventListener("submit", function (event) {
-                                event.preventDefault();
-                                const email = event.target.email.value;
-                                const password = event.target.password.value;
-
-                                if (email === "user@gmail.com" && password === "User123!@#") {
-                                    localStorage.setItem('isLoggedIn', 'true');
-                                    window.location.href = "homeuser.html";
-                                } else if (email === "doctor@gmail.com" && password === "Docter123!@#") {
-                                    localStorage.setItem('isLoggedIn', 'true');
-                                    window.location.href = "homedocter.html";
-                                } else if (email === "admin@gmail.com" && password === "Admin123!@#") {
-                                    localStorage.setItem('isLoggedIn', 'true');
-                                    window.location.href = "homeadmin.html";
-                                } else {
-                                    const storedUser = JSON.parse(localStorage.getItem(email));
-                                    if (storedUser && storedUser.password === password) {
-                                        localStorage.setItem('isLoggedIn', 'true');
-                                        window.location.href = "homeuser.html";
-                                    } else {
-                                        alert("Thông tin đăng nhập không đúng!");
-                                    }
-                                }
-                            });
-                            document.getElementById("registerForm").addEventListener("submit", function (event) {
-                                event.preventDefault();
-                                const email = event.target.email.value;
-                                const password1 = event.target.password1.value;
-                                const password2 = event.target.password2.value;
-                                if (password1 !== password2) {
-                                    alert("Mật khẩu không khớp!");
-                                    return;
-                                }
-                                const user = {
-                                    email: email,
-                                    password: password1
-                                };
-                                localStorage.setItem(email, JSON.stringify(user));
-                                alert("Đăng ký thành công! Bây giờ bạn có thể đăng nhập.");
-                                document.querySelector('a[href="#pills-home"]').click();
-                            });
-                        });
-                    </script>
                 </div>
             </div>
             <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
@@ -170,6 +113,144 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+                              document.addEventListener("DOMContentLoaded", function () {
+                            const tabs = document.querySelectorAll(".nav-link");
+                            tabs.forEach(tab => {
+                                tab.addEventListener("click", function (event) {
+                                    event.preventDefault();
+                                    tabs.forEach(t => t.classList.remove("active-tab"));
+                                    this.classList.add("active-tab");
+                                    const tabId = this.getAttribute("href").slice(1);
+                                    const tabContents = document.querySelectorAll(".tab-pane");
+                                    tabContents.forEach(content => content.classList.add("hidden"));
+                                    document.getElementById(tabId).classList.remove("hidden");
+                                    document.getElementById(tabId).classList.add("show", "active");
+                                });
+                            })});
+
+                             // ===================================START login function =========================================
+
+      // Add event listener to the login form
+      $("#loginForm").submit(function (event) {
+
+        alert("Inherre")
+        event.preventDefault();
+        // Get the username and password from the form
+        const username = $("#email").val();
+        const password = $("#password").val();
+
+        alert(username + "USER" + "password = " + password);
+        // Validate the username and password
+        // if (username.trim() === "" || password.trim() === "") {
+        //   alert("Please enter a username and password.");
+        //   return;
+        // }
+
+        const userInfoString = localStorage.getItem(username);
+
+        if (userInfoString == null) {
+          alert("Username dose not exist in the system");
+          return;
+        }
+
+        const userInfoObject = JSON.parse(userInfoString);
+
+        alert(JSON.stringify(userInfoObject));
+        if (password != userInfoObject.password) {
+          alert("User name or password is incorrect");
+          return;
+        }
+
+        localStorage.setItem(USER_LOGINED_OR_NOT, userInfoObject);
+        if (userInfoObject.role === ADMIN) {
+          window.location.href = "home-admin.html";
+        } else if (userInfoObject.role === USER) {
+          window.location.href = "homeuser.html";
+        } else if (userInfoObject.role === DOCTOR) {
+          window.location.href = "homedocter.html";
+        }
+      });
+      // =================================== End login user function =========================================
+
+      // =================================== START register user function =========================================
+      $("#registerForm").submit(function (event) {
+        event.preventDefault();
+        // Get the email and password from the form
+        const email = $("#emailRegister").val();
+        const password1 = $("#password1").val();
+        const password2 = $("#password2").val();
+
+        alert(email + "USER" + "password = " + password1);
+
+        const userInfoString = localStorage.getItem(email);
+
+         // save userInfo into LocalStorage
+         const userInfoExist = JSON.stringify(userInfoString);
+        if (userInfoExist.email === email) {
+          alert("Username is existing in the system, please login");
+          return;
+        }
+
+        const userInfo = {
+          email: email,
+          password: password1,
+          role: USER,
+          lichKham: []
+        };
+
+        console.log()
+       
+        
+        localStorage.setItem(email, JSON.stringify(userInfo));
+        alert("Register successfully, you are redirected to User page");
+        localStorage.setItem(USER_LOGINED_OR_NOT, userInfoObject);
+        window.location.href = "homeuser.html";
+      });
+
+                        //     document.getElementById("loginForm").addEventListener("submit", function (event) {
+                        //         event.preventDefault();
+                        //         const email = event.target.email.value;
+                        //         const password = event.target.password.value;
+
+                        //         if (email === "user@gmail.com" && password === "User123!@#") {
+                        //             localStorage.setItem('isLoggedIn', 'true');
+                        //             window.location.href = "homeuser.html";
+                        //         } else if (email === "doctor@gmail.com" && password === "Docter123!@#") {
+                        //             localStorage.setItem('isLoggedIn', 'true');
+                        //             window.location.href = "homedocter.html";
+                        //         } else if (email === "admin@gmail.com" && password === "Admin123!@#") {
+                        //             localStorage.setItem('isLoggedIn', 'true');
+                        //             window.location.href = "homeadmin.html";
+                        //         } else {
+                        //             const storedUser = JSON.parse(localStorage.getItem(email));
+                        //             if (storedUser && storedUser.password === password) {
+                        //                 localStorage.setItem('isLoggedIn', 'true');
+                        //                 window.location.href = "homeuser.html";
+                        //             } else {
+                        //                 alert("Thông tin đăng nhập không đúng!");
+                        //             }
+                        //         }
+                        //     });
+                        //     document.getElementById("registerForm").addEventListener("submit", function (event) {
+                        //         event.preventDefault();
+                        //         const email = event.target.email.value;
+                        //         const password1 = event.target.password1.value;
+                        //         const password2 = event.target.password2.value;
+                        //         if (password1 !== password2) {
+                        //             alert("Mật khẩu không khớp!");
+                        //             return;
+                        //         }
+                        //         const user = {
+                        //             email: email,
+                        //             password: password1
+                        //         };
+                        //         localStorage.setItem(email, JSON.stringify(user));
+                        //         alert("Đăng ký thành công! Bây giờ bạn có thể đăng nhập.");
+                        //         document.querySelector('a[href="#pills-home"]').click();
+                        //     });
+                        // });
+    </script>
+    // <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
