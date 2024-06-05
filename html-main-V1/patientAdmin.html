@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="bg-dark text-white p-3 vh-100" style="width: 200px;">
+            <div class="text-center mb-4">
+                <img src="path_to_avatar_image" alt="Admin Avatar" class="rounded-circle mb-2" style="width: 50px; height: 50px;">
+                <h4>Admin</h4>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bảng điều khiển</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Phòng khám</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Chuyên khoa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bệnh nhân</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bác sĩ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Lịch làm việc</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Thông tin lịch khám</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Banner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Vai trò</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3>From tìm kiếm</h3>
+                    <div class="form-inline">
+                        <input type="text" id="patientId" class="form-control mr-2" placeholder="Mã bệnh nhân">
+                        <input type="text" id="patientName" class="form-control mr-2" placeholder="Tên bệnh nhân">
+                        <select id="status" class="form-control mr-2">
+                            <option value="">Trạng thái</option>
+                            <option value="Hoạt động">Hoạt động</option>
+                            <option value="Không hoạt động">Không hoạt động</option>
+                        </select>
+                        <button class="btn btn-success" onclick="searchPatient()">Tìm kiếm</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-primary mb-3" onclick="addPatient()">+ Tạo mới</button>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã bệnh nhân</th>
+                                <th>Họ tên</th>
+                                <th>Ngày sinh</th>
+                                <th>Giới tính</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientTableBody">
+                            <!-- Rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Patient Modal -->
+    <div class="modal fade" id="patientModal" tabindex="-1" role="dialog" aria-labelledby="patientModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="patientModalLabel">Add/Edit Patient</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="patientForm">
+                        <input type="hidden" id="editIndex">
+                        <div class="form-group">
+                            <label for="patientCode">Mã bệnh nhân</label>
+                            <input type="text" class="form-control" id="patientCode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullName">Họ tên</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthDate">Ngày sinh</label>
+                            <input type="date" class="form-control" id="birthDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Giới tính</label>
+                            <select class="form-control" id="gender" required>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Trạng thái</label>
+                            <select class="form-control" id="status" required>
+                                <option value="Hoạt động">Hoạt động</option>
+                                <option value="Không hoạt động">Không hoạt động</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        let patients = [
+            { id: 'BN000009', name: 'Nguyễn Văn F', birthDate: '2001-03-03', gender: 'Nam', email: 'nguyenvanf@gmail.com', phone: '0928817228', status: 'Hoạt động' },
+            { id: 'BN000006', name: 'Nguyễn Văn C', birthDate: '1991-07-22', gender: 'Nữ', email: 'nguyenvanc@gmail.com', phone: '0928817228', status: 'Hoạt động' },
+            // Add more sample patients as needed
+        ];
+
+        function loadPatients() {
+            let tableBody = $('#patientTableBody');
+            tableBody.empty();
+            patients.forEach((patient, index) => {
+                tableBody.append(`
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${patient.id}</td>
+                        <td>${patient.name}</td>
+                        <td>${patient.birthDate}</td>
+                        <td>${patient.gender}</td>
+                        <td>${patient.email}</td>
+                        <td>${patient.phone}</td>
+                        <td>${patient.status}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="editPatient(${index})">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="deletePatient(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `);
+            });
+        }
+
+        function addPatient() {
+            $('#patientModalLabel').text('Add Patient');
+            $('#patientForm')[0].reset();
+            $('#editIndex').val('');
+            $('#patientModal').modal('show');
+        }
+
+        function editPatient(index) {
+            $('#patientModalLabel').text('Edit Patient');
+            $('#editIndex').val(index);
+            let patient = patients[index];
+            $('#patientCode').val(patient.id);
+            $('#fullName').val(patient.name);
+            $('#birthDate').val(patient.birthDate);
+            $('#gender').val(patient.gender);
+            $('#email').val(patient.email);
+            $('#phone').val(patient.phone);
+            $('#status').val(patient.status);
+            $('#patientModal').modal('show');
+        }
+
+        function deletePatient(index) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    patients.splice(index, 1);
+                    loadPatients();
+                    Swal.fire('Deleted!', 'Patient has been deleted.', 'success');
+                }
+            });
+        }
+
+        $('#patientForm').on('submit', function (event) {
+            event.preventDefault();
+            let patient = {
+                id: $('#patientCode').val(),
+                name: $('#fullName').val(),
+                birthDate: $('#birthDate').val(),
+                gender: $('#gender').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                status: $('#status').val()
+            };
+            let index = $('#editIndex').val();
+            if (index === '') {
+                patients.push(patient);
+            } else {
+                patients[index] = patient;
+            }
+            $('#patientModal').modal('hide');
+            loadPatients();
+        });
+
+        function searchPatient() {
+            let searchId = $('#patientId').val().toLowerCase();
+            let searchName = $('#patientName').val().toLowerCase();
+            let searchStatus = $('#status').val();
+            let filteredPatients = patients.filter(patient => {
+                return (patient.id.toLowerCase().includes(searchId) || !searchId) &&
+                    (patient.name.toLowerCase().includes(searchName) || !searchName) &&
+                    (patient.status === searchStatus || !searchStatus);
+            });
+            let tableBody = $('#patientTableBody');
+            tableBody.empty();
+            filteredPatients.forEach((patient, index) => {
+                tableBody.append(`
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${patient.id}</td>
+                        <td>${patient.name}</td>
+                        <td>${patient.birthDate}</td>
+                        <td>${patient.gender}</td>
+                        <td>${patient.email}</td>
+                        <td>${patient.phone}</td>
+                        <td>${patient.status}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="editPatient(${index})">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="deletePatient(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `);
+            });
+        }
+
+        $(document).ready(function () {
+            loadPatients();
+        });
+    </script>
+</body>
+</html>

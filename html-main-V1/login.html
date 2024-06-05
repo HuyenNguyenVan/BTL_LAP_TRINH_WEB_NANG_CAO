@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: 'svn-gilroy';
+            src: url('/fonts/svn-gilroy.woff2') format('woff2'),
+                url('/fonts/svn-gilroy.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .active-tab {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+        .nav-pills .nav-link {
+            border: 1px solid #7CCCAF;
+            background-color: #ffffff;
+            color: #7CCCAF;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-pills .nav-link:hover,
+        .nav-pills .nav-link.active {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid vh-100">
+        <div class="row h-100">
+            <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center bg-light position-relative" style="width: 50%;">
+                <img class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" src="images/doctor.svg" alt="Doctor Image">
+                <img class="my-4 w-auto h-70px position-relative" src="images/IVIE_logo.svg" alt="IVIE Logo">
+                <div class="text-center fw-bold position-relative" style="color: #6a11cb; background: linear-gradient(to right, #6a11cb, #2575fc); -webkit-background-clip: text; color: transparent; font-size: 30px;">
+                    Bạn nên đăng nhập để sử dụng dịch vụ
+                </div>
+                <div class="text-center my-4 position-relative">
+                </div>
+                <div class="px-lg-5 px-sm-2 py-4 position-relative" style="width: 70%;">
+                    <div class="d-flex flex-column">
+                        <ul class="nav nav-pills justify-content-center mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item me-2">
+                                <a class="nav-link active-tab" id="pills-home-tab" href="#pills-home">Đăng nhập</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" href="#pills-profile">Đăng ký</a>
+                            </li>
+                        </ul>
+                        <div id="pills-tabContent">
+                            <div class="tab-pane show active" id="pills-home">
+                                <form id="loginForm">
+                                    <div class="mb-3">
+                                        <input type="email" name="email" class="form-control bg-light border border-secondary text-dark rounded-lg outline-none" placeholder="Email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" id="password" class="form-control bg-light border border-secondary text-dark rounded-lg outline-none" placeholder="Password" required>
+                                        <div class="text-end text-danger small mt-1">
+                                            Quên mật khẩu
+                                        </div>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="remember" required>
+                                        <label class="form-check-label" for="remember">Ghi nhớ mật khẩu</label>
+                                    </div>
+                                    <button type="submit" class="btn w-100 text-center" style="background-color: #81D6AE; color:white" >Đăng nhập</button>
+                                    <p class="text-center my-4">Đăng nhập nhanh</p>
+                                    <div class="d-flex justify-content-center">
+                                        <img src="images/zalo.png" alt="" class="me-3 w-6 h-6 lg:w-9 lg:h-9">
+                                        <img src="images/facebook.png" alt="" class="me-3 w-6 h-6 lg:w-9 lg:h-9">
+                                        <img src="images/google.png" alt="" class="w-6 h-6 lg:w-9 lg:h-9">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane hidden" id="pills-profile">
+                                <form id="registerForm">
+                                    <div class="mb-3">
+                                        <input type="email" name="email" class="form-control bg-light border border-secondary text-dark rounded-lg outline-none" placeholder="Email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" id="password1" class="form-control bg-light border border-secondary text-dark rounded-lg outline-none" placeholder="Password" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" id="password2" class="form-control bg-light border border-secondary text-dark rounded-lg outline-none" placeholder="Nhập lại password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 text-center">Đăng ký</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const tabs = document.querySelectorAll(".nav-link");
+                            tabs.forEach(tab => {
+                                tab.addEventListener("click", function (event) {
+                                    event.preventDefault();
+                                    tabs.forEach(t => t.classList.remove("active-tab"));
+                                    this.classList.add("active-tab");
+                                    const tabId = this.getAttribute("href").slice(1);
+                                    const tabContents = document.querySelectorAll(".tab-pane");
+                                    tabContents.forEach(content => content.classList.add("hidden"));
+                                    document.getElementById(tabId).classList.remove("hidden");
+                                    document.getElementById(tabId).classList.add("show", "active");
+                                });
+                            });
+
+                            document.getElementById("loginForm").addEventListener("submit", function (event) {
+                                event.preventDefault();
+                                const email = event.target.email.value;
+                                const password = event.target.password.value;
+
+                                if (email === "user@gmail.com" && password === "User123!@#") {
+                                    localStorage.setItem('isLoggedIn', 'true');
+                                    window.location.href = "homeuser.html";
+                                } else if (email === "doctor@gmail.com" && password === "Docter123!@#") {
+                                    localStorage.setItem('isLoggedIn', 'true');
+                                    window.location.href = "homedocter.html";
+                                } else if (email === "admin@gmail.com" && password === "Admin123!@#") {
+                                    localStorage.setItem('isLoggedIn', 'true');
+                                    window.location.href = "homeadmin.html";
+                                } else {
+                                    const storedUser = JSON.parse(localStorage.getItem(email));
+                                    if (storedUser && storedUser.password === password) {
+                                        localStorage.setItem('isLoggedIn', 'true');
+                                        window.location.href = "homeuser.html";
+                                    } else {
+                                        alert("Thông tin đăng nhập không đúng!");
+                                    }
+                                }
+                            });
+                            document.getElementById("registerForm").addEventListener("submit", function (event) {
+                                event.preventDefault();
+                                const email = event.target.email.value;
+                                const password1 = event.target.password1.value;
+                                const password2 = event.target.password2.value;
+                                if (password1 !== password2) {
+                                    alert("Mật khẩu không khớp!");
+                                    return;
+                                }
+                                const user = {
+                                    email: email,
+                                    password: password1
+                                };
+                                localStorage.setItem(email, JSON.stringify(user));
+                                alert("Đăng ký thành công! Bây giờ bạn có thể đăng nhập.");
+                                document.querySelector('a[href="#pills-home"]').click();
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                <div class="py-4">
+                    <img src="images/sign-up.png" alt="User" class="pt-5 img-fluid">
+                </div>
+                <div class="d-flex gap-3 pt-4 justify-content-center align-items-center">
+                    <img src="images/phone.png" alt="Doctor" class="w-8 h-8">
+                    <p class="mb-0">
+                        <span>Hotline: </span><b class="text-muted">1900 3367</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

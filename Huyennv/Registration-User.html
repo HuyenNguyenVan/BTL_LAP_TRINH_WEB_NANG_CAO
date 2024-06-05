@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="constVariable.js"></script>
+  </head>
+  <body>
+    <h1>Registration</h1>
+    <form id="login-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+      <br />
+      <button type="submit">Registration</button>
+    </form>
+
+    <script>
+      // some required need to notice
+      // 1. When user is saved with  localStorage.setItem('username', objectUser); like that
+      // step by step to save user
+      // // Convert the object to a JSON string
+      // const userInfoString = JSON.stringify(userInfo);
+      //// Store the JSON string in localStorage
+      // localStorage.setItem('userInfo', userInfoString);
+
+      // // Check if username and password are stored in local storage
+      // const storedUsername = localStorage.getItem('username');
+      // const storedPassword = localStorage.getItem('password');
+      // // if (storedUsername && storedPassword) {
+      // //   $('#username').val(storedUsername);
+      // //   $('#password').val(storedPassword);
+      // // }
+
+      // Add event listener to the login form
+      $("#login-form").submit(function (event) {
+        event.preventDefault();
+
+        // Get the username and password from the form
+        const username = $("#username").val();
+        const password = $("#password").val();
+
+         // Validate the username and password
+         if (username.trim() === "" || password.trim() === "") {
+          alert("Please enter a username and password.");
+          return;
+        }
+
+        const userInfo =
+          {
+            username: username,
+            password: password,
+            role: USER,
+          };
+
+        // save userInfo into LocalStorage
+        const userInfoString = JSON.stringify(userInfo);
+        localStorage.setItem(username, userInfoString);
+
+        // Redirect the user to the dashboard or some other page
+        window.location.href = "dashboard.html";
+      });
+    </script>
+  </body>
+</html>

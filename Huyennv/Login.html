@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="constVariable.js"></script>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form id="login-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+      <br />
+      <button type="submit">Login</button>
+    </form>
+
+    <script>
+
+      // Add event listener to the login form
+      $("#login-form").submit(function (event) {
+        event.preventDefault();
+
+        // Get the username and password from the form
+        const username = $("#username").val();
+        const password = $("#password").val();
+
+        // Validate the username and password
+        if (username.trim() === "" || password.trim() === "") {
+          alert("Please enter a username and password.");
+          return;
+        }
+
+        alert(username + "USER ENTER")
+
+        const userInfoString = localStorage.getItem(username);
+
+
+        if (userInfoString == null) {
+          alert("Username dose not exist in the system");
+          return;
+        } 
+
+        const userInfoObject = JSON.parse(userInfoString);
+
+        if (password != userInfoObject.password) {
+          alert("User name or password is incorrect");
+          return;
+        }
+
+        localStorage.setItem(USER_LOGINED_OR_NOT, username);
+        if (userInfoObject.role === ADMIN) {
+            window.location.href = "Admin.html";
+        } else if (userInfoObject.role === USER) {
+            window.location.href = "User.html";
+        } else if (userInfoObject.role === DOCTOR) {
+          window.location.href = "Doctor.html";
+        }
+
+
+
+        // Store the username and password in local storage
+        //   localStorage.setItem('username', username);
+        //   localStorage.setItem('password', password);
+
+        // Redirect the user to the dashboard or some other page
+      });
+    </script>
+  </body>
+</html>

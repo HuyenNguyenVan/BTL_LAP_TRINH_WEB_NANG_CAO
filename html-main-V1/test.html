@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Schedule Management</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="containers">
+        <div class="headers">
+            <h2>Quản trị website</h2>
+            <div class="user-info">
+                <img src="path/to/avatar.png" alt="Avatar" class="rounded-circle" width="40" height="40">
+                <span>Nguyễn Duy Hưng</span>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Lịch làm việc</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Bảng điều khiển</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Thông tin lịch khám</a>
+            </li>
+        </ul>
+        <div class="mt-4">
+            <div class="form-inline">
+                <input type="date" id="startDate" class="form-control mr-2">
+                <input type="date" id="endDate" class="form-control mr-2">
+                <select id="status" class="form-control mr-2">
+                    <option value="">Trạng thái</option>
+                    <option value="Xuất bản">Xuất bản</option>
+                    <option value="Chưa xuất bản">Chưa xuất bản</option>
+                </select>
+                <button class="btn btn-primary" id="searchBtn">Tìm kiếm</button>
+            </div>
+        </div>
+        <div class="mt-4">
+            <button class="btn btn-success mb-2" id="addNew">+ Tạo mới</button>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã bác sĩ</th>
+                        <th>Tên bác sĩ</th>
+                        <th>Ngày đăng ký</th>
+                        <th>Lịch làm việc</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleTable">
+                    <!-- Data will be inserted here by jQuery -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Thêm/Sửa Lịch làm việc</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="scheduleForm">
+                        <input type="hidden" id="scheduleId">
+                        <div class="form-group">
+                            <label for="registerDate">Ngày đăng ký</label>
+                            <input type="date" class="form-control" id="registerDate" min="<?= date('Y-m-d') ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeInterval">Khoảng thời gian</label>
+                            <select class="form-control" id="timeInterval" required>
+                                <option value="30">30 phút</option>
+                                <option value="45">45 phút</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="maxPatients">Số bệnh nhân tối đa</label>
+                            <input type="number" class="form-control" id="maxPatients" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="workTimesSelect">Lịch làm việc</label>
+                            <div id="workTimesSelect">
+                                <!-- Work times will be generated here -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="statusSelect">Trạng thái</label>
+                            <select class="form-control" id="statusSelect" required>
+                                <option value="Xuất bản">Xuất bản</option>
+                                <option value="Chưa xuất bản">Chưa xuất bản</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        let schedules = [
+            { id: 1, doctorId: 'BS000008', doctorName: 'Nguyễn Duy Hưng', date: '2023-06-05', times: ['7:00-7:30', '7:30-8:00', '8:00-8:30'], status: 'Xuất bản' },
+            { id: 2, doctorId: 'BS000008', doctorName: 'Nguyễn Duy Hưng', date: '2023-06-06', times: ['7:00-7:30', '7:30-8:00', '8:00-8:30', '9:30-10:00'], status: 'Xuất bản' },
+            { id: 3, doctorId: 'BS000008', doctorName: 'Nguyễn Duy Hưng', date: '2023-06-04', times: ['7:00-7:30', '7:30-8:00', '8:00-8:30', '9:30-10:00', '10:00-10:30'], status: 'Xuất bản' },
+        ];
+
+        function renderTable(data) {
+            let rows = '';
+            data.forEach((schedule, index) => {
+                rows += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${schedule.date}</td>
+                        <td>${schedule.times.join(', ')}</td>
+                        <td>${schedule.status}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editBtn" data-id="${schedule.id}">Sửa</button>
+                            <button class="btn btn-danger btn-sm deleteBtn" data-id="${schedule.id}">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            $('#scheduleTable').html(rows);
+        }
+
+        function resetForm() {
+            $('#scheduleId').val('');
+            $('#registerDate').val('');
+            $('#timeInterval').val('30');
+            $('#maxPatients').val('');
+            $('#workTimesSelect').empty();
+            generateWorkTimes();
+            $('#statusSelect').val('Xuất bản');
+        }
+
+        function generateWorkTimes() {
+            const interval = parseInt($('#timeInterval').val());
+            const startTime = new Date();
+            startTime.setHours(7, 0, 0, 0);
+            const endTime = new Date();
+            endTime.setHours(20, 0, 0, 0);
+            const workTimesSelect = $('#workTimesSelect');
+            workTimesSelect.empty();
+
+            while (startTime < endTime) {
+                const end = new Date(startTime.getTime() + interval * 60000);
+                const timeRange = `${startTime.toTimeString().slice(0, 5)}-${end.toTimeString().slice(0, 5)}`;
+                workTimesSelect.append(`
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="${timeRange}" id="${timeRange}">
+                        <label class="form-check-label" for="${timeRange}">
+                            ${timeRange}
+                        </label>
+                        <input type="number" class="form-control form-control-sm mt-2" placeholder="Số bệnh nhân tối đa" min="1" id="maxPatients_${timeRange}">
+                    </div>
+                `);
+                startTime.setMinutes(startTime.getMinutes() + interval);
+            }
+        }
+
+        $(document).ready(function () {
+            renderTable(schedules);
+
+            $('#addNew').on('click', function () {
+                resetForm();
+                $('#scheduleModal').modal('show');
+            });
+
+            $('#scheduleTable').on('click', '.editBtn', function () {
+                const id = $(this).data('id');
+                const schedule = schedules.find(s => s.id === id);
+                if (schedule) {
+                    $('#scheduleId').val(schedule.id);
+                    $('#registerDate').val(schedule.date);
+                    $('#timeInterval').val(schedule.times.length > 0 && schedule.times[0].includes(':45') ? '45' : '30');
+                    generateWorkTimes();
+                    schedule.times.forEach(time => {
+                        $(`#${time.replace(':', '\\:')}`).prop('checked', true);
+                        $(`#maxPatients_${time.replace(':', '\\:')}`).val(schedule.maxPatients[time]);
+                    });
+                    $('#statusSelect').val(schedule.status);
+                    $('#scheduleModal').modal('show');
+                }
+            });
+
+            $('#scheduleTable').on('click', '.deleteBtn', function () {
+                const id = $(this).data('id');
+                schedules = schedules.filter(schedule => schedule.id !== id);
+                renderTable(schedules);
+            });
+
+            $('#scheduleForm').on('submit', function (e) {
+                e.preventDefault();
+                const id = $('#scheduleId').val();
+                const date = $('#registerDate').val();
+                const times = [];
+                const maxPatients = {};
+                $('#workTimesSelect input[type="checkbox"]:checked').each(function () {
+                    const timeRange = $(this).val();
+                    times.push(timeRange);
+                    maxPatients[timeRange] = $(`#maxPatients_${timeRange.replace(':', '\\:')}`).val();
+                });
+                const status = $('#statusSelect').val();
+
+                if (id) {
+                    // Edit schedule
+                    const schedule = schedules.find(s => s.id === parseInt(id));
+                    if (schedule) {
+                        schedule.date = date;
+                        schedule.times = times;
+                        schedule.maxPatients = maxPatients;
+                        schedule.status = status;
+                    }
+                } else {
+                    // Add new schedule
+                    const newId = schedules.length ? Math.max(...schedules.map(s => s.id)) + 1 : 1;
+                    schedules.push({ id: newId, doctorId, doctorName, date, times, maxPatients, status });
+                }
+
+                $('#scheduleModal').modal('hide');
+                renderTable(schedules);
+                resetForm();
+            });
+
+            $('#searchBtn').on('click', function () {
+                const startDate = $('#startDate').val();
+                const endDate = $('#endDate').val();
+                const status = $('#status').val();
+                const filteredSchedules = schedules.filter(schedule => {
+                    const dateValid = (!startDate || schedule.date >= startDate) && (!endDate || schedule.date <= endDate);
+                    const statusValid = !status || schedule.status === status;
+                    return dateValid && statusValid;
+                });
+                renderTable(filteredSchedules);
+            });
+
+            $('#timeInterval').on('change', generateWorkTimes);
+            $('#registerDate').attr('min', new Date().toISOString().split('T')[0]);
+        });
+    </script>
+</body>
+</html>

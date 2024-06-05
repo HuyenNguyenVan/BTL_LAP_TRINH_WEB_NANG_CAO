@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="bg-dark text-white p-3 vh-100" style="width: 200px;">
+            <div class="text-center mb-4">
+                <img src="path_to_avatar_image" alt="Admin Avatar" class="rounded-circle mb-2" style="width: 50px; height: 50px;">
+                <h4>Admin</h4>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bảng điều khiển</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Phòng khám</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Chuyên khoa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bệnh nhân</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Bác sĩ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Lịch làm việc</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Thông tin lịch khám</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Banner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">Vai trò</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn btn-primary mb-3" onclick="openModal(null)">+ Tạo mới</button>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Ảnh</th>
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Địa chỉ</th>
+                                <th>Website</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clinicTable">
+                            <!-- Dynamic rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Clinic</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editIndex">
+                        <div class="form-group">
+                            <label for="editName">Tên</label>
+                            <input type="text" class="form-control" id="editName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email</label>
+                            <input type="email" class="form-control" id="editEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPhone">Phone</label>
+                            <input type="text" class="form-control" id="editPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAddress">Địa chỉ</label>
+                            <input type="text" class="form-control" id="editAddress" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editWebsite">Website</label>
+                            <input type="url" class="form-control" id="editWebsite">
+                        </div>
+                        <div class="form-group">
+                            <label for="editImage">Ảnh</label>
+                            <input type="file" class="form-control" id="editImage" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (!localStorage.getItem('clinics')) {
+                let defaultClinics = [
+                    {
+                        name: 'Phòng Khám Đa Khoa An Thịnh',
+                        email: 'anthinh@gmail.com',
+                        phone: '150019403',
+                        address: 'Số 58 Trần Bình, Mai Dịch, Cầu Giấy, Hà Nội',
+                        website: 'http://anthinhclinic.com',
+                        image: 'https://via.placeholder.com/50'
+                    },
+                    {
+                        name: 'Y khoa Chuyên sâu Quốc tế BERNARD',
+                        email: 'bernard@gmail.com',
+                        phone: '1900656565',
+                        address: '201 đường Nam Kỳ Khởi Nghĩa, Võ Thị Sáu, Quận 3, HCM',
+                        website: 'http://bernardhealthcare.com',
+                        image: 'https://via.placeholder.com/50'
+                    },
+                    {
+                        name: 'Phòng Khám Đa Khoa Quốc Tế',
+                        email: 'quoc.te@gmail.com',
+                        phone: '1800123456',
+                        address: '456 Đường Láng, Đống Đa, Hà Nội',
+                        website: 'http://quoc.teclinic.com',
+                        image: 'https://via.placeholder.com/50'
+                    }
+                ];
+                localStorage.setItem('clinics', JSON.stringify(defaultClinics));
+            }
+            loadTable();
+        });
+
+        function loadTable() {
+            let clinics = JSON.parse(localStorage.getItem('clinics')) || [];
+            let table = document.getElementById('clinicTable');
+            table.innerHTML = '';
+            clinics.forEach((clinic, index) => {
+                let row = `<tr>
+                    <td>${index + 1}</td>
+                    <td><img src="${clinic.image}" style="width: 50px; height: auto;"></td>
+                    <td>${clinic.name}</td>
+                    <td>${clinic.email}</td>
+                    <td>${clinic.phone}</td>
+                    <td>${clinic.address}</td>
+                    <td><a href="${clinic.website}" target="_blank">${clinic.website}</a></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="openModal(${index})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteClinic(${index})">Delete</button>
+                    </td>
+                </tr>`;
+                table.innerHTML += row;
+            });
+        }
+
+        function openModal(index) {
+            if (index === null) {
+                document.getElementById('editForm').reset();
+                document.getElementById('editIndex').value = '';
+            } else {
+                let clinics = JSON.parse(localStorage.getItem('clinics')) || [];
+                let clinic = clinics[index];
+                document.getElementById('editName').value = clinic.name;
+                document.getElementById('editEmail').value = clinic.email;
+                document.getElementById('editPhone').value = clinic.phone;
+                document.getElementById('editAddress').value = clinic.address;
+                document.getElementById('editWebsite').value = clinic.website;
+                document.getElementById('editIndex').value = index;
+            }
+            $('#editModal').modal('show');
+        }
+
+        document.getElementById('editForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            let clinics = JSON.parse(localStorage.getItem('clinics')) || [];
+            let index = document.getElementById('editIndex').value;
+            let fileInput = document.getElementById('editImage');
+            let file = fileInput.files[0];
+            
+            if (file) {
+                let reader = new FileReader();
+                reader.onloadend = function() {
+                    let clinic = {
+                        name: document.getElementById('editName').value,
+                        email: document.getElementById('editEmail').value,
+                        phone: document.getElementById('editPhone').value,
+                        address: document.getElementById('editAddress').value,
+                        website: document.getElementById('editWebsite').value,
+                        image: reader.result
+                    };
+                    if (index === '') {
+                        clinics.push(clinic);
+                    } else {
+                        clinics[index] = clinic;
+                    }
+                    localStorage.setItem('clinics', JSON.stringify(clinics));
+                    $('#editModal').modal('hide');
+                    loadTable();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                let clinic = {
+                    name: document.getElementById('editName').value,
+                    email: document.getElementById('editEmail').value,
+                    phone: document.getElementById('editPhone').value,
+                    address: document.getElementById('editAddress').value,
+                    website: document.getElementById('editWebsite').value,
+                    image: document.getElementById('editImage').value
+                };
+                if (index === '') {
+                    clinics.push(clinic);
+                } else {
+                    clinics[index] = clinic;
+                }
+                localStorage.setItem('clinics', JSON.stringify(clinics));
+                $('#editModal').modal('hide');
+                loadTable();
+            }
+        });
+
+        function deleteClinic(index) {
+            let clinics = JSON.parse(localStorage.getItem('clinics')) || [];
+            clinics.splice(index, 1);
+            localStorage.setItem('clinics', JSON.stringify(clinics));
+            loadTable();
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

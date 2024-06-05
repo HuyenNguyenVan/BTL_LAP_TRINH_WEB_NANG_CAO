@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="constVariable.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Đặt Lịch</h1>
+    <button id="book-appointment-btn">Đặt Lịch</button>
+    <script>
+
+      $(document).ready(function() {
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        var user = JSON.parse(localStorage.getItem('user'));
+
+     
+
+        // Xử lý sự kiện click vào nút "Đặt Lịch"
+        $('#book-appointment-btn').click(function() {
+          const checkUserLoginedOrNot = localStorage.getItem(USER_LOGINED_OR_NOT);
+          alert(JSON.stringify(checkUserLoginedOrNot))
+          if(checkUserLoginedOrNot == null){
+            window.location.href = "Login.html";
+          }
+            window.location.href = "User.html";
+          
+        }
+      );
+
+        // // Xử lý sự kiện submit form đăng nhập
+        // $('#login-form').submit(function(event) {
+        //   event.preventDefault();
+
+        //   // Lấy thông tin đăng nhập từ form
+        //   var email = $('#login-email').val();
+        //   var password = $('#login-password').val();
+
+        //   // Kiểm tra thông tin đăng nhập
+        //   if (email === 'user@example.com' && password === 'password') {
+        //     // Lưu thông tin người dùng vào localStorage
+        //     var user = {
+        //       email: email,
+        //       password: password
+        //     };
+        //     localStorage.setItem('user', JSON.stringify(user));
+
+        //     // Chuyển hướng đến trang đặt lịch
+        //     $('.login-page').addClass('hidden');
+        //     $('.appointment-page').removeClass('hidden');
+        //   } else {
+        //     alert('Thông tin đăng nhập không chính xác.');
+        //   }
+        // });
+
+        // // Xử lý sự kiện submit form đặt lịch
+        // $('#appointment-form').submit(function(event) {
+        //   event.preventDefault();
+
+        //   // Lưu thông tin đặt lịch vào localStorage hoặc gửi đến server
+        //   console.log('Đã đặt lịch thành công!');
+        // });
+      });
+    </script>
+  </body>
+</html>

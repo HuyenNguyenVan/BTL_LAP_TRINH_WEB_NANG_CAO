@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Đặt Lịch Khám Bệnh</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.doctor-list, .appointment-form, .appointment-list {
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+input, select, button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+  </style>
+</head>
+<body>
+  <h1>Đặt Lịch Khám Bệnh</h1>
+  <div class="container">
+    <div class="doctor-list">
+      <h2>Danh Sách Bác Sĩ</h2>
+      <ul id="doctor-list"></ul>
+    </div>
+    <div class="appointment-form">
+      <h2>Đặt Lịch Khám</h2>
+      <form id="appointment-form">
+        <label for="doctor-name">Bác Sĩ:</label>
+        <select id="doctor-name"></select>
+        <label for="appointment-date">Ngày:</label>
+        <input type="date" id="appointment-date">
+        <button type="submit">Đặt Lịch</button>
+      </form>
+    </div>
+    <div class="appointment-list">
+      <h2>Lịch Hẹn</h2>
+      <ul id="appointment-list"></ul>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+  // Dữ liệu mẫu bác sĩ
+  var doctors = [
+    { name: 'Bác Sĩ A', schedule: ['2023-05-01', '2023-05-15', '2023-06-01'] },
+    { name: 'Bác Sĩ B', schedule: ['2023-05-10', '2023-05-20', '2023-06-05'] },
+    { name: 'Bác Sĩ C', schedule: ['2023-05-05', '2023-05-25', '2023-06-10'] }
+  ];
+
+  // Lưu dữ liệu bác sĩ vào localStorage
+  localStorage.setItem('doctors', JSON.stringify(doctors));
+
+  // Hiển thị danh sách bác sĩ
+  $.each(doctors, function(index, doctor) {
+    $('#doctor-list').append('<li>' + doctor.name + '</li>');
+    $('#doctor-name').append('<option value="' + doctor.name + '">' + doctor.name + '</option>');
+  });
+
+  // Lấy danh sách lịch hẹn từ localStorage
+  var appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+  // Hiển thị danh sách lịch hẹn
+  $.each(appointments, function(index, appointment) {
+    $('#appointment-list').append('<li>' + appointment.doctorName + ' - ' + appointment.date + '</li>');
+  });
+
+  // Hiển thị lịch hẹn trước đó của bác sĩ
+  $('#doctor-name').change(function() {
+    var selectedDoctor = $(this).val();
+    var pastAppointments = [];
+
+    // Tìm bác sĩ được chọn trong danh sách bác sĩ
+    $.each(doctors, function(index, doctor) {
+      if (doctor.name === selectedDoctor) {
+        // Hiển thị lịch hẹn trước đó của bác sĩ
+        $.each(doctor.schedule, function(index, date) {
+          pastAppointments.push({ doctorName: selectedDoctor, date: date });
+          $('#past-appointments').append('<li>' + selectedDoctor + ' - ' + date + '</li>');
+        });
+        return false; // Thoát khỏi vòng lặp
+      }
+    });
+  });
+
+  // Xử lý form đặt lịch hẹn
+  $('#appointment-form').submit(function(event) {
+    event.preventDefault();
+    var doctorName = $('#doctor-name').val();
+    var appointmentDate = $('#appointment-date').val();
+    var newAppointment = { doctorName: doctorName, date: appointmentDate };
+
+    // Lưu lịch hẹn vào localStorage
+    appointments.push(newAppointment);
+    localStorage.setItem('appointments', JSON.stringify(appointments));
+
+    // Hiển thị lịch hẹn mới
+    $('#appointment-list').append('<li>' + newAppointment.doctorName + ' - ' + newAppointment.date + '</li>');
+
+    // Đặt lại form
+    $('#appointment-form')[0].reset();
+  });
+});
+
+  </script>
+</body>
+</html>

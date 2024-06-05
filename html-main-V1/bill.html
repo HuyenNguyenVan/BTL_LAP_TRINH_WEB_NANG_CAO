@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: 'svn-gilroy';
+            src: url('/fonts/svn-gilroy.woff2') format('woff2'),
+                 url('/fonts/svn-gilroy.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container my-5">
+        <div class="bg-white p-4 shadow-sm">
+            <h1 class="h4 font-weight-bold text-dark">BỆNH VIỆN BÌNH DÂN</h1>
+            <p class="text-muted">Mã số thuế: 0301463168</p>
+            <p class="text-muted">371 Điện Biên Phủ-P.04, Quận 3, Thành phố Hồ Chí Minh</p>
+            <p class="text-muted">Điện thoại: (028) 38394747.</p>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="text-muted">Họ tên người mua hàng:</p>
+                    <p class="text-muted">Đơn vị:</p>
+                </div>
+                <div class="col-md-8">
+                    <!-- You can add input fields here for the user to input their information -->
+                </div>
+            </div>
+            <h1 class="h5 font-weight-bold text-dark mt-4">HÓA ĐƠN BÁN HÀNG</h1>
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th class="text-muted">STT</th>
+                        <th class="text-muted">Tên thuốc - Nội dung</th>
+                        <th class="text-muted">Đơn vị tính</th>
+                        <th class="text-muted">Số lượng</th>
+                        <th class="text-muted">Đơn giá</th>
+                        <th class="text-muted">Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-muted">1</td>
+                        <td class="text-muted">HARNAL OCAS 0.4MG</td>
+                        <td class="text-muted">Hộp</td>
+                        <td class="text-muted">03/22</td>
+                        <td class="text-muted">220.206</td>
+                        <td class="text-muted">660.618</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end mt-4">
+                <div class="col-md-4">
+                    <p class="text-muted">Cộng tiền hàng hóa, dịch vụ:</p>
+                    <p class="text-muted">Số tiền viết bằng chữ: Hai trăm hai mươi nghìn hai trăm linh sáu đồng chẵn</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <div class="col-md-4">
+                    <p class="text-muted">Người bán hàng:</p>
+                    <p class="text-muted">ĐẠI DIỆN BỆNH VIỆN BÌNH DÂN</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="detail.html" class="btn btn-primary">Quay lại</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: 'svn-gilroy';
+            src: url('/fonts/svn-gilroy.woff2') format('woff2'),
+                 url('/fonts/svn-gilroy.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="background-color: #24AC7C;">
+        <div class="container">
+            <div class="row d-flex justify-content-between text-white">
+                <div class="col-md-4 d-flex align-items-center">
+                    <div class="text-uppercase fw-bold fs-4">Đặt khám ngay:</div>
+                    <img class="ms-2" src="images/phone.png" alt="" style="width: 24px; height: 24px;">
+                    <div class="ms-2 text-uppercase fw-bold fs-4">1900 3367</div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end align-items-center text-uppercase fw-bold fs-4">
+                    <a href="login.html" class="text-white">Đăng nhập</a> / <a href="login.html" class="text-white">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid d-flex justify-content-between align-items-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="/images/logo.png" alt="" class="img-fluid" style="max-height: 40px;">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Đặt khám
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item fw-bold" href="#">Bác sĩ</a></li>
+                                    <li><a class="dropdown-item fw-bold" href="#">Cơ sở y tế</a></li>
+                                    <li><a class="dropdown-item fw-bold" href="#">Chuyên khoa</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Hỏi đáp bác sĩ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Hồ sơ sức khỏe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" href="#">Cẩm nang</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container-fluid" style="background: rgba(36, 172, 124, 0.9);">
+        <div class="container" style="padding: 0;">
+            <img src="/images/banner.png" alt="" class="img-fluid" style="width: 100%;">
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h1 class="display-4 mb-4">Lịch sử khám</h1>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100" onclick="showPatientInfo('Bệnh nhân A', '2024-04-14', 'Bác sĩ A', 'Sốt, đau đầu', 'Cảm lạnh', 'Nghỉ ngơi, uống nhiều nước', 'bill.html')">
+                    <div class="card-body">
+                        <h5 class="card-title">Bệnh nhân A</h5>
+                        <p class="card-text">Ngày khám: 2024-04-14</p>
+                        <p class="card-text">Bác sĩ: Bác sĩ A</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100" onclick="showPatientInfo('Bệnh nhân B', '2024-04-15', 'Bác sĩ B', 'Đau bụng, buồn nôn', 'Viêm dạ dày', 'Kiêng thức ăn cay, uống thuốc', 'bill.html')">
+                    <div class="card-body">
+                        <h5 class="card-title">Bệnh nhân B</h5>
+                        <p class="card-text">Ngày khám: 2024-04-15</p>
+                        <p class="card-text">Bác sĩ: Bác sĩ B</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup" class="modal fade" tabindex="-1" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="popupTitle" class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="popupDate"></p>
+                    <p id="popupDoctor"></p>
+                    <p id="popupSymptoms"></p>
+                    <p id="popupDiagnosis"></p>
+                    <p id="popupTreatment"></p>
+                    <a id="popupBill" href="#" class="text-primary">Hóa đơn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function showPatientInfo(name, date, doctor, symptoms, diagnosis, treatment, billLink) {
+        document.getElementById("popupTitle").textContent = "Tên bệnh nhân: " + name;
+        document.getElementById("popupDate").textContent = "Ngày khám: " + date;
+        document.getElementById("popupDoctor").textContent = "Bác sĩ: " + doctor;
+        document.getElementById("popupSymptoms").textContent = "Triệu chứng: " + symptoms;
+        document.getElementById("popupDiagnosis").textContent = "Chuẩn đoán: " + diagnosis;
+        document.getElementById("popupTreatment").textContent = "Phương án điều trị: " + treatment;
+        document.getElementById("popupBill").href = billLink;
+        var myModal = new bootstrap.Modal(document.getElementById('popup'));
+        myModal.show();
+    }
+    
+    function hidePopup() {
+        var myModal = bootstrap.Modal.getInstance(document.getElementById('popup'));
+        myModal.hide();
+    }
+    </script>
+    <div class="container-fluid" style="background: rgb(58, 181, 138);">
+        <div class="container">
+            <div class="row">
+                <img src="images/IVIE_logo_white.png" alt="" style="scale: 0.5;">
+                <div class="col-md mb-4">
+                    <h4 class="text-white">CÔNG TY TNHH 1 THANH VIÊN ISOFHCARE</h4>
+                    <p class="text-white">Tầng 6, Tòa nhà FORD, 313-315 Trường Chinh, Thanh Xuân, Hà Nội</p>
+                    <p class="text-white">1900 3367</p>
+                    <p class="text-white">marketing@isofhcare.com</p>
+                </div>
+                <div class="col-md mb-4">
+                    <p class="text-white">Đặt lịch</p>
+                    <p class="text-white">Bác sĩ</p>
+                    <p class="text-white">Chuyên khoa</p>
+                    <p class="text-white">Đăng ký bán hàng trên IVIE-Shopping Mall</p>
+                </div>
+                <div class="col-md mb-4">
+                    <p class="text-white">Đặt lịch</p>
+                    <p class="text-white">Bác sĩ</p>
+                    <p class="text-white">Chuyên khoa</p>
+                    <p class="text-white">Đăng ký bán hàng trên IVIE-Shopping Mall</p>
+                </div>
+                <div class="col-md mb-4">
+                    <p class="text-white">Hỏi đáp bác sĩ</p>
+                    <p class="text-white">Cẩm nang bác sĩ</p>
+                    <p class="text-white">Về chúng tôi</p>
+                    <p class="text-white">Trở thành đối tác</p>
+                </div>
+                <div class="col-md">
+                    <p class="text-white">Điều khoản sử dụng</p>
+                    <p class="text-white">Chính sách bảo mật</p>
+                    <p class="text-white">Quy chế hoạt động</p>
+                    <p class="text-white">Trung tâm trợ giúp</p>
+                </div>
+            </div>                
+            <div class="d-flex justify-content-center align-items-center gap-4" style="padding-bottom: 2rem;">
+                <a href="http://online.gov.vn/Home/WebDetails/67055">
+                    <img src="images/at1.png" alt="">
+                </a>
+                <a href="http://online.gov.vn/Home/AppDetails/1145">
+                    <img src="images/at2.webp" alt="">
+                </a>
+                <a href="https://www.dmca.com/Protection/Status.aspx?ID=6eb4bc14-dc4e-4e07-9394-076f33d50fb2&refurl=https://ivie.vn/">
+                    <img src="images/at3.png" alt="">
+                </a>
+            </div>            
+        </div>
+    </div>  
+</body>
+</html>
+
