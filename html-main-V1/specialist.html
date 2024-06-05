@@ -115,7 +115,8 @@
         paginatedItems.forEach(function(service) {
           var serviceHtml = `
             <div class="col-md-6">
-              <div class="service-card">
+              <a href="specialistDetail.html">
+                <div class="service-card">
                 <div class="service-image">
                   <img src="${service.image}" alt="${service.title}">
                 </div>
@@ -127,6 +128,7 @@
                   </div>
                 </div>
               </div>
+              </a>
             </div>
           `;
           $('#service-list').append(serviceHtml);

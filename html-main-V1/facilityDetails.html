@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông Tin Bệnh Viện</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .hospital-card {
+      display: flex;
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .hospital-card img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .hospital-details {
+      margin-left: 20px;
+      flex-grow: 1;
+    }
+    .hospital-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hospital-info {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="hospital-card">
+      <div class="hospital-image">
+        <img src="your-image-url.jpg" alt="Bệnh Viện Mắt Trung Ương">
+      </div>
+      <div class="hospital-details">
+        <div class="hospital-title">BỆNH VIỆN MẮT TRUNG ƯƠNG</div>
+        <div class="hospital-info">
+          <span>Lượt ĐK: 640</span> |
+          <span>Đánh giá: 5</span>
+        </div>
+        <div class="hospital-address">
+          <p>
+            85 Phố Bà Triệu, Nguyễn Du, Hai Bà Trưng, Thành phố Hà Nội 
+            <a href="#">Xem đường đi</a>
+          </p>
+          <p>
+            Đã hết giờ làm việc (07:30 - 11:30) 
+            <a href="#">Xem lịch</a>
+          </p>
+        </div>
+        <div class="hospital-contact">
+          <p>
+            <strong>Liên hệ:</strong> 1900.638.367
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

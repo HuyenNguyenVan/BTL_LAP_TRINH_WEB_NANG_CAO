@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Câu Hỏi</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'svn-gilroy';
+            src: url('/fonts/svn-gilroy.woff2') format('woff2'),
+                url('/fonts/svn-gilroy.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .card-text {
+            margin-bottom: 0.5rem;
+        }
+        .comment {
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .heart {
+            cursor: pointer;
+            color: gray;
+        }
+        .heart.active {
+            color: red;
+        }
+        .question-card {
+            margin-bottom: 2rem;
+        }
+        .question-card small {
+            display: block;
+            margin-top: 0.5rem;
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <a href="#" class="btn btn-link">Quay Lại</a>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card question-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Nam, 15 tuổi <span class="badge badge-success">Đang mở</span></h5>
+                        <p class="card-text">Mắt em che một bên thì rõ che bên còn lại thì mờ nhưng khi nhìn cả hai thì lại bình thường thì sao ạ</p>
+                        <a href="#" class="badge badge-primary">Chuyên khoa Mắt</a>
+                        <small class="text-muted">
+                            <i class="far fa-clock"></i> 05/06/2024 
+                            <i class="far fa-comments ml-2"></i> 4 Trả lời 
+                            <span class="heart" onclick="toggleHeart(this)">&#9829;</span> 
+                            <span class="heart-count">1 Cảm ơn</span>
+                        </small>
+                    </div>
+                </div>
+                
+                <!-- Comments Section -->
+                <div class="comment">
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/50" alt="Profile Pic" class="profile-pic mr-3">
+                        <div>
+                            <h6 class="mb-0">Dương Thị Hạnh</h6>
+                            <small class="text-muted">05/06/2024</small>
+                        </div>
+                    </div>
+                    <p class="mt-2">Đừng quá lo lắng</p>
+                </div>
+                <div class="comment">
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/50" alt="Profile Pic" class="profile-pic mr-3">
+                        <div>
+                            <h6 class="mb-0">Dương Thị Hạnh</h6>
+                            <small class="text-muted">05/06/2024</small>
+                        </div>
+                    </div>
+                    <p class="mt-2">Nó là sinh lý bình thường</p>
+                </div>
+                <div class="comment">
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/50" alt="Profile Pic" class="profile-pic mr-3">
+                        <div>
+                            <h6 class="mb-0">Dương Thị Hạnh</h6>
+                            <small class="text-muted">05/06/2024</small>
+                        </div>
+                    </div>
+                    <p class="mt-2">...</p>
+                </div>
+            </div>
+            
+            <!-- Ask a Question Form -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Đặt câu hỏi với Bác sĩ</h5>
+                        <form>
+                            <div class="form-group">
+                                <label for="age">Tuổi*</label>
+                                <input type="number" class="form-control" id="age" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Giới tính*</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                                    <label class="form-check-label" for="male">Nam</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                                    <label class="form-check-label" for="female">Nữ</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="specialty">Chọn chuyên khoa</label>
+                                <select class="form-control" id="specialty" required>
+                                    <option>Chuyên khoa Mắt</option>
+                                    <option>Chuyên khoa Nội thận tiết niệu</option>
+                                    <option>Da Liễu</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Tiêu đề</label>
+                                <input type="text" class="form-control" id="title" placeholder="Tiêu đề" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="question">Nội dung câu hỏi</label>
+                                <textarea class="form-control" id="question" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Thêm ảnh</label>
+                                <input type="file" class="form-control-file" id="image">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Gửi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleHeart(element) {
+            const heartCountElement = element.nextElementSibling;
+            let count = parseInt(heartCountElement.textContent.split(' ')[0]);
+
+            if (element.classList.contains('active')) {
+                count--;
+            } else {
+                count++;
+            }
+
+            element.classList.toggle('active');
+            heartCountElement.textContent = `${count} Cảm ơn`;
+        }
+    </script>
+</body>
+</html>
