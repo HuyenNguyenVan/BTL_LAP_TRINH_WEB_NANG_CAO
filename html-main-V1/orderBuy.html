@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .order-item {
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .order-item:hover {
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .order-details {
+            display: none;
+            transition: all 0.3s;
+        }
+        .order-item:hover .order-details {
+            display: block;
+        }
+        .badge-status {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Order List</h1>
+    <ul class="list-group">
+        <li class="list-group-item order-item" data-url="bill.html">
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Order #12345</span>
+                <span class="badge badge-secondary badge-status">Pending</span>
+            </div>
+            <div class="order-details mt-2">
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Order Date:</strong> 2023-06-01</p>
+                <p><strong>Status:</strong> Pending</p>
+            </div>
+        </li>
+        <li class="list-group-item order-item" data-url="bill.html">
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Order #12346</span>
+                <span class="badge badge-primary badge-status">Confirmed</span>
+            </div>
+            <div class="order-details mt-2">
+                <p><strong>Name:</strong> Jane Smith</p>
+                <p><strong>Order Date:</strong> 2023-06-02</p>
+                <p><strong>Status:</strong> Confirmed</p>
+            </div>
+        </li>
+        <li class="list-group-item order-item" data-url="bill.html">
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Order #12347</span>
+                <span class="badge badge-info badge-status">Shipping</span>
+            </div>
+            <div class="order-details mt-2">
+                <p><strong>Name:</strong> Alice Johnson</p>
+                <p><strong>Order Date:</strong> 2023-06-03</p>
+                <p><strong>Status:</strong> Shipping</p>
+            </div>
+        </li>
+        <li class="list-group-item order-item" data-url="bill.html">
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Order #12348</span>
+                <span class="badge badge-success badge-status">Delivered</span>
+            </div>
+            <div class="order-details mt-2">
+                <p><strong>Name:</strong> Bob Brown</p>
+                <p><strong>Order Date:</strong> 2023-06-04</p>
+                <p><strong>Status:</strong> Delivered</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const orderItems = document.querySelectorAll('.order-item');
+        orderItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const url = item.getAttribute('data-url');
+                window.location.href = url;
+            });
+        });
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

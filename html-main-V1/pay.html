@@ -19,22 +19,12 @@
 </head>
 <body>
 
-<div class="container">
-    <h1 class="mt-5 mb-4">Checkout</h1>
+<div class="container mt-5">
+    <h1 class="mb-4">Checkout</h1>
     
-    <!-- Product Information -->
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <img src="product-image.jpg" alt="Product Image" class="product-img">
-        </div>
-        <div class="col-md-6">
-            <h3>Product Name</h3>
-            <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p>Price: $99.99</p>
-            <p>Quantity: 1</p>
-        </div>
-    </div>
-    
+    <div id="selected-products"></div>
+    <h4>Total: $<span id="total-price">0.00</span></h4>
+
     <!-- Billing Information Form -->
     <form>
         <h3>Billing Information</h3>
@@ -71,26 +61,108 @@
             </select>
         </div>
         
-        <!-- Payment Information -->
-        <h3>Payment Information</h3>
+        <!-- Payment Method Selection -->
+        <h3>Payment Method</h3>
         <div class="form-group">
-            <label for="card">Credit Card Number</label>
-            <input type="text" class="form-control" id="card" placeholder="Enter your credit card number">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="expiry">Expiry Date</label>
-                <input type="text" class="form-control" id="expiry" placeholder="MM/YY">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="cod" checked>
+                <label class="form-check-label" for="cod">
+                    Cash on Delivery
+                </label>
             </div>
-            <div class="form-group col-md-6">
-                <label for="cvv">CVV</label>
-                <input type="text" class="form-control" id="cvv" placeholder="Enter CVV">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="online" value="online">
+                <label class="form-check-label" for="online">
+                    Online Payment
+                </label>
+            </div>
+        </div>
+        
+        <!-- Payment Information -->
+        <div id="paymentInfo" style="display: none;">
+            <h3>Payment Information</h3>
+            <div class="form-group">
+                <label for="card">Credit Card Number</label>
+                <input type="text" class="form-control" id="card" placeholder="Enter your credit card number">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" class="form-control" id="expiry" placeholder="MM/YY">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="cvv">CVV</label>
+                    <input type="text" class="form-control" id="cvv" placeholder="Enter CVV">
+                </div>
             </div>
         </div>
         
         <button type="submit" class="btn btn-primary btn-block">Place Order</button>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const products = urlParams.get('products');
+        const selectedProductsDiv = document.getElementById('selected-products');
+        let totalPrice = 0;
+
+        if (products) {
+            const productIds = products.split(',');
+            productIds.forEach(id => {
+                const productItem = document.createElement('div');
+                productItem.classList.add('mb-3');
+                const productDetails = getProductDetails(id);
+                totalPrice += productDetails.price;
+                productItem.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="${productDetails.image}" alt="${productDetails.name}" class="product-img">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>${productDetails.name}</h3>
+                            <p>Description: ${productDetails.description}</p>
+                            <p>Price: $${productDetails.price.toFixed(2)}</p>
+                            <p>Quantity: 1</p>
+                        </div>
+                    </div>
+                `;
+                selectedProductsDiv.appendChild(productItem);
+            });
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        } else {
+            selectedProductsDiv.textContent = 'No products selected.';
+        }
+
+        const paymentInfo = document.getElementById('paymentInfo');
+        const codOption = document.getElementById('cod');
+        const onlineOption = document.getElementById('online');
+
+        function togglePaymentInfo() {
+            if (onlineOption.checked) {
+                paymentInfo.style.display = 'block';
+            } else {
+                paymentInfo.style.display = 'none';
+            }
+        }
+
+        codOption.addEventListener('change', togglePaymentInfo);
+        onlineOption.addEventListener('change', togglePaymentInfo);
+
+        togglePaymentInfo();
+
+        function getProductDetails(productId) {
+            const products = [
+                {id: '1', name: 'Product 1', description: 'Description for product 1.', price: 19.99, image: 'https://via.placeholder.com/300x200'},
+                {id: '2', name: 'Product 2', description: 'Description for product 2.', price: 29.99, image: 'https://via.placeholder.com/300x200'},
+                {id: '3', name: 'Product 3', description: 'Description for product 3.', price: 39.99, image: 'https://via.placeholder.com/300x200'},
+                // Add more products as needed
+            ];
+            return products.find(product => product.id === productId);
+        }
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
