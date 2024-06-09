@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,8 +42,7 @@
                 <div class="text-center fw-bold position-relative" style="color: #6a11cb; background: linear-gradient(to right, #6a11cb, #2575fc); -webkit-background-clip: text; color: transparent; font-size: 30px;">
                     Bạn nên đăng nhập để sử dụng dịch vụ
                 </div>
-                <div class="text-center my-4 position-relative">
-                </div>
+                <div class="text-center my-4 position-relative"></div>
                 <div class="px-lg-5 px-sm-2 py-4 position-relative" style="width: 70%;">
                     <div class="d-flex flex-column">
                         <ul class="nav nav-pills justify-content-center mb-3" id="pills-tab" role="tablist">
@@ -71,7 +69,7 @@
                                         <input type="checkbox" class="form-check-input" id="remember" required>
                                         <label class="form-check-label" for="remember">Ghi nhớ mật khẩu</label>
                                     </div>
-                                    <button type="submit" class="btn w-100 text-center" style="background-color: #81D6AE; color:white" >Đăng nhập</button>
+                                    <button type="submit" class="btn w-100 text-center" style="background-color: #81D6AE; color:white">Đăng nhập</button>
                                     <p class="text-center my-4">Đăng nhập nhanh</p>
                                     <div class="d-flex justify-content-center">
                                         <img src="images/zalo.png" alt="" class="me-3 w-6 h-6 lg:w-9 lg:h-9">
@@ -130,13 +128,13 @@
                                     const storedUser = JSON.parse(localStorage.getItem(email));
                                     if (storedUser && storedUser.password === password) {
                                         localStorage.setItem('isLoggedIn', 'true');
-                                        window.location.href = "homeuser.html";
-                                        window.location.href = "product.html";
+                                        window.location.href = "header.html";
                                     } else {
                                         alert("Thông tin đăng nhập không đúng!");
                                     }
                                 }
                             });
+
                             document.getElementById("registerForm").addEventListener("submit", function (event) {
                                 event.preventDefault();
                                 const email = event.target.email.value;

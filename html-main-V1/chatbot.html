@@ -6,6 +6,8 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <style>
         .fixed-button {
             position: fixed;
@@ -18,7 +20,7 @@
     </style>
 </head>
 <body>
-    <img src="images/mes.png" alt="" class="fixed-button w-12 h-12" onclick="toggleModal()">
+    <img src="images/mes.png" alt="" class="fixed-button w-12 h-12" onclick="toggleModalHuyenv()">
     <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed bottom-0 right-0 z-50">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -49,41 +51,6 @@
             </div>
         </div>
     </div>    
-    <script>
-        function toggleModal() {
-            var modal = document.getElementById('static-modal');
-            var img = document.querySelector('.fixed-button');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                img.classList.add('hidden');
-            } else {
-                modal.classList.add('hidden');
-                img.classList.remove('hidden');
-            }
-        }
-        function previewImage(event) {
-            var image = event.target.files[0];
-            var reader = new FileReader();
-            reader.onload = function() {
-                var imgElement = document.createElement('img');
-                imgElement.src = reader.result;
-                imgElement.classList.add('w-24', 'h-24', 'object-cover', 'rounded');
-                document.getElementById('modal-content').appendChild(imgElement);
-            };
-            reader.readAsDataURL(image);
-        }
-        function handleSubmit() {
-            var textInput = document.getElementById('textInput').value;
-            var modalContent = document.getElementById('modal-content');
-            modalContent.innerHTML += "<p>" + textInput + "</p>";
-            
-            var modalContentContainer = document.getElementById('modalContentContainer');
-            if (modalContentContainer.scrollHeight > 320) {
-                modalContentContainer.classList.add('overflow-y-scroll');
-            } else {
-                modalContentContainer.classList.remove('overflow-y-scroll');
-            }
-        }
-    </script>
+    
 </body>
 </html>

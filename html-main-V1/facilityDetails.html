@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thông Tin Bệnh Viện</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="include.js" defer></script>
   <style>
     .hospital-card {
       display: flex;
@@ -33,38 +34,43 @@
   </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="hospital-card">
-      <div class="hospital-image">
-        <img src="your-image-url.jpg" alt="Bệnh Viện Mắt Trung Ương">
-      </div>
-      <div class="hospital-details">
-        <div class="hospital-title">BỆNH VIỆN MẮT TRUNG ƯƠNG</div>
-        <div class="hospital-info">
-          <span>Lượt ĐK: 640</span> |
-          <span>Đánh giá: 5</span>
+  <div id="header-placeholder"></div>
+  <div id="menu-placeholder"></div>
+  <main>
+    <div class="container mt-5">
+      <div class="hospital-card">
+        <div class="hospital-image">
+          <img src="your-image-url.jpg" alt="Bệnh Viện Mắt Trung Ương">
         </div>
-        <div class="hospital-address">
-          <p>
-            85 Phố Bà Triệu, Nguyễn Du, Hai Bà Trưng, Thành phố Hà Nội 
-            <a href="#">Xem đường đi</a>
-          </p>
-          <p>
-            Đã hết giờ làm việc (07:30 - 11:30) 
-            <a href="#">Xem lịch</a>
-          </p>
-        </div>
-        <div class="hospital-contact">
-          <p>
-            <strong>Liên hệ:</strong> 1900.638.367
-          </p>
+        <div class="hospital-details">
+          <div class="hospital-title">BỆNH VIỆN MẮT TRUNG ƯƠNG</div>
+          <div class="hospital-info">
+            <span>Lượt ĐK: 640</span> |
+            <span>Đánh giá: 5</span>
+          </div>
+          <div class="hospital-address">
+            <p>
+              85 Phố Bà Triệu, Nguyễn Du, Hai Bà Trưng, Thành phố Hà Nội 
+              <a href="#">Xem đường đi</a>
+            </p>
+            <p>
+              Đã hết giờ làm việc (07:30 - 11:30) 
+              <a href="#">Xem lịch</a>
+            </p>
+          </div>
+          <div class="hospital-contact">
+            <p>
+              <strong>Liên hệ:</strong> 1900.638.367
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </main> 
+  <div id="chatbot-placeholder"></div>
+  <div id="footer-placeholder"></div> 
 </body>
 </html>
