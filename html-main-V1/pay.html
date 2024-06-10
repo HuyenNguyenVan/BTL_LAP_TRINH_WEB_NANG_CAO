@@ -116,6 +116,12 @@
         </div> 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                const currentUser =  localStorage.getItem("currentUser");
+                if(currentUser === null || currentUser == ''){
+                    alert("Bạn cần phải đăng nhập để tiếp tục")
+                    window.location.href = "login.html";
+                    return;
+                }
                 const urlParams = new URLSearchParams(window.location.search);
                 const productId = urlParams.get('product');
                 const selectedProductDiv = document.getElementById('selected-product');

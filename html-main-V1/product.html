@@ -456,6 +456,14 @@
         
                         document.querySelectorAll('.add-to-cart').forEach(button => {
                             button.addEventListener('click', function() {
+
+                                const currentUser =  localStorage.getItem("currentUser");
+                                if(currentUser === null || currentUser == ''){
+                                    alert("Bạn cần phải đăng nhập để tiếp tục")
+                                      // Sử dụng div với class alert alert-secondary
+                                    window.location.href = "login.html";
+                                    return;
+                                }
                                 const productId = this.getAttribute('data-id');
                                 addToCart(productId);
                             });
