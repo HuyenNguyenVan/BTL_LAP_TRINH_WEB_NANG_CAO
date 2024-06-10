@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="include.js" defer></script>
     <style>
         .carousel-item img {
@@ -120,26 +121,45 @@
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                                 <h5 class="product-title">Product 1</h5>
                                 <p class="product-price">100,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="new-product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 2">
                                 <h5 class="product-title">Product 2</h5>
                                 <p class="product-price">200,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="new-product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 3">
                                 <h5 class="product-title">Product 3</h5>
                                 <p class="product-price">300,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="new-product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 4">
                                 <h5 class="product-title">Product 4</h5>
                                 <p class="product-price">400,000đ</p>
-                            </div>
-                            <div class="new-product-card">
-                                <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 5">
-                                <h5 class="product-title">Product 5</h5>
-                                <p class="product-price">500,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="carousel-item d-flex justify-content-around">
@@ -147,26 +167,45 @@
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 6">
                                 <h5 class="product-title">Product 6</h5>
                                 <p class="product-price">600,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="new-product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 7">
                                 <h5 class="product-title">Product 7</h5>
                                 <p class="product-price">700,000đ</p>
-                            </div>
-                            <div class="new-product-card">
-                                <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 8">
-                                <h5 class="product-title">Product 8</h5>
-                                <p class="product-price">800,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="new-product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 9">
                                 <h5 class="product-title">Product 9</h5>
                                 <p class="product-price">900,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="new-product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 10">
                                 <h5 class="product-title">Product 10</h5>
                                 <p class="product-price">1,000,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -183,7 +222,7 @@
                     $('#newProductCarousel').on('slide.bs.carousel', function (e) {
                         var $e = $(e.relatedTarget);
                         var idx = $e.index();
-                        var itemsPerSlide = 5;
+                        var itemsPerSlide = 4;
                         var totalItems = $('.carousel-item').length;
                 
                         if (idx >= totalItems - (itemsPerSlide - 1)) {
@@ -208,26 +247,45 @@
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                                 <h5 class="product-title">Product 1</h5>
                                 <p class="product-price">100,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 2">
                                 <h5 class="product-title">Product 2</h5>
                                 <p class="product-price">200,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 3">
                                 <h5 class="product-title">Product 3</h5>
                                 <p class="product-price">300,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 4">
                                 <h5 class="product-title">Product 4</h5>
                                 <p class="product-price">400,000đ</p>
-                            </div>
-                            <div class="product-card">
-                                <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 5">
-                                <h5 class="product-title">Product 5</h5>
-                                <p class="product-price">500,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="carousel-item d-flex justify-content-around">
@@ -235,26 +293,45 @@
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 6">
                                 <h5 class="product-title">Product 6</h5>
                                 <p class="product-price">600,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 7">
                                 <h5 class="product-title">Product 7</h5>
                                 <p class="product-price">700,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 8">
                                 <h5 class="product-title">Product 8</h5>
                                 <p class="product-price">800,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="product-card">
                                 <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 8">
                                 <h5 class="product-title">Product 8</h5>
                                 <p class="product-price">800,000đ</p>
-                            </div>
-                            <div class="product-card">
-                                <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 8">
-                                <h5 class="product-title">Product 8</h5>
-                                <p class="product-price">800,000đ</p>
+                                <div class="text-center">
+                                    <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                                    <button class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -317,196 +394,166 @@
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="product-card">
                         <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
                         <h5 class="product-title">Product 1</h5>
                         <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Product 1">
-                        <h5 class="product-title">Product 1</h5>
-                        <p class="product-price">100,000đ</p>
+                        <div class="text-center">
+                            <a href="pay.html" class="btn btn-primary btn-lg">Đặt hàng</a>
+                            <button class="btn btn-secondary btn-lg">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <nav aria-label="Page navigation example" class="mt-4">
