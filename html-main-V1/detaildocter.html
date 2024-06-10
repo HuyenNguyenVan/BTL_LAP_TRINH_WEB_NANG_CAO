@@ -82,6 +82,8 @@
                             <input type="date" id="datepicker" name="datepicker" class="form-control">
                         </div>
                         <div id="timeSlots" class="mt-4"></div>
+                        <div id="formContainer" class="mt-4"></div>
+                
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
                                 document.getElementById("datepicker").addEventListener("change", function() {
@@ -90,9 +92,13 @@
                                 });
                             });
                 
+                            var selectedTimeSlot = ""; // Biến để lưu mốc thời gian đã chọn
+                
                             function displayTimeSlots(selectedDate) {
                                 var timeSlotsContainer = document.getElementById("timeSlots");
+                                var formContainer = document.getElementById("formContainer");
                                 timeSlotsContainer.innerHTML = ""; // Xóa nội dung cũ trước khi hiển thị mới
+                                formContainer.innerHTML = ""; // Xóa form cũ nếu có
                 
                                 var timeSlots = generateTimeSlots(selectedDate);
                                 if (timeSlots.length === 0) {
@@ -103,7 +109,8 @@
                                         button.textContent = timeSlot;
                                         button.classList.add("btn", "btn-primary", "me-2", "mb-2");
                                         button.addEventListener("click", function() {
-                                            alert("Bạn đã chọn mốc thời gian: " + timeSlot);
+                                            selectedTimeSlot = timeSlot; // Lưu mốc thời gian đã chọn
+                                            displayForm();
                                         });
                                         timeSlotsContainer.appendChild(button);
                                     });
@@ -112,8 +119,39 @@
                 
                             function generateTimeSlots(selectedDate) {
                                 // Tạo một mảng mốc thời gian cố định
-                                var timeSlots = ["19:00", "19:30", "20:00"];
+                                var timeSlots = ["19:00-19:30", "19:30-20:00", "20:00-20:30"];
                                 return timeSlots;
+                            }
+                
+                            function displayForm() {
+                                var formContainer = document.getElementById("formContainer");
+                                var formHTML = `
+                                    <form id="appointmentForm">
+                                        <div class="form-group">
+                                            <label for="noidungkham">Nội dung khám</label>
+                                            <input type="text" class="form-control" id="noidungkham" placeholder="Nhập nội dung khám" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="motachitiet">Mô tả chi tiết</label>
+                                            <textarea class="form-control" id="motachitiet" rows="4" placeholder="Nhập mô tả chi tiết" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                `;
+                                formContainer.innerHTML = formHTML;
+                
+                                document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+                                    event.preventDefault();
+                                    var noidungkham = document.getElementById("noidungkham").value;
+                                    var motachitiet = document.getElementById("motachitiet").value;
+                                    if (selectedTimeSlot) {
+                                        alert("Bạn đã đặt lịch vào mốc thời gian: " + selectedTimeSlot +
+                                              "\nNội dung khám: " + noidungkham +
+                                              "\nMô tả chi tiết: " + motachitiet);
+                                    } else {
+                                        alert("Vui lòng chọn mốc thời gian.");
+                                    }
+                                });
                             }
                         </script>
                     </div>
