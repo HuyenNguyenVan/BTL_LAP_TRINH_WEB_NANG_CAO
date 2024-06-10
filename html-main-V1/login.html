@@ -128,7 +128,7 @@
                                     const storedUser = JSON.parse(localStorage.getItem(email));
                                     if (storedUser && storedUser.password === password) {
                                         localStorage.setItem('isLoggedIn', 'true');
-                                        window.location.href = "header.html";
+                                        window.location.href = "homeuser.html";
                                     } else {
                                         alert("Thông tin đăng nhập không đúng!");
                                     }
