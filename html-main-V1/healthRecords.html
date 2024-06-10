@@ -80,24 +80,13 @@
                         <div id="HealthRecords" class="tabcontent" style="display: block;">
                             <h3>Danh sách đặt lịch khám</h3>
                             <ul class="list-group">
-                                <li class="list-group-item">
+                                <!-- <li class="list-group-item">
                                     <h5>Appointment 1</h5>
                                     <p>Content of Appointment 1</p>
                                     <p><strong>Time:</strong> 10:00 AM, 12/06/2024</p>
                                     <p><strong>Status:</strong> <span class="badge badge-success">Đã khám</span></p>
                                 </li>
-                                <li class="list-group-item">
-                                    <h5>Appointment 2</h5>
-                                    <p>Content of Appointment 2</p>
-                                    <p><strong>Time:</strong> 11:00 AM, 12/06/2024</p>
-                                    <p><strong>Status:</strong> <span class="badge badge-warning">Chưa khám</span></p>
-                                </li>
-                                <li class="list-group-item">
-                                    <h5>Appointment 3</h5>
-                                    <p>Content of Appointment 3</p>
-                                    <p><strong>Time:</strong> 12:00 PM, 12/06/2024</p>
-                                    <p><strong>Status:</strong> <span class="badge badge-success">Đã khám</span></p>
-                                </li>
+                                 -->
                             </ul>
                         </div>
                         <div id="Tasks" class="tabcontent">
@@ -122,6 +111,29 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
+                const healthRecordsContainer = document.getElementById("HealthRecords");
+
+                const currentUser = localStorage.getItem("currentUser");
+                                        
+                                        const storedUser = JSON.parse(localStorage.getItem(currentUser));
+                // Duyệt qua mảng lichKham và tạo các phần tử HTML
+                storedUser.lichKham.forEach((appointment, index) => {
+                const appointmentElement = document.createElement("div");
+                appointmentElement.classList.add("list-group-item");
+
+                const appointmentHTML = `
+                    <h5>Appointment ${index + 1}</h5>
+                    <p>Content of Appointment ${index + 1}</p>
+                    <p><strong>Tên Bác Sĩ:</strong> ${appointment.tenBacSy}</p>
+                    <p><strong>Time:</strong> ${appointment.gio}, ${appointment.ngayThangName}</p>
+                    <p><strong>Status:</strong> <span class="badge badge-success">Chưa Khám</span></p>
+                `;
+
+                appointmentElement.innerHTML = appointmentHTML;
+                healthRecordsContainer.querySelector("ul.list-group").appendChild(appointmentElement);
+                });
+
+
             function openTab(evt, tabName) {
                 $('.tabcontent').hide();
                 $('.nav-link').removeClass('active');

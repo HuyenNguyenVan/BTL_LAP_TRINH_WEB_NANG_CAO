@@ -111,6 +111,31 @@
                                         button.addEventListener("click", function() {
                                             selectedTimeSlot = timeSlot; // Lưu mốc thời gian đã chọn
                                             displayForm();
+                                            
+                                            alert("Bạn đã chọn mốc thời gian: " + timeSlot);
+
+                                            if(timeSlot != null && timeSlot != ''){
+                                            alert("haaaaaaaaaaaaaaaaaaaaaaaa")
+                                        var selectedDate = document.getElementById("datepicker").value;
+
+                                        const currentUser = localStorage.getItem("currentUser");
+                                        
+                                        const storedUser = JSON.parse(localStorage.getItem(currentUser));
+
+                                        // const userString = JSON.stringify(storedUser);
+                                        // // Kiểm tra nếu lichKham chưa được khởi tạo
+                                        if (!storedUser.lichKham) {
+                                            storedUser.lichKham = [];
+                                        }
+
+                                        alert("IN HERE")
+                                        storedUser.lichKham.push({ 
+                                            tenBacSy : "Ths.BS Trần Thị Thúy Mùi",
+                                            gio : timeSlot,
+                                            ngayThangName: selectedDate
+                                        });
+                                        localStorage.setItem(currentUser, JSON.stringify(storedUser));
+                                        }
                                         });
                                         timeSlotsContainer.appendChild(button);
                                     });

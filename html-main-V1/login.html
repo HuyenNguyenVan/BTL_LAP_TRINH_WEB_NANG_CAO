@@ -117,16 +117,21 @@
 
                                 if (email === "user@gmail.com" && password === "User123!@#") {
                                     localStorage.setItem('isLoggedIn', 'true');
+                                    localStorage.setItem('currentUser', email);
                                     window.location.href = "homeuser.html";
                                 } else if (email === "doctor@gmail.com" && password === "Docter123!@#") {
                                     localStorage.setItem('isLoggedIn', 'true');
+                                    localStorage.setItem('currentUser', email);
                                     window.location.href = "homedocter.html";
                                 } else if (email === "admin@gmail.com" && password === "Admin123!@#") {
                                     localStorage.setItem('isLoggedIn', 'true');
+                                    localStorage.setItem('currentUser', email);
                                     window.location.href = "homeadmin.html";
                                 } else {
                                     const storedUser = JSON.parse(localStorage.getItem(email));
-                                    if (storedUser && storedUser.password === password) {
+                                    if (storedUser && storedUser.password === password) 
+                                    {
+                                        localStorage.setItem('currentUser', email);
                                         localStorage.setItem('isLoggedIn', 'true');
                                         window.location.href = "homeuser.html";
                                     } else {
@@ -146,7 +151,8 @@
                                 }
                                 const user = {
                                     email: email,
-                                    password: password1
+                                    password: password1,
+                                    lichKham: []
                                 };
                                 localStorage.setItem(email, JSON.stringify(user));
                                 alert("Đăng ký thành công! Bây giờ bạn có thể đăng nhập.");
