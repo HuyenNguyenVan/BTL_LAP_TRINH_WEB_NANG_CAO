@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Giỏ hàng</title>
     <script src="include.js" defer></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .product-item {
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
             display: flex;
-            flex-direction: row;
             align-items: center;
-        }
-        .product-item:hover {
-            background-color: #f8f9fa;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .selected {
-            border: 2px solid #007bff;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
         .product-img {
+            width: 150px;
             height: 150px;
             object-fit: cover;
             margin-right: 20px;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .selected {
+            background-color: #f0f0f0;
         }
     </style>
 </head>
@@ -32,92 +35,113 @@
     <div id="header-placeholder"></div>
     <div id="menu-placeholder"></div>
     <main>
-        <div class="container mt-5">
-            <h1 class="mb-4">Product List</h1>
-            <div class="row">
-                <div class="col-md-12 mb-4">
-                    <div class="card product-item" data-id="1" data-price="19.99">
-                        <img src="https://via.placeholder.com/150" class="product-img" alt="Product 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Product 1</h5>
-                            <p class="card-text">Description for product 1.</p>
-                            <p class="card-text">$19.99</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 mb-4">
-                    <div class="card product-item" data-id="2" data-price="29.99">
-                        <img src="https://via.placeholder.com/150" class="product-img" alt="Product 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Product 2</h5>
-                            <p class="card-text">Description for product 2.</p>
-                            <p class="card-text">$29.99</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 mb-4">
-                    <div class="card product-item" data-id="3" data-price="39.99">
-                        <img src="https://via.placeholder.com/150" class="product-img" alt="Product 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Product 3</h5>
-                            <p class="card-text">Description for product 3.</p>
-                            <p class="card-text">$39.99</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more products as needed -->
-            </div>
-            <div class="mt-4">
-                <h4>Total: $<span id="total-price">0.00</span></h4>
-                <button id="checkout-btn" class="btn btn-primary mt-2">Proceed to Checkout</button>
-            </div>
+        <div class="container mt-5 mb-4">
+            <h1 class="mb-4">Giỏ hàng</h1>
+            <div id="cart-products"></div>
+            <h4>Total: <span id="total-price">0.00đ</span></h4>
+            <button id="delete-btn" class="delete-btn">Xóa</button>
+            <button id="checkout-btn" class="btn btn-primary">Thanh toán</button>
         </div>
+        
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const selectedProducts = [];
-                const productItems = document.querySelectorAll('.product-item');
-                const totalPriceElement = document.getElementById('total-price');
-                const checkoutBtn = document.getElementById('checkout-btn');
-
-                productItems.forEach(item => {
-                    item.addEventListener('click', function () {
-                        const productId = item.getAttribute('data-id');
-                        const productPrice = parseFloat(item.getAttribute('data-price'));
-                        if (selectedProducts.includes(productId)) {
-                            selectedProducts.splice(selectedProducts.indexOf(productId), 1);
-                            item.classList.remove('selected');
-                        } else {
-                            selectedProducts.push(productId);
-                            item.classList.add('selected');
-                        }
-                        updateTotalPrice();
-                    });
-                });
-
-                checkoutBtn.addEventListener('click', function () {
-                    if (selectedProducts.length > 0) {
-                        const url = new URL('pay.html', window.location.href);
-                        url.searchParams.set('products', selectedProducts.join(','));
-                        window.location.href = url;
-                    } else {
-                        alert('Please select at least one product.');
-                    }
-                });
+            document.addEventListener('DOMContentLoaded', function() {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartProductsDiv = document.getElementById('cart-products');
+                let totalPrice = 0;
 
                 function updateTotalPrice() {
-                    let totalPrice = 0;
-                    selectedProducts.forEach(productId => {
-                        const productItem = document.querySelector(`.product-item[data-id="${productId}"]`);
-                        const productPrice = parseFloat(productItem.getAttribute('data-price'));
-                        totalPrice += productPrice;
+                    totalPrice = 0;
+                    const selectedItems = document.querySelectorAll('.product-item.selected');
+                    selectedItems.forEach(item => {
+                        const productId = item.getAttribute('data-id');
+                        const productDetails = getProductDetails(productId);
+                        totalPrice += productDetails.price;
                     });
-                    totalPriceElement.textContent = totalPrice.toFixed(2);
+                    document.getElementById('total-price').textContent = totalPrice.toFixed(2) + 'đ';
                 }
+
+                function displayCartProducts() {
+                    cartProductsDiv.innerHTML = '';
+                    if (cart.length > 0) {
+                        cart.forEach(productId => {
+                            const productDetails = getProductDetails(productId);
+                            const productItem = document.createElement('div');
+                            productItem.classList.add('product-item');
+                            productItem.setAttribute('data-id', productId);
+                            productItem.innerHTML = `
+                                <div style="display: flex; align-items: center;">
+                                    <img src="${productDetails.img}" alt="${productDetails.title}" class="product-img">
+                                    <div>
+                                        <h5>${productDetails.title}</h5>
+                                        <p>Price: ${productDetails.price}đ</p>
+                                    </div>
+                                </div>
+                            `;
+                            productItem.addEventListener('click', function() {
+                                this.classList.toggle('selected');
+                                updateTotalPrice();
+                            });
+
+                            cartProductsDiv.appendChild(productItem);
+                        });
+                        updateTotalPrice();
+                    } else {
+                        cartProductsDiv.textContent = 'Giỏ hàng trống.';
+                    }
+                }
+
+                function getProductDetails(productId) {
+                    const products = [
+                        { id: '1', title: 'Product 1', price: 100000, img: 'https://via.placeholder.com/150' },
+                        { id: '2', title: 'Product 2', price: 200000, img: 'https://via.placeholder.com/150' },
+                        { id: '3', title: 'Product 3', price: 300000, img: 'https://via.placeholder.com/150' },
+                        { id: '4', title: 'Product 4', price: 400000, img: 'https://via.placeholder.com/150' },
+                        { id: '5', title: "Product 5", price: 500000, img: "https://via.placeholder.com/150" },
+                        { id: '6', title: "Product 6", price: 600000, img: "https://via.placeholder.com/150" },
+                        { id: '7', title: "Product 7", price: 700000, img: "https://via.placeholder.com/150" },
+                        { id: '8', title: "Product 8", price: 800000, img: "https://via.placeholder.com/150" },
+                        { id: '9', title: "Product 9", price: 900000, img: "https://via.placeholder.com/150" },
+                        { id: '10', title: "Product 10", price: 1000000, img: "https://via.placeholder.com/150" },
+                        { id: '11', title: "Product 11", price: 1100000, img: "https://via.placeholder.com/150" },
+                        { id: '12', title: "Product 12", price: 1200000, img: "https://via.placeholder.com/150" },
+                        { id: '13', title: "Product 13", price: 1300000, img: "https://via.placeholder.com/150" },
+                        { id: '14', title: "Product 14", price: 1400000, img: "https://via.placeholder.com/150" },
+                        { id: '15', title: "Product 15", price: 1500000, img: "https://via.placeholder.com/150" },
+                        { id: '16', title: "Product 16", price: 1600000, img: "https://via.placeholder.com/150" },
+                        { id: '17', title: "Product 17", price: 1700000, img: "https://via.placeholder.com/150" },
+                        { id: '18', title: "Product 18", price: 1800000, img: "https://via.placeholder.com/150" },
+                        { id: '19', title: "Product 19", price: 1900000, img: "https://via.placeholder.com/150" },
+                        { id: '20', title: "Product 20", price: 2000000, img: "https://via.placeholder.com/150" }
+                    ];
+                    return products.find(product => product.id === productId);
+                }
+
+                function removeProductFromCart(productId) {
+                    cart = cart.filter(id => id !== productId);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                }
+
+                const deleteBtn = document.getElementById('delete-btn');
+                deleteBtn.addEventListener('click', function() {
+                    const selectedItems = document.querySelectorAll('.product-item.selected');
+                    selectedItems.forEach(item => {
+                        const productId = item.getAttribute('data-id');
+                        removeProductFromCart(productId);
+                    });
+                    displayCartProducts();
+                });
+
+                const checkoutBtn = document.getElementById('checkout-btn');
+                checkoutBtn.addEventListener('click', function() {
+                    const selectedItems = document.querySelectorAll('.product-item.selected');
+                    const selectedProductIds = Array.from(selectedItems).map(item => item.getAttribute('data-id'));
+                    const queryParams = new URLSearchParams({ products: selectedProductIds.join(','), total: totalPrice });
+                    window.location.href = 'paytwo.html?' + queryParams.toString();
+                });
+
+                displayCartProducts();
             });
         </script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </main> 
     <div id="chatbot-placeholder"></div>
     <div id="footer-placeholder"></div> 

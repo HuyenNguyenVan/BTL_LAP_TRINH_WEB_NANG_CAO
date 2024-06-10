@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <script src="include.js" defer></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .product-img {
+            max-width: 100%;
+            height: auto;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-controls button {
+            padding: 5px 10px;
+        }
+        .quantity-controls input {
+            width: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <main>
+        <div class="container mt-5">
+            <h1 class="mb-4">Checkout</h1>
+            
+            <div id="selected-product"></div>
+            <h4>Total: <span id="total-price">0.00đ</span></h4>
+        
+            <!-- Billing Information Form -->
+            <form>
+                <h3>Billing Information</h3>
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" class="form-control" id="fullname" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="Enter your address">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" placeholder="Enter your city">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="zip">Zip</label>
+                        <input type="text" class="form-control" id="zip" placeholder="Enter your zip code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select class="form-control" id="country">
+                        <option selected>Choose...</option>
+                        <option>United States</option>
+                        <option>Canada</option>
+                        <option>United Kingdom</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                
+                <!-- Payment Method Selection -->
+                <h3>Payment Method</h3>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="cod" checked>
+                        <label class="form-check-label" for="cod">
+                            Cash on Delivery
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="online" value="online">
+                        <label class="form-check-label" for="online">
+                            Online Payment
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Payment Information -->
+                <div id="paymentInfo" style="display: none;">
+                    <h3>Payment Information</h3>
+                    <div class="form-group">
+                        <label for="card">Credit Card Number</label>
+                        <input type="text" class="form-control" id="card" placeholder="Enter your credit card number">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" class="form-control" id="expiry" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="Enter CVV">
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+            </form>
+        </div> 
+    </main> 
+    <div id="chatbot-placeholder"></div>
+    <div id="footer-placeholder"></div> 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productIds = urlParams.get('products');
+            const selectedProductDiv = document.getElementById('selected-product');
+            let totalPrice = parseFloat(urlParams.get('total'));
+
+            if (productIds) {
+                const productIdsArray = productIds.split(',');
+                selectedProductDiv.innerHTML = '';
+                productIdsArray.forEach(productId => {
+                    const productDetails = getProductDetails(productId);
+                    const productItem = document.createElement('div');
+                    productItem.classList.add('row');
+                    productItem.innerHTML = `
+                        <div class="col-md-6">
+                            <img src="${productDetails.img}" alt="${productDetails.title}" class="product-img">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>${productDetails.title}</h3>
+                            <p>Price: ${productDetails.price}đ</p>
+                        </div>
+                    `;
+                    selectedProductDiv.appendChild(productItem);
+                });
+                document.getElementById('total-price').textContent = totalPrice.toFixed(2) + 'đ';
+            } else {
+                selectedProductDiv.textContent = 'No products selected.';
+            }
+
+            const paymentInfo = document.getElementById('paymentInfo');
+            const codOption = document.getElementById('cod');
+            const onlineOption = document.getElementById('online');
+
+            function togglePaymentInfo() {
+                if (onlineOption.checked) {
+                    paymentInfo.style.display = 'block';
+                } else {
+                    paymentInfo.style.display = 'none';
+                }
+            }
+
+            codOption.addEventListener('change', togglePaymentInfo);
+            onlineOption.addEventListener('change', togglePaymentInfo);
+
+            togglePaymentInfo();
+
+            function getProductDetails(productId) {
+                const products = [
+                    { id: '1', title: 'Product 1', price: 100000, img: 'https://via.placeholder.com/150' },
+                    { id: '2', title: 'Product 2', price: 200000, img: 'https://via.placeholder.com/150' },
+                    { id: '3', title: 'Product 3', price: 300000, img: 'https://via.placeholder.com/150' },
+                    { id: '4', title: 'Product 4', price: 400000, img: 'https://via.placeholder.com/150' },
+                    { id: '5', title: "Product 5", price: 500000, img: "https://via.placeholder.com/150" },
+                    { id: '6', title: "Product 6", price: 600000, img: "https://via.placeholder.com/150" },
+                    { id: '7', title: "Product 7", price: 700000, img: "https://via.placeholder.com/150" },
+                    { id: '8', title: "Product 8", price: 800000, img: "https://via.placeholder.com/150" },
+                    { id: '9', title: "Product 9", price: 900000, img: "https://via.placeholder.com/150" },
+                    { id: '10', title: "Product 10", price: 1000000, img: "https://via.placeholder.com/150" },
+                    { id: '11', title: "Product 11", price: 1100000, img: "https://via.placeholder.com/150" },
+                    { id: '12', title: "Product 12", price: 1200000, img: "https://via.placeholder.com/150" },
+                    { id: '13', title: "Product 13", price: 1300000, img: "https://via.placeholder.com/150" },
+                    { id: '14', title: "Product 14", price: 1400000, img: "https://via.placeholder.com/150" },
+                    { id: '15', title: "Product 15", price: 1500000, img: "https://via.placeholder.com/150" },
+                    { id: '16', title: "Product 16", price: 1600000, img: "https://via.placeholder.com/150" },
+                    { id: '17', title: "Product 17", price: 1700000, img: "https://via.placeholder.com/150" },
+                    { id: '18', title: "Product 18", price: 1800000, img: "https://via.placeholder.com/150" },
+                    { id: '19', title: "Product 19", price: 1900000, img: "https://via.placeholder.com/150" },
+                    { id: '20', title: "Product 20", price: 2000000, img: "https://via.placeholder.com/150" }
+                ];
+                return products.find(product => product.id === productId);
+            }
+        });
+    </script>
+</body>
+</html>
