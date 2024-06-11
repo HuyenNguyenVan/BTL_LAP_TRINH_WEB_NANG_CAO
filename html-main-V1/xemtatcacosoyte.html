@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home User</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="include.js" defer></script>
     <style>
         @font-face {
             font-family: 'svn-gilroy';
@@ -16,16 +17,16 @@
             font-style: normal;
         }
         .menuyte {
-            padding: 0 80px; /* Cách lề trái phải 40px */
+            padding: 0 80px;
         }
         .row {
             display: flex;
             justify-content: space-between;
-            margin: 0 -5px; /* Bỏ khoảng cách thêm do padding của col */
+            margin: 0 -5px;
         }
         .col-4 {
-            flex: 0 0 32%; /* Đặt chiều rộng mỗi cột */
-            margin: 5px; /* Cách đều nhau một khoảng 10px */
+            flex: 0 0 32%;
+            margin: 5px;
         }
         .header {
             display: none;
@@ -39,9 +40,8 @@
             width: 100%;
             border-radius: 15px;
             padding: 10px;
-            padding-right: 120px; /* Để lại không gian cho thẻ select */
+            padding-right: 120px;
             border: 1px solid #ccc;
-            
             box-sizing: border-box;
         }
         select {
@@ -52,287 +52,221 @@
             padding: 8px;
             background-color: white;
             border: none;
-            height: 42px; /* Điều chỉnh chiều cao để khớp với thẻ input */
+            height: 42px;
             color: #DEDEDE;
         }
+        .input-container { display: flex; justify-content: center; gap: 10px; }
+        .input-container input, .input-container select { padding: 10px; }
+        .menuyte .row { display: flex; flex-wrap: wrap; }
+        .menuyte .col-4 { flex: 0 0 25%; max-width: 25%; box-sizing: border-box; padding: 10px; }
+        .pagination { display: flex; list-style: none; padding: 0; }
+        .pagination li { margin: 0 5px; }
+        .pagination .page-link { padding: 10px; border: 1px solid #ddd; text-decoration: none; color: #000; }
+        .pagination .page-link:hover { background-color: #ddd; }
     </style>
 </head>
 <body>
-    <header id="header1" class="header">
-        <div class="container-fluid" style="background-color: #24AC7C;">
-            <div class="container">
-                <div class="d-flex justify-content-between p-4">
-                    <div class="d-flex align-items-center font-weight-bold text-white">
-                        <div class="text-uppercase font-weight-bold h4 mb-0">Đặt khám ngay:</div>
-                        <img class="ml-2" style="width: 48px; height: 48px;" src="images/phone.png" alt="">
-                        <div class="ml-2 text-uppercase font-weight-bold h4 mb-0">1900 3367</div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #24AC7C; border: none;">
-                                <img class="rounded-circle" style="width: 48px; height: 48px;" src="./images/tải xuống.png" alt="">
-                                <div class="d-inline font-weight-bold text-white">NGUYỄN OANH</div>
-                            </button>                            
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">
-                                    <svg class="bi bi-person-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-7a3 3 0 100-6 3 3 0 000 6z"/>
-                                    </svg>
-                                    Thông tin cá nhân
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <svg class="bi bi-file-earmark-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                        <path d="M14 4.5V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2a2 2 0 012-2h5.5L14 4.5zM10 1.5v3h3L10 1.5z"/>
-                                    </svg>
-                                    Đơn hàng
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <svg class="bi bi-file-medical-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                        <path d="M10.5 0H3a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V4.5L10.5 0zM5.5 9.5v2h-1v-2h-2v-1h2v-2h1v2h2v1h-2z"/>
-                                    </svg>
-                                    Hồ sơ sức khỏe
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <svg class="bi bi-journal-bookmark-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                        <path d="M3 1h10a1 1 0 011 1v9.234a.5.5 0 01-.15.36l-2.5 2.5a.5.5 0 01-.708 0l-2.5-2.5a.5.5 0 01-.147-.354V10.5a1.5 1.5 0 00-1.5-1.5H3a1 1 0 01-1-1V2a1 1 0 011-1z"/>
-                                    </svg>
-                                    Lịch sử đặt khám
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <svg class="bi bi-question-circle-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                        <path d="M8 0a8 8 0 100 16A8 8 0 000 8a8 8 0 008-8zM4.92 6.758C4.936 5.747 5.725 5 6.82 5c.966 0 1.756.672 1.94 1.508.014.065.01.13-.011.193-.24.775-1.04 1.137-1.263 1.2-.21.06-.42.08-.638.22-.254.164-.405.406-.41.725v.35h1.166v-.333c.006-.334.247-.62.555-.746.334-.137.766-.23.917-.748.144-.49.14-1.008-.066-1.467C7.676 4.637 7.07 4 6.207 4c-1.352 0-2.336 1.053-2.287 2.398.022.586.347 1.108.814 1.405v.748h1.167v-.769c0-.3-.072-.57-.23-.764a1.5 1.5 0 01-.43-.761zM6.5 11a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
-                                    </svg>
-                                    Câu hỏi của tôi
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <svg class="bi bi-link-45deg mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                        <path d="M4.715 6.542a.5.5 0 11-.708-.708L6.75 3.09a2 2 0 012.828 0l3.535 3.536a2 2 0 010 2.828l-2.121 2.121a2 2 0 01-2.829 0 .5.5 0 11.708-.708 1 1 0 001.414 0L12.95 9.95a1 1 0 000-1.415l-3.536-3.535a1 1 0 00-1.415 0L4.715 6.542zm3.122 2.83a.5.5 0 010 .708l-3.536 3.535a2 2 0 01-2.828 0l-2.121-2.121a2 2 0 010-2.828l2.121-2.121a2 2 0 012.828 0 .5.5 0 01-.708.708 1 1 0 00-1.414 0L2.636 9.95a1 1 0 000 1.415l3.536 3.535a1 1 0 001.414 0l3.535-3.536a1 1 0 000-1.414z"/>
-                                    </svg>
-                                    Liên kết tài khoản
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <svg class="bi bi-shield-lock-fill mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                        <path d="M8 0c-.69 0-1.275.345-1.722.779C5.74.448 5.335.25 4.923.086 4.703.009 4.5.07 4.29.293a.502.502 0 01-.248.21A6.528 6.528 0 002.286.689C1.345 1.222 0 2.488 0 4c0 5.014 3.587 8.925 7.568 10.927.528.25 1.158.354 1.768.194.574-.148 1.128-.512 1.707-.876 1.837-1.215 3.44-3.264 4.15-5.533C14.8 6.723 14.8 3.193 14.8 3.193l-.001-.001-.002-.003-.006-.008-.015-.02A.39.39 0 0014.7 3.1a.4.4 0 00-.107-.113l-.01-.006-.002-.001-.003-.002L8.138.293A.502.502 0 017.89.086C7.662-.07 7.363.009 7.143.086 6.73.25 6.326.448 5.722.779 5.275.345 4.69 0 4 0zM7 10a1.5 1.5 0 10.001-3.001A1.5 1.5 0 007 10zm.9 2.174a.502.502 0 00-.8.36v1a.5.5 0 00.998 0v-1a.502.502 0 00-.198-.36z"/>
-                                    </svg>
-                                    Đổi mật khẩu
-                                </a>
-                                <a id="logoutBtn" class="dropdown-item" href="#">
-                                    <svg class="bi bi-box-arrow-right mr-2" width="1em" height="1em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 01.5-.5h6a.5.5 0 01.5.5v2.6a.5.5 0 11-1 0V4h-5v8h5v-2.1a.5.5 0 011 0v2.6a.5.5 0 01-.5.5h-6a.5.5 0 01-.5-.5v-10z"/>
-                                        <path fill-rule="evenodd" d="M11.646 7.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L14.293 11H1.5a.5.5 0 010-1h12.793l-2.647-2.646a.5.5 0 010-.708z"/>
-                                    </svg>
-                                    Đăng xuất
-                                </a>                            
-                            </div>
-                        </div>
-                        <a href="#" class="border-left border-primary px-3">
-                            <svg class="text-warning" width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M24.3335 24.6667C24.3335 26.1467 23.1468 27.3333 21.6668 27.3333C20.9596 27.3333 20.2813 27.0524 19.7812 26.5523C19.2811 26.0522 19.0002 25.3739 19.0002 24.6667C19.0002 23.1867 20.1868 22 21.6668 22C22.3741 22 23.0523 22.2809 23.5524 22.781C24.0525 23.2811 24.3335 23.9594 24.3335 24.6667ZM8.3335 22C6.8535 22 5.66683 23.1867 5.66683 24.6667C5.66683 25.3739 5.94778 26.0522 6.44788 26.5523C6.94797 27.0524 7.62625 27.3333 8.3335 27.3333C9.8135 27.3333 11.0002 26.1467 11.0002 24.6667C11.0002 23.1867 9.8135 22 8.3335 22ZM8.60016 17.5067L8.56016 17.6667C8.56016 17.8533 8.70683 18 8.8935 18H24.3335V20.6667H8.3335C7.62625 20.6667 6.94797 20.3857 6.44788 19.8856C5.94778 19.3855 5.66683 18.7072 5.66683 18C5.66683 17.5333 5.78683 17.0933 5.98683 16.72L7.80016 13.4533L3.00016 3.33332H0.333496V0.666656H4.6935L5.94683 3.33332H25.6668C26.4002 3.33332 27.0002 3.93332 27.0002 4.66666C27.0002 4.89332 26.9335 5.11999 26.8402 5.33332L22.0668 13.96C21.6135 14.7733 20.7335 15.3333 19.7335 15.3333H9.80016L8.60016 17.5067ZM10.3335 12.6667H12.3335V9.99999H9.08016L10.3335 12.6667ZM13.6668 9.99999V12.6667H17.6668V9.99999H13.6668ZM17.6668 8.66666V5.99999H13.6668V8.66666H17.6668ZM21.8135 9.99999H19.0002V12.6667H20.3335L21.8135 9.99999ZM24.0402 5.99999H19.0002V8.66666H22.5602L24.0402 5.99999ZM7.18683 5.99999L8.44016 8.66666H12.3335V5.99999H7.18683Z" fill="#FF6B00"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+    <div id="header-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <main>
+        <div class="container mb-5">
+            <div class="title2">Đặt khám tại IVIE - Bác sĩ ơi</div>
+            <div class="content2 mb-2">Để được tiếp đón ưu tiên, không chờ đợi tại các bệnh viện, phòng khám hàng đầu</div>
+            <div class="input-container">
+                <input type="text" id="searchInput" placeholder="Tìm triệu chứng, chuyên khoa, tên bệnh viện, phòng khám">
+                <select id="locationFilter">
+                    <option value="">Tất cả địa điểm</option>
+                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="Bắc Giang">Bắc Giang</option>
+                    <option value="Ninh Bình">Ninh Bình</option>
+                </select>
             </div>
         </div>
-    </header>  
-    <header id="header2" class="header">
-        <div class="container-fluid" style="background-color: #24AC7C;">
+        <div class="menuyte">
             <div class="container">
-                <div class="row d-flex justify-content-between text-white">
-                    <div class="col-md-4 d-flex align-items-center">
-                        <div class="text-uppercase fw-bold fs-4">Đặt khám ngay:</div>
-                        <img class="ms-2" src="images/phone.png" alt="" style="width: 24px; height: 24px;">
-                        <div class="ms-2 text-uppercase fw-bold fs-4">1900 3367</div>
-                    </div>
-                    <div class="col-md-4 d-flex justify-content-end align-items-center text-uppercase fw-bold fs-4">
-                        <a href="login.html" class="text-white">Đăng nhập</a> / <a href="login.html" class="text-white">Đăng ký</a>
-                    </div>
+                <div class="row" id="facility-list">
+                    <!-- Facilities will be injected here -->
                 </div>
             </div>
-        </div>
-    </header>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            if (isLoggedIn) {
-                document.getElementById('header1').style.display = 'block';
-            } else {
-                document.getElementById('header2').style.display = 'block';
-            }
-            document.getElementById('logoutBtn').addEventListener('click', function() {
-                window.location.href = 'login.html';
-                localStorage.clear();
-            });
-        });
-    </script>
-    <div class="container-fluid">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <div class="container-fluid d-flex justify-content-between align-items-center">
-                    <a class="navbar-brand" href="#">
-                        <img src="/images/logo.png" alt="" class="img-fluid" style="max-height: 40px;">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Đặt khám
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item fw-bold" href="#">Bác sĩ</a></li>
-                                    <li><a class="dropdown-item fw-bold" href="#">Cơ sở y tế</a></li>
-                                    <li><a class="dropdown-item fw-bold" href="#">Chuyên khoa</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark fw-bold" href="#">Hỏi đáp bác sĩ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark fw-bold" href="#">Hồ sơ sức khỏe</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark fw-bold" href="#">Cẩm nang</a>
-                            </li>
+            <div id="no-results-message" class="text-center text-gray-500 hidden">
+                Không tìm thấy cơ sở phù hợp.
+            </div>
+            <div class="container" style="display: flex; justify-content: center;">
+                <div class="d-flex justify-content-end">
+                    <nav aria-label="Pagination">
+                        <ul class="pagination" id="pagination">
+                            <!-- Pagination will be injected here -->
                         </ul>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-    <div class="container-fluid mb-5" style="height: 172px; background-color:#EFF9FB; text-align:center">
-        <div class="title2" style="font-size: 30px; color:#24AC7C">Đặt khám tại IVIE - Bác sĩ ơi</div>
-        <div class="content2 mb-2" style="font-size: 16px; ">Để được tiếp đón ưu tiên, không chờ đợi tại các bệnh viện, phòng khám hàng đầu</div>
-        <div class="input-container">
-            <input type="text" placeholder="Tìm triệu chứng, chuyên khoa, tên bệnh viện, phòng khám">
-            <select>
-                <option value="triệu chứng">|Địa điểm</option>
-                <option value="chuyên khoa">Hà Nội</option>
-                <option value="tên bệnh viện">Bắc Giang</option>
-                <option value="phòng khám">Ninh Bình</option>
-            </select>
-        </div>
-    </div>
-    <div class="menuyte">
-        <div class="row">
-            <div class="col-4 mb-3"><div class="card" style="width: 18rem;">
-                <img src="/html-main-V1/images/logo benh phoi hd .png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Bệnh viện phổi Hải Dương</h5>
-                  <a href="#" style="text-decoration: none;" >Số 1 Đ. Thanh Bình, P. Thanh Bình, Thành phố Hải Dương, Hải Dương</a>
-                </div>
-              </div></div>
-              <div class="col-4 mb-3"><div class="card" style="width: 18rem;">
-                <img src="/html-main-V1/images/logo benh phoi hd .png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Bệnh viện phổi Hải Dương</h5>
-                  <a href="#" style="text-decoration: none;" >Số 1 Đ. Thanh Bình, P. Thanh Bình, Thành phố Hải Dương, Hải Dương</a>
-                </div>
-              </div></div>
-              <div class="col-4 mb-3"><div class="card" style="width: 18rem;">
-                <img src="/html-main-V1/images/logo benh phoi hd .png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Bệnh viện phổi Hải Dương</h5>
-                  <a href="#" style="text-decoration: none;" >Số 1 Đ. Thanh Bình, P. Thanh Bình, Thành phố Hải Dương, Hải Dương</a>
-                </div>
-              </div></div>
-              <div class="col-4 mb-3"><div class="card" style="width: 18rem;">
-                <img src="/html-main-V1/images/logo benh phoi hd .png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Bệnh viện phổi Hải Dương</h5>
-                  <a href="#" style="text-decoration: none;" >Số 1 Đ. Thanh Bình, P. Thanh Bình, Thành phố Hải Dương, Hải Dương</a>
-                </div>
-              </div></div>
-              <div class="col-4 mb-3"><div class="card" style="width: 18rem;">
-                <img src="/html-main-V1/images/logo benh phoi hd .png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Bệnh viện phổi Hải Dương</h5>
-                  <a href="#" style="text-decoration: none;" >Số 1 Đ. Thanh Bình, P. Thanh Bình, Thành phố Hải Dương, Hải Dương</a>
-                </div>
-              </div></div>
-              <div class="col-4 mb-3"><div class="card" style="width: 18rem;">
-                <img src="/html-main-V1/images/logo benh phoi hd .png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Bệnh viện phổi Hải Dương</h5>
-                  <a href="#" style="text-decoration: none;" >Số 1 Đ. Thanh Bình, P. Thanh Bình, Thành phố Hải Dương, Hải Dương</a>
-                </div>
-              </div></div>
-              <div class="d-flex justify-content-end">
-                <nav aria-label="Pagination">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><span class="page-link">...</span></li>
-                        <li class="page-item"><a class="page-link" href="#">99</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
-    </div>
-    <div class="container text-center">
-        </div> 
-        <div class="container-fluid" style="background: rgb(58, 181, 138);">
-            <div class="container">
-                <div class="row">
-                    <img src="/html-main-V1images/IVIE_logo_white.png" alt="" style="scale: 0.5;">
-                    <div class="col-md mb-4">
-                        <h4 class="text-white">CÔNG TY TNHH 1 THANH VIÊN ISOFHCARE</h4>
-                        <p class="text-white">Tầng 6, Tòa nhà FORD, 313-315 Trường Chinh, Thanh Xuân, Hà Nội</p>
-                        <p class="text-white">1900 3367</p>
-                        <p class="text-white">marketing@isofhcare.com</p>
-                    </div>
-                    <div class="col-md mb-4">
-                        <p class="text-white">Đặt lịch</p>
-                        <p class="text-white">Bác sĩ</p>
-                        <p class="text-white">Chuyên khoa</p>
-                        <p class="text-white">Đăng ký bán hàng trên IVIE-Shopping Mall</p>
-                    </div>
-                    <div class="col-md mb-4">
-                        <p class="text-white">Đặt lịch</p>
-                        <p class="text-white">Bác sĩ</p>
-                        <p class="text-white">Chuyên khoa</p>
-                        <p class="text-white">Đăng ký bán hàng trên IVIE-Shopping Mall</p>
-                    </div>
-                    <div class="col-md mb-4">
-                        <p class="text-white">Hỏi đáp bác sĩ</p>
-                        <p class="text-white">Cẩm nang bác sĩ</p>
-                        <p class="text-white">Về chúng tôi</p>
-                        <p class="text-white">Trở thành đối tác</p>
-                    </div>
-                    <div class="col-md">
-                        <p class="text-white">Điều khoản sử dụng</p>
-                        <p class="text-white">Chính sách bảo mật</p>
-                        <p class="text-white">Quy chế hoạt động</p>
-                        <p class="text-white">Trung tâm trợ giúp</p>
-                    </div>
-                </div>                
-                <div class="d-flex justify-content-center align-items-center gap-4" style="padding-bottom: 2rem;">
-                    <a href="http://online.gov.vn/Home/WebDetails/67055">
-                        <img src="images/at1.png" alt="">
-                    </a>
-                    <a href="http://online.gov.vn/Home/AppDetails/1145">
-                        <img src="images/at2.webp" alt="">
-                    </a>
-                    <a href="https://www.dmca.com/Protection/Status.aspx?ID=6eb4bc14-dc4e-4e07-9394-076f33d50fb2&refurl=https://ivie.vn/">
-                        <img src="images/at3.png" alt="">
-                    </a>
-                </div>            
-            </div>
-        </div> 
+    </main>
+    <div id="chatbot-placeholder"></div>
+    <div id="footer-placeholder"></div> 
 </body>
 </html>
+<script>
+const facilities = Array(100).fill().map((_, i) => ({
+    id: i,
+    imgSrc: '/images/logo benh phoi hd .png',
+    title: 'Bệnh viện phổi Hải Dương ' + (i + 1),
+    address: 'Số 1 Đ. Thanh Bình, P. Thanh Bình, Thành phố Hải Dương, Hải Dương',
+    link: 'facilityDetails.html?id=' + i,
+    location: i % 3 === 0 ? 'Hà Nội' : i % 3 === 1 ? 'Bắc Giang' : 'Ninh Bình'
+}));
+
+const facilitiesPerPage = 16;
+let currentPage = 1;
+let filteredFacilities = facilities;
+
+function renderFacilities(page) {
+    const facilityList = document.getElementById('facility-list');
+    const noResultsMessage = document.getElementById('no-results-message');
+    facilityList.innerHTML = '';
+    const start = (page - 1) * facilitiesPerPage;
+    const end = start + facilitiesPerPage;
+    const paginatedFacilities = filteredFacilities.slice(start, end);
+
+    if (paginatedFacilities.length === 0) {
+        noResultsMessage.classList.remove('hidden');
+    } else {
+        noResultsMessage.classList.add('hidden');
+        const facilityElements = paginatedFacilities.map(facility => `
+            <div class="col-3 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <a href="${facility.link}" style="text-decoration: none;">
+                        <img src="${facility.imgSrc}" style="padding: 1rem" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center; height: 44px;">${facility.title}</h5>
+                            <p>${facility.address}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        `).join('');
+        facilityList.innerHTML = facilityElements;
+    }
+}
+
+function renderPagination() {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+
+    const totalPages = Math.ceil(filteredFacilities.length / facilitiesPerPage);
+    const maxPagesToShow = 3;
+
+    const createPageItem = (page) => {
+        const pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+        if (page === currentPage) pageItem.classList.add('active');
+        pageItem.innerHTML = `<a class="page-link" href="#">${page}</a>`;
+        pageItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentPage = page;
+            renderFacilities(currentPage);
+            renderPagination();
+        });
+        return pageItem;
+    };
+
+    if (currentPage > 1) {
+        const prevItem = document.createElement('li');
+        prevItem.classList.add('page-item');
+        prevItem.innerHTML = `
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        `;
+        prevItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentPage--;
+            renderFacilities(currentPage);
+            renderPagination();
+        });
+        pagination.appendChild(prevItem);
+    }
+
+    if (totalPages <= maxPagesToShow) {
+        for (let i = 1; i <= totalPages; i++) {
+            pagination.appendChild(createPageItem(i));
+        }
+    } else {
+        let startPage, endPage;
+        if (currentPage <= 3) {
+            startPage = 1;
+            endPage = maxPagesToShow;
+        } else if (currentPage + 1 >= totalPages) {
+            startPage = totalPages - 4;
+            endPage = totalPages;
+        } else {
+            startPage = currentPage - 2;
+            endPage = currentPage + 2;
+        }
+
+        if (startPage > 1) {
+            pagination.appendChild(createPageItem(1));
+            if (startPage > 2) {
+                const dots = document.createElement('li');
+                dots.classList.add('page-item');
+                dots.innerHTML = `<span class="page-link">...</span>`;
+                pagination.appendChild(dots);
+            }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            pagination.appendChild(createPageItem(i));
+        }
+
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                const dots = document.createElement('li');
+                dots.classList.add('page-item');
+                dots.innerHTML = `<span class="page-link">...</span>`;
+                pagination.appendChild(dots);
+            }
+            pagination.appendChild(createPageItem(totalPages));
+        }
+    }
+
+    if (currentPage < totalPages) {
+        const nextItem = document.createElement('li');
+        nextItem.classList.add('page-item');
+        nextItem.innerHTML = `
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        `;
+        nextItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentPage++;
+            renderFacilities(currentPage);
+            renderPagination();
+        });
+        pagination.appendChild(nextItem);
+    }
+}
+
+function filterFacilities() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const locationFilter = document.getElementById('locationFilter').value;
+
+    filteredFacilities = facilities.filter(facility => {
+        const matchesLocation = locationFilter ? facility.location === locationFilter : true;
+        const matchesSearch = facility.title.toLowerCase().includes(searchInput) || facility.address.toLowerCase().includes(searchInput);
+        return matchesLocation && matchesSearch;
+    });
+
+    currentPage = 1;
+    renderFacilities(currentPage);
+    renderPagination();
+}
+
+document.getElementById('searchInput').addEventListener('input', filterFacilities);
+document.getElementById('locationFilter').addEventListener('change', filterFacilities);
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderFacilities(currentPage);
+    renderPagination();
+});
+</script>

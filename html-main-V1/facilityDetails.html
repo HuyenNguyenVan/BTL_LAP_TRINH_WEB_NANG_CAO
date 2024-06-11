@@ -15,13 +15,24 @@
       margin-bottom: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .hospital-card img {
-      max-width: 100%;
+    .hospital-image {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hospital-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 10px;
     }
     .hospital-details {
+      flex: 2;
       margin-left: 20px;
-      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .hospital-title {
       font-size: 1.5em;
@@ -30,6 +41,10 @@
     }
     .hospital-info {
       margin-bottom: 10px;
+    }
+    .working-hours {
+      margin-top: 10px;
+      display: none;
     }
   </style>
 </head>
@@ -40,23 +55,22 @@
     <div class="container mt-5">
       <div class="hospital-card">
         <div class="hospital-image">
-          <img src="/html-main-V1/images/bvmtu.jpg" alt="Bệnh Viện Mắt Trung Ương">
+          <img id="facility-img" src="" alt="Bệnh Viện" style="padding: 1rem;">
         </div>
         <div class="hospital-details">
-          <div class="hospital-title">BỆNH VIỆN MẮT TRUNG ƯƠNG</div>
+          <div class="hospital-title" id="facility-title"></div>
           <div class="hospital-info">
             <span>Lượt ĐK: 640</span> |
-            <span>Đánh giá: 5</span>
+            <span>Đánh giá: <span id="rating-stars" style="color: orange;">★★★★★</span></span>
           </div>
           <div class="hospital-address">
-            <p>
-              85 Phố Bà Triệu, Nguyễn Du, Hai Bà Trưng, Thành phố Hà Nội 
-              <a href="#">Xem đường đi</a>
-            </p>
-            <p>
-              Đã hết giờ làm việc (07:30 - 11:30) 
-              <a href="#">Xem lịch</a>
-            </p>
+            <p id="facility-address"></p>
+            <h3 id="toggle-hours">Xem lịch</h3>
+            <p id="working-status"></p>
+            <div class="working-hours" id="working-hours">
+              <p>Thứ 2 đến Thứ 7: 08:00 - 20:00</p>
+              <p>Chủ nhật: 09:00 - 16:00</p>
+            </div>
           </div>
           <div class="hospital-contact">
             <p>
@@ -69,6 +83,73 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      const facilities = Array(100).fill().map((_, i) => ({
+        id: i,
+        imgSrc: '/images/logo benh phoi hd .png',
+        title: 'Bệnh viện phổi Hải Dương ' + (i + 1),
+        address: 'Số 1 Đ. Thanh Bình, P. Thanh Bình, Thành phố Hải Dương, Hải Dương',
+        location: i % 3 === 0 ? 'Hà Nội' : i % 3 === 1 ? 'Bắc Giang' : 'Ninh Bình'
+      }));
+
+      function getFacilityById(id) {
+        return facilities.find(facility => facility.id == id);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const facilityId = urlParams.get('id');
+        const facility = getFacilityById(facilityId);
+
+        if (facility) {
+          document.getElementById('facility-img').src = facility.imgSrc;
+          document.getElementById('facility-title').textContent = facility.title;
+          document.getElementById('facility-address').textContent = facility.address;
+        }
+
+        document.getElementById('toggle-hours').addEventListener('click', function(event) {
+          event.preventDefault();
+          const workingHours = document.getElementById('working-hours');
+          const workingStatus = document.getElementById('working-status');
+          
+          if (workingHours.style.display === 'none' || workingHours.style.display === '') {
+            workingHours.style.display = 'block';
+          } else {
+            workingHours.style.display = 'none';
+          }
+
+          const now = new Date();
+          const currentDay = now.getDay();
+          const currentHour = now.getHours();
+          const currentMinute = now.getMinutes();
+
+          let isOpen = false;
+          if (currentDay >= 1 && currentDay <= 6) {
+            if (currentHour > 8 && currentHour < 20) {
+              isOpen = true;
+            } else if (currentHour === 8 && currentMinute >= 0) {
+              isOpen = true;
+            } else if (currentHour === 20 && currentMinute === 0) {
+              isOpen = true;
+            }
+          } else if (currentDay === 0) {
+            if (currentHour > 9 && currentHour < 16) {
+              isOpen = true;
+            } else if (currentHour === 9 && currentMinute >= 0) {
+              isOpen = true;
+            } else if (currentHour === 16 && currentMinute === 0) {
+              isOpen = true;
+            }
+          }
+
+          if (isOpen) {
+            workingStatus.textContent = 'Đang trong giờ làm việc';
+          } else {
+            workingStatus.textContent = 'Đã hết giờ làm việc';
+          }
+        });
+      });
+    </script>
   </main> 
   <div id="chatbot-placeholder"></div>
   <div id="footer-placeholder"></div> 
