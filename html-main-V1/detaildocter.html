@@ -37,7 +37,7 @@
                 <div class="container mt-5 d-flex" style="gap: 1rem;">
                     <img src="images/avt-doctor.png" alt="">
                     <div class="ms-3">
-                        <h1>Ths.BS Trần Thị Thúy Mùi</h1>
+                        <h1 id="nam">Ths.BS Trần Thị Thúy Mùi</h1>
                         <div>
                             <div class="d-flex flex-column">
                                 <p class="bg-light border rounded text-body p-2 mb-2">350.000đ</p>
@@ -118,28 +118,28 @@
                                             selectedTimeSlot = timeSlot; // Lưu mốc thời gian đã chọn
                                             displayForm();
                                             
-                                            alert("Bạn đã chọn mốc thời gian: " + timeSlot);
+                                            // alert("Bạn đã chọn mốc thời gian: " + timeSlot);
 
-                                            if(timeSlot != null && timeSlot != ''){
-                                        var selectedDate = document.getElementById("datepicker").value;
+                                        //     if(timeSlot != null && timeSlot != ''){
+                                        // var selectedDate = document.getElementById("datepicker").value;
 
-                                        const currentUser = localStorage.getItem("currentUser");
+                                        // const currentUser = localStorage.getItem("currentUser");
                                         
-                                        const storedUser = JSON.parse(localStorage.getItem(currentUser));
+                                        // const storedUser = JSON.parse(localStorage.getItem(currentUser));
 
-                                        // const userString = JSON.stringify(storedUser);
-                                        // // Kiểm tra nếu lichKham chưa được khởi tạo
-                                        if (!storedUser.lichKham) {
-                                            storedUser.lichKham = [];
-                                        }
+                                        // // const userString = JSON.stringify(storedUser);
+                                        // // // Kiểm tra nếu lichKham chưa được khởi tạo
+                                        // if (!storedUser.lichKham) {
+                                        //     storedUser.lichKham = [];
+                                        // }
 
-                                        storedUser.lichKham.push({ 
-                                            tenBacSy : "Ths.BS Trần Thị Thúy Mùi",
-                                            gio : timeSlot,
-                                            ngayThangName: selectedDate
-                                        });
-                                        localStorage.setItem(currentUser, JSON.stringify(storedUser));
-                                        }
+                                        // storedUser.lichKham.push({ 
+                                        //     tenBacSy : "Ths.BS Trần Thị Thúy Mùi",
+                                        //     gio : timeSlot,
+                                        //     ngayThangName: selectedDate
+                                        // });
+                                        // localStorage.setItem(currentUser, JSON.stringify(storedUser));
+                                        // }
                                         });
                                         timeSlotsContainer.appendChild(button);
                                     });
@@ -174,9 +174,40 @@
                                     var noidungkham = document.getElementById("noidungkham").value;
                                     var motachitiet = document.getElementById("motachitiet").value;
                                     if (selectedTimeSlot) {
+
+                                        const currentUser =  localStorage.getItem("currentUser");
+                                if(currentUser === null || currentUser == ''){
+                                    alert("Bạn cần phải đăng nhập để tiếp tục")
+                                      // Sử dụng div với class alert alert-secondary
+                                    window.location.href = "login.html";
+                                    return;
+                                }
+
                                         alert("Bạn đã đặt lịch vào mốc thời gian: " + selectedTimeSlot +
                                               "\nNội dung khám: " + noidungkham +
                                               "\nMô tả chi tiết: " + motachitiet);
+                                            //   const currentUser = localStorage.getItem("currentUser");
+                                        
+                                              
+                                        const storedUser = JSON.parse(localStorage.getItem(currentUser));
+                                        var selectedDate = document.getElementById("datepicker").value;
+
+                                        // const userString = JSON.stringify(storedUser);
+                                        // // Kiểm tra nếu lichKham chưa được khởi tạo
+                                        if (!storedUser.lichKham) {
+                                            storedUser.lichKham = [];
+                                        }
+
+                                        storedUser.lichKham.push({ 
+                                            tenBacSy : "Ths.BS Trần Thị Thúy Mùi",
+                                            gio : selectedTimeSlot,
+                                            ngayThangName: selectedDate,
+                                            noidungkham: noidungkham,
+                                            motachitiet: motachitiet
+                                        });
+                                        localStorage.setItem(currentUser, JSON.stringify(storedUser));
+
+                                        alert("Đăng ký lịch thành công!")
                                     } else {
                                         alert("Vui lòng chọn mốc thời gian.");
                                     }
