@@ -98,9 +98,11 @@
                         <div id="Tasks" class="tabcontent">
                             <h3>Chia sẻ với tôi</h3>
                             <ul id="taskList">
-                                <li onclick="showPopup('Task 1', 'This is the content of Task 1')">Task 1</li>
-                                <li onclick="showPopup('Task 2', 'This is the content of Task 2')">Task 2</li>
-                                <li onclick="showPopup('Task 3', 'This is the content of Task 3')">Task 3</li>
+                                <li onclick="showPopup('Uống đủ nước', 'Uống đủ nước mỗi ngày giúp duy trì độ ẩm cho da, hỗ trợ quá trình trao đổi chất và loại bỏ độc tố khỏi cơ thể.')">Uống đủ nước</li>
+                                <li onclick="showPopup('Ăn nhiều rau xanh và trái cây', 'Rau xanh và trái cây cung cấp vitamin, khoáng chất và chất xơ cần thiết cho cơ thể. Hãy ăn ít nhất 5 phần rau và trái cây mỗi ngày.')">Ăn nhiều rau xanh và trái cây</li>
+                                <li onclick="showPopup('Tập thể dục đều đặn', 'Tập thể dục ít nhất 30 phút mỗi ngày giúp cải thiện sức khỏe tim mạch, tăng cường cơ bắp và giảm căng thẳng.')">Tập thể dục đều đặn</li>
+                                <li onclick="showPopup('Ngủ đủ giấc', 'Ngủ đủ giấc giúp cơ thể và tinh thần được nghỉ ngơi và phục hồi. Người lớn nên ngủ từ 7-9 giờ mỗi đêm.')">Ngủ đủ giấc</li>
+                                <li onclick="showPopup('Tránh stress', 'Tránh căng thẳng bằng cách thực hành thiền định, yoga hoặc tham gia các hoạt động thư giãn như đọc sách, nghe nhạc.')">Tránh stress</li>
                             </ul>
                         </div>
                     </div>
@@ -117,13 +119,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
-                const healthRecordsContainer = document.getElementById("HealthRecords");
+            const healthRecordsContainer = document.getElementById("HealthRecords");
 
-                const currentUser = localStorage.getItem("currentUser");
-                                        
-                                        const storedUser = JSON.parse(localStorage.getItem(currentUser));
-                // Duyệt qua mảng lichKham và tạo các phần tử HTML
-                storedUser.lichKham.forEach((appointment, index) => {
+            const currentUser = localStorage.getItem("currentUser");
+            const storedUser = JSON.parse(localStorage.getItem(currentUser));
+
+            // Duyệt qua mảng lichKham và tạo các phần tử HTML
+            storedUser.lichKham.forEach((appointment, index) => {
                 const appointmentElement = document.createElement("div");
                 appointmentElement.classList.add("list-group-item");
 
@@ -137,8 +139,7 @@
 
                 appointmentElement.innerHTML = appointmentHTML;
                 healthRecordsContainer.querySelector("ul.list-group").appendChild(appointmentElement);
-                });
-
+            });
 
             function openTab(evt, tabName) {
                 $('.tabcontent').hide();
