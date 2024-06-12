@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function() {
     loadHTML('header-placeholder', 'header.html', function() {
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         if (isLoggedIn) {
+            const currentUser =  localStorage.getItem("currentUser");
+            var element = document.getElementById("name_user");
+            element.textContent = currentUser;
             document.getElementById("header1").classList.remove("hidden");
         } else {
             document.getElementById("header2").classList.remove("hidden");
